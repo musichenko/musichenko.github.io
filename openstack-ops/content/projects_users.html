@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:exsl="http://exslt.org/common" xmlns:ng="http://docbook.org/docbook-ng" xmlns:fb="http://ogp.me/ns/fb#"><head>
+<link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"/><link type="text/css" rel="stylesheet" href="styles/shCoreDefault.css"/><script type="text/javascript" src="scripts/shCore.js"><!----></script><script type="text/javascript">
+               SyntaxHighlighter.config.space = ' ';
+               SyntaxHighlighter.all();
+    </script>
+<title>Chapter 9. Managing Projects and Users - OpenStack Operations Guide</title><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><meta name="mavenGroupId" content="org.openstack.docs"/><meta name="mavenArtifactId" content="openstack-ops-manual"/><meta name="mavenVersionId" content="1.0.0"/><link rel="home" href="index.html" title="OpenStack Operations Guide"/><link rel="up" href="operations.html" title="Operations"/><link rel="prev" href="lay_of_the_land.html" title="Chapter 8. Lay of the Land"/><link rel="next" href="user_facing_operations.html" title="Chapter 10. User-Facing Operations"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="git-sha" content="9e75fe0721d9e5af9030ba232fccd38c560792f7"/><meta name="buildTime" content="2015-10-02T19:02:29+02:00"/><script type="text/javascript">
+            //The id for tree cookie
+            var treeCookieId = "treeview-openstack-operations-guide";
+            var language = "en";
+            var w = new Object();
+            //Localization
+            txt_filesfound = 'Results';
+            txt_enter_at_least_1_char = "You must enter at least one character.";
+            txt_browser_not_supported = "Please enable JavaScript.";
+            txt_please_wait = "Please wait. Search in progress...";
+            txt_results_for = "Results for: ";
+        </script><style type="text/css">
+            input {
+            margin-bottom: 5px;
+            margin-top: 2px;
+            }
+
+            .folder {
+            display: block;
+            height: 22px;
+            padding-left: 20px;
+            background: transparent url(../common/jquery/treeview/images/folder.gif) 0 0px no-repeat;
+            }
+            
+        </style><link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"/><link rel="stylesheet" type="text/css" href="../common/css/positioning.css"/><link rel="stylesheet" type="text/css" href="../common/css/custom.css"/><link rel="canonical" href="http://docs.openstack.org/openstack-ops/content//projects_users.html"/><!--[if IE]>
+	<link rel="stylesheet" type="text/css" href="../common/css/ie.css"/>
+	<![endif]--><link rel="stylesheet" type="text/css" href="../common/jquery/theme-redmond/jquery-ui-1.8.2.custom.css"/><link rel="stylesheet" type="text/css" href="../common/jquery/treeview/jquery.treeview.css"/><script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"><!----></script><script type="text/javascript" src="../common/jquery/jquery-ui-1.8.2.custom.min.js"><!----></script><script type="text/javascript" src="../common/jquery/jquery.cookie.js"><!----></script><script type="text/javascript" src="../common/jquery/treeview/jquery.treeview.min.js"><!----></script><link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/qtip2/2.2.0/jquery.qtip.min.css"/><script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.0/jquery.qtip.min.js"><!--jQuery plugin for glossary popups. --></script><script type="text/javascript" src="search/htmlFileList.js"><!----></script><script type="text/javascript" src="search/htmlFileInfoList.js"><!----></script><script type="text/javascript" src="search/nwSearchFnt.js"><!----></script><script type="text/javascript" src="search/stemmers/en_stemmer.js"><!--//make this scalable to other languages as well.--></script><script type="text/javascript" src="search/index-1.js"><!----></script><script type="text/javascript" src="search/index-2.js"><!----></script><script type="text/javascript" src="search/index-3.js"><!----></script><script type="text/javascript">
+	    var _gaq = _gaq || [];
+	    _gaq.push(['_setAccount', 'UA-17511903-1']);
+	    
+	    _gaq.push(['_setDomainName', '.openstack.org']);	        
+	        </script><script type="text/javascript" src="../common/ga.js"><!----></script></head><body><div id="header"><a onclick="_gaq.push(['_trackEvent', 'Header', 'logo', 'click', 1]);" target="_blank" href="http://www.openstack.org"><img src="../common/images/openstack-logo.png" alt="OpenStack Documentation" width="157" height="47"/></a><h1>Chapter 9. Managing Projects and Users</h1><div id="navheader" align="right"><!----><table class="navLinks"><tr><td><a id="showHideButton" onclick="showHideToc(); _gaq.push(['_trackEvent', 'Header', 'show/hide', 'click', 1]);" class="pointLeft" title="Hide TOC tree">Sidebar
+                            </a></td><td><a accesskey="p" class="navLinkPrevious" onclick="_gaq.push(['_trackEvent', 'Header', 'prevLink', 'click', 1]);" tabindex="5" href="lay_of_the_land.html">Prev</a>
+				      |
+                                        <a accesskey="u" class="navLinkUp" onclick="_gaq.push(['_trackEvent', 'Header', 'upLink', 'click', 1]);" tabindex="5" href="operations.html">Up</a>
+				  |
+                                    <a accesskey="n" class="navLinkNext" onclick="_gaq.push(['_trackEvent', 'Header', 'nextLink', 'click', 1]);" tabindex="5" href="user_facing_operations.html">Next</a></td></tr></table></div></div><div id="toolbar" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all"><div id="toolbar-left"><p class="breadcrumbs"><a href="http://docs.openstack.org/">OpenStack Manuals</a><a href="index.html">OpenStack Operations Guide</a></p><a onclick="_gaq.push(['_trackEvent', 'Header', 'pdfDownload', 'click', 1]);" alt="Download a pdf of this document" class="pdficon" href="../openstack-ops-manual.pdf"><img src="../common/images/pdf.png"/></a><div id="gplusone"><a id="AskOOLink1" href="http://ask.openstack.org" target="_blank" title="Questions? Discuss on ask.openstack.org"><i class="icon-question"><!----></i></a>  
+        <a id="logABugLink1" href="" target="_blank" title="Found an error? Report a bug against this page"><i class="icon-bug"><!----></i></a></div></div></div><div id="content"><div class="chapter"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="projects_users"> </a>Chapter 9. Managing Projects and Users</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="projects_users.html#projects_or_tenants">Projects or Tenants?</a></span></dt><dt><span class="section"><a href="projects_users.html#managing_projects">Managing Projects</a></span></dt><dt><span class="section"><a href="projects_users.html#quotas">Quotas</a></span></dt><dt><span class="section"><a href="projects_users.html#user_mgmt">User Management</a></span></dt><dt><span class="section"><a href="projects_users.html#create_new_users">Creating New Users</a></span></dt><dt><span class="section"><a href="projects_users.html#associate_users_with_projects">Associating Users with Projects</a></span></dt><dt><span class="section"><a href="projects_users.html#projects_users_summary">Summary</a></span></dt></dl></div><p>An OpenStack cloud does not have much value without users. This
+  chapter covers topics that relate to managing users, projects, and quotas.
+  This chapter describes users and projects as described by version 2 of the
+  OpenStack Identity API.</p><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Warning"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Warning]" src="../common/images/admon/warning.png"/></td><th align="left">Warning</th></tr><tr><td align="left" valign="top"><p>While version 3 of the Identity API is available, the client tools
+    do not yet implement those calls, and most OpenStack clouds are still
+    implementing Identity API v2.0.<a id="d9e3446" class="indexterm"/></p></td></tr></table></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="projects_or_tenants"> </a>Projects or Tenants?</h2></div></div></div><p>In OpenStack user interfaces and documentation, a group of users is
+    referred to as a <a class="gloss" href="#" def="&lt;strong&gt;project: &lt;/strong&gt; &lt;p&gt;Projects represent the base unit of “ownership” in OpenStack, in that all resources in OpenStack should be owned by a specific project. In OpenStack Identity, a project must be owned by a specific domain. &lt;/p&gt;">project</a> or
+    <a class="gloss" href="#" def="&lt;strong&gt;tenant: &lt;/strong&gt; &lt;p&gt;A group of users; used to isolate access to Compute resources. An alternative term for a project. &lt;/p&gt;">tenant</a>. These terms are interchangeable.<a id="d9e3454" class="indexterm"/><a id="d9e3457" class="indexterm"/><a id="d9e3460" class="indexterm"/></p><p>The initial implementation of OpenStack Compute
+    had its own authentication system and used the term
+    <code class="literal">project</code>. When authentication moved into the OpenStack
+    Identity (keystone) project, it used the term
+    <code class="literal">tenant</code> to refer to a group of users. Because of this
+    legacy, some of the OpenStack tools refer to projects and some refer to
+    tenants.</p><div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Tip"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Tip]" src="../common/images/admon/tip.png"/></td><th align="left">Tip</th></tr><tr><td align="left" valign="top"><p>This guide uses the term <code class="literal">project</code>, unless an
+      example shows interaction with a tool that uses the term
+      <code class="literal">tenant</code>.</p></td></tr></table></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="managing_projects"> </a>Managing Projects</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="projects_users.html#add_projects">Adding Projects</a></span></dt></dl></div><p>Users must be associated with at least one project, though they may
+    belong to many. Therefore, you should add at least one project before
+    adding users.<a id="d9e3473" class="indexterm"/></p><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="add_projects"> </a>Adding Projects</h3></div></div></div><p>To create a project through the OpenStack dashboard:</p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>Log in as an administrative user.</p></li><li class="listitem"><p>Select the <span class="guilabel"><strong>Identity</strong></span> tab in the left
+          navigation bar.</p></li><li class="listitem"><p>Under Identity tab, click
+          <span class="guilabel"><strong>Projects</strong></span>.</p></li><li class="listitem"><p>Click the <span class="guibutton"><strong>Create Project</strong></span> button.</p></li></ol></div><p>You are prompted for a project name and an optional, but
+      recommended, description. Select the checkbox at the bottom of the form
+      to enable this project. By default, it is enabled, as shown in <a class="xref" href="projects_users.html#horizon-add-project" title="Figure 9.1. Dashboard's Create Project form">Figure 9.1, “Dashboard's Create Project form”</a>.</p><div class="figure"><a id="horizon-add-project"> </a><p class="title"><strong>Figure 9.1. Dashboard's Create Project form</strong></p><div class="figure-contents"><div class="mediaobject"><img src="http://git.openstack.org/cgit/openstack/operations-guide/plain/doc/openstack-ops/figures/osog_0901.png"/></div></div></div><br class="figure-break"/><p>It is also possible to add project members and adjust the project
+      quotas. We'll discuss those actions later, but in practice, it can be
+      quite convenient to deal with all these operations at one time.</p><p>To add a project through the command line, you must use the
+      OpenStack command line client.</p><pre class="programlisting"># openstack project create demo</pre><p>This command creates a project named "demo." Optionally, you can
+      add a description string by appending <code class="code">--description
+      <em class="replaceable"><code>tenant-description</code></em></code>, which can be very
+      useful. You can also create a group in a disabled state by appending
+      <code class="code">--disable</code> to the command. By default, projects are
+      created in an enabled state.</p></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="quotas"> </a>Quotas</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="projects_users.html#set_image_quotas">Set Image Quotas</a></span></dt><dt><span class="section"><a href="projects_users.html#cli_set_compute_quotas">Set Compute Service Quotas</a></span></dt><dt><span class="section"><a href="projects_users.html#cli_set_object_storage_quotas">Set Object Storage Quotas</a></span></dt><dt><span class="section"><a href="projects_users.html#cli_set_block_storage_quotas">Set Block Storage Quotas</a></span></dt></dl></div><p>To prevent system capacities from being exhausted without
+    notification, you can set up <a class="gloss" href="#" def="&lt;strong&gt;quotas: &lt;/strong&gt; &lt;p&gt;In Compute and Block Storage, the ability to set resource limits on a per-project &lt;span class='keep-together'&gt;basis &lt;/span&gt;. &lt;/p&gt;">quotas</a>. Quotas are operational limits. For
+    example, the number of gigabytes allowed per tenant can be controlled to
+    ensure that a single tenant cannot consume all of the disk space. Quotas
+    are currently enforced at the tenant (or project) level, rather than the
+    user level.<a id="quotas9" class="indexterm"/><a id="d9e3511" class="indexterm"/></p><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Warning"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Warning]" src="../common/images/admon/warning.png"/></td><th align="left">Warning</th></tr><tr><td align="left" valign="top"><p>Because without sensible quotas a single tenant could use up all
+      the available resources, default quotas are shipped with OpenStack. You
+      should pay attention to which quota settings make sense for your
+      hardware capabilities.</p></td></tr></table></div><p>Using the command-line interface, you can manage quotas for the
+    OpenStack Compute service and the Block Storage service.</p><p>Typically, default values are changed because a tenant requires more
+    than the OpenStack default of 10 volumes per tenant, or more than the
+    OpenStack default of 1 TB of disk space on a compute node.</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../common/images/admon/note.png"/></td><th align="left">Note</th></tr><tr><td align="left" valign="top"><p>To view all tenants, run: </p><pre class="screen">$ openstack project list
+
++---------------------------------+----------+
+| ID                              | Name     |
++---------------------------------+----------+
+| a981642d22c94e159a4a6540f70f9f8 | admin    |
+| 934b662357674c7b9f5e4ec6ded4d0e | tenant01 |
+| 7bc1dbfd7d284ec4a856ea1eb82dca8 | tenant02 |
+| 9c554aaef7804ba49e1b21cbd97d218 | services |
++---------------------------------+----------+
+</pre></td></tr></table></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="set_image_quotas"> </a>Set Image Quotas</h3></div></div></div><p>OpenStack Havana introduced a basic quota feature for the Image
+      service, so you can now restrict a project's image storage by total
+      number of bytes. Currently, this quota is applied cloud-wide, so if you
+      were to set an Image quota limit of 5 GB, then all projects in your
+      cloud will be able to store only 5 GB of images and snapshots.<a id="d9e3524" class="indexterm"/></p><p>To enable this feature, edit the
+      <code class="filename">/etc/glance/glance-api.conf</code> file, and under the
+      [DEFAULT] section, add:</p>
+<pre class="programlisting brush: bash; ">user_storage_quota = &lt;bytes&gt;</pre>
+<p>For example, to restrict a project's image storage to 5 GB, do
+      this:</p>
+<pre class="programlisting brush: bash; ">user_storage_quota = 5368709120</pre>
+<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../common/images/admon/note.png"/></td><th align="left">Note</th></tr><tr><td align="left" valign="top"><p>In the Icehouse release, there is a configuration option in
+        <code class="filename">glance-api.conf</code> that limits the number of members
+        allowed per image, called <code class="code">image_member_quota</code>, set to 128
+        by default. That setting is a different quota from the storage
+        quota.<a id="d9e3536" class="indexterm"/></p></td></tr></table></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="cli_set_compute_quotas"> </a>Set Compute Service Quotas</h3></div></div></div><div class="toc"><dl><dt><span class="section"><a href="projects_users.html#cli_set_compute_quotas_procedure">View and update compute quotas for a tenant (project)</a></span></dt></dl></div><p>As an administrative user, you can update the Compute service
+      quotas for an existing tenant, as well as update the quota defaults for
+      a new tenant.<a id="d9e3542" class="indexterm"/> See <a class="xref" href="projects_users.html#compute-quota-table" title="Table 9.1. Compute quota descriptions">Table 9.1, “Compute quota descriptions”</a>.</p><table rules="all" id="compute-quota-table"><caption>Table 9.1. Compute quota descriptions</caption><col width="20%"/><col width="45%"/><col width="35%"/><thead><tr>
+            <th>Quota</th>
+
+            <th>Description</th>
+
+            <th>Property name</th>
+          </tr></thead><tbody><tr>
+            <td><p>Fixed IPs</p></td>
+
+            <td><p>Number of fixed IP addresses allowed per tenant. This
+            number must be equal to or greater than the number of allowed
+            instances.</p></td>
+
+            <td><p> <code class="systemitem">fixed-ips</code> </p></td>
+          </tr><tr>
+            <td><p>Floating IPs</p></td>
+
+            <td><p>Number of floating IP addresses allowed per
+            tenant.</p></td>
+
+            <td><p> <code class="systemitem">floating-ips</code> </p></td>
+          </tr><tr>
+            <td><p>Injected file content bytes</p></td>
+
+            <td><p>Number of content bytes allowed per injected
+            file.</p></td>
+
+            <td><p> <code class="systemitem">injected-file-content-bytes</code>
+            </p></td>
+          </tr><tr>
+            <td><p>Injected file path bytes</p></td>
+
+            <td><p>Number of bytes allowed per injected file
+            path.</p></td>
+
+            <td><p> <code class="systemitem">injected-file-path-bytes</code>
+            </p></td>
+          </tr><tr>
+            <td><p>Injected files</p></td>
+
+            <td><p>Number of injected files allowed per tenant.</p></td>
+
+            <td><p> <code class="systemitem">injected-files</code> </p></td>
+          </tr><tr>
+            <td><p>Instances</p></td>
+
+            <td><p>Number of instances allowed per tenant.</p></td>
+
+            <td><p> <code class="systemitem">instances</code> </p></td>
+          </tr><tr>
+            <td><p>Key pairs</p></td>
+
+            <td><p>Number of key pairs allowed per user.</p></td>
+
+            <td><p> <code class="systemitem">key-pairs</code> </p></td>
+          </tr><tr>
+            <td><p>Metadata items</p></td>
+
+            <td><p>Number of metadata items allowed per
+            instance.</p></td>
+
+            <td><p> <code class="systemitem">metadata-items</code> </p></td>
+          </tr><tr>
+            <td><p>RAM</p></td>
+
+            <td><p>Megabytes of instance RAM allowed per
+            tenant.</p></td>
+
+            <td><p> <code class="systemitem">ram</code> </p></td>
+          </tr><tr>
+            <td><p>Security group rules</p></td>
+
+            <td><p>Number of rules per security group.</p></td>
+
+            <td><p> <code class="systemitem">security-group-rules</code>
+            </p></td>
+          </tr><tr>
+            <td><p>Security groups</p></td>
+
+            <td><p>Number of security groups per tenant.</p></td>
+
+            <td><p> <code class="systemitem">security-groups</code> </p></td>
+          </tr><tr>
+            <td><p>VCPUs</p></td>
+
+            <td><p>Number of instance cores allowed per tenant.</p></td>
+
+            <td><p> <code class="systemitem">cores</code> </p></td>
+          </tr></tbody></table><div class="section"><div xmlns="" class="titlepage"><div><div><h4 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="cli_set_compute_quotas_procedure"> </a>View and update compute quotas for a tenant (project)</h4></div></div></div><p>As an administrative user, you can use the <code class="literal">nova
+        quota-*</code> commands, which are provided by the
+        <code class="literal">python-novaclient</code> package, to view and update
+        tenant quotas.</p><div class="procedure"><a id="d9e3658"> </a><p class="title"><strong>To view and update default quota values</strong></p><ol class="procedure" type="1"><li class="step"><p>List all default quotas for all tenants, as follows:</p><pre class="screen">$ nova quota-defaults</pre><p>For example:</p><pre class="screen">$ nova quota-defaults
++-----------------------------+-------+
+| Property                    | Value |
++-----------------------------+-------+
+| metadata_items              | 128   |
+| injected_file_content_bytes | 10240 |
+| ram                         | 51200 |
+| floating_ips                | 10    |
+| key_pairs                   | 100   |
+| instances                   | 10    |
+| security_group_rules        | 20    |
+| injected_files              | 5     |
+| cores                       | 20    |
+| fixed_ips                   | -1    |
+| injected_file_path_bytes    | 255   |
+| security_groups             | 10    |
++-----------------------------+-------+</pre></li><li class="step"><p>Update a default value for a new tenant, as follows:</p><pre class="screen">$ nova quota-class-update default <em class="replaceable"><code>key</code></em> <em class="replaceable"><code>value</code></em></pre><p>For example:</p><pre class="screen">$ nova quota-class-update default --instances 15</pre></li></ol></div><div class="procedure"><a id="d9e3672"> </a><p class="title"><strong>To view quota values for a tenant (project)</strong></p><ol class="procedure" type="1"><li class="step"><p>Place the tenant ID in a variable:</p><pre class="screen">$ tenant=$(openstack project list | awk '/<em class="replaceable"><code>tenantName</code></em>/ {print $2}')</pre></li><li class="step"><p>List the currently set quota values for a tenant, as
+            follows:</p><pre class="screen">$ nova quota-show --tenant $tenant</pre><p>For example:</p><pre class="screen">$ nova quota-show --tenant $tenant
++-----------------------------+-------+
+| Property                    | Value |
++-----------------------------+-------+
+| metadata_items              | 128   |
+| injected_file_content_bytes | 10240 |
+| ram                         | 51200 |
+| floating_ips                | 12    |
+| key_pairs                   | 100   |
+| instances                   | 10    |
+| security_group_rules        | 20    |
+| injected_files              | 5     |
+| cores                       | 20    |
+| fixed_ips                   | -1    |
+| injected_file_path_bytes    | 255   |
+| security_groups             | 10    |
++-----------------------------+-------+</pre></li></ol></div><div class="procedure"><a id="d9e3683"> </a><p class="title"><strong>To update quota values for a tenant (project)</strong></p><ol class="procedure" type="1"><li class="step"><p>Obtain the tenant ID, as follows:</p><pre class="screen">$ tenant=$(openstack project list | awk '/<em class="replaceable"><code>tenantName</code></em>/ {print $2}')</pre></li><li class="step"><p>Update a particular quota value, as follows:</p><pre class="screen"># nova quota-update --<em class="replaceable"><code>quotaName</code></em> <em class="replaceable"><code>quotaValue</code></em> <em class="replaceable"><code>tenantID</code></em></pre><p>For example:</p><pre class="screen"># nova quota-update --floating-ips 20 $tenant
+# nova quota-show --tenant $tenant
++-----------------------------+-------+
+| Property                    | Value |
++-----------------------------+-------+
+| metadata_items              | 128   |
+| injected_file_content_bytes | 10240 |
+| ram                         | 51200 |
+| floating_ips                | 20    |
+| key_pairs                   | 100   |
+| instances                   | 10    |
+| security_group_rules        | 20    |
+| injected_files              | 5     |
+| cores                       | 20    |
+| fixed_ips                   | -1    |
+| injected_file_path_bytes    | 255   |
+| security_groups             | 10    |
++-----------------------------+-------+</pre><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../common/images/admon/note.png"/></td><th align="left">Note</th></tr><tr><td align="left" valign="top"><p>To view a list of options for the
+              <code class="literal">quota-update</code> command, run:</p><pre class="screen">$ nova help quota-update</pre></td></tr></table></div></li></ol></div></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="cli_set_object_storage_quotas"> </a>Set Object Storage Quotas</h3></div></div></div><p>Object Storage quotas were introduced in Swift 1.8 (OpenStack
+      Grizzly). There are currently two categories of quotas for Object
+      Storage:<a id="d9e3704" class="indexterm"/><a id="d9e3706" class="indexterm"/><a id="d9e3709" class="indexterm"/></p><div class="variablelist"><dl><dt><span class="term">Container quotas</span></dt><dd><p>Limit the total size (in bytes) or number of objects that
+            can be stored in a single container.</p></dd><dt><span class="term">Account quotas</span></dt><dd><p>Limit the total size (in bytes) that a user has available in
+            the Object Storage <span class="keep-together">service</span>.</p></dd></dl></div><p>To take advantage of either container quotas or account quotas,
+      your Object Storage proxy server must have <code class="code">container_quotas</code>
+      or <code class="code">account_quotas</code> (or both) added to the
+      <code class="literal">[pipeline:main]</code> pipeline. Each quota type also
+      requires its own section in the <code class="filename">proxy-server.conf</code>
+      file:</p>
+<pre class="programlisting brush: bash; ">[pipeline:main]
+pipeline = catch_errors [...] slo dlo account_quotas proxy-server
+
+[filter:account_quotas]
+use = egg:swift#account_quotas
+
+[filter:container_quotas]
+use = egg:swift#container_quotas
+   </pre>
+<p>To view and update Object Storage quotas, use the
+      <code class="code">swift</code> command provided by the
+      <code class="code">python-swiftclient</code> package. Any user included in the
+      project can view the quotas placed on their project. To update Object
+      Storage quotas on a project, you must have the role of ResellerAdmin in
+      the project that the quota is being applied to.</p><p>To view account quotas placed on a project:</p><pre class="screen">$ swift stat</pre><pre class="screen">   Account: AUTH_b36ed2d326034beba0a9dd1fb19b70f9
+Containers: 0
+   Objects: 0
+     Bytes: 0
+Meta Quota-Bytes: 214748364800
+X-Timestamp: 1351050521.29419
+Content-Type: text/plain; charset=utf-8
+Accept-Ranges: bytes</pre><p>To apply or update account quotas on a project:</p><pre class="screen">$ swift post -m quota-bytes:
+     &lt;bytes&gt;</pre><p>For example, to place a 5 GB quota on an account:</p><pre class="screen">$ swift post -m quota-bytes:
+     5368709120</pre><p>To verify the quota, run the <code class="literal">swift stat</code> command
+      again:</p><pre class="screen">$ swift stat</pre><pre class="screen">   Account: AUTH_b36ed2d326034beba0a9dd1fb19b70f9
+Containers: 0
+   Objects: 0
+     Bytes: 0
+Meta Quota-Bytes: 5368709120
+X-Timestamp: 1351541410.38328
+Content-Type: text/plain; charset=utf-8
+Accept-Ranges: bytes</pre></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="cli_set_block_storage_quotas"> </a>Set Block Storage Quotas</h3></div></div></div><div class="toc"><dl><dt><span class="section"><a href="projects_users.html#cli_set_block_storage_quotas_procedure">View and update Block Storage quotas for a tenant
+        (project)</a></span></dt></dl></div><p>As an administrative user, you can update the Block Storage
+      service quotas for a tenant, as well as update the quota defaults for a
+      new tenant. See <a class="xref" href="projects_users.html#block-storage-quota-table" title="Table 9.2. Block Storage quota descriptions">Table 9.2, “Block Storage quota descriptions”</a>.<a id="d9e3746" class="indexterm"/></p><table rules="all" id="block-storage-quota-table"><caption>Table 9.2. Block Storage quota descriptions</caption><col width="20%"/><col width="80%"/><thead><tr>
+              <th>Property name</th>
+
+              <th>Description</th>
+            </tr></thead><tbody><tr>
+              <td><p>gigabytes</p></td>
+
+              <td><p>Number of volume gigabytes allowed per
+              tenant</p></td>
+            </tr><tr>
+              <td><p>snapshots</p></td>
+
+              <td><p>Number of Block Storage snapshots allowed per
+              tenant.</p></td>
+            </tr><tr>
+              <td><p>volumes</p></td>
+
+              <td><p>Number of Block Storage volumes allowed per
+              tenant</p></td>
+            </tr></tbody></table><div class="section"><div xmlns="" class="titlepage"><div><div><h4 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="cli_set_block_storage_quotas_procedure"> </a>View and update Block Storage quotas for a tenant
+        (project)</h4></div></div></div><p>As an administrative user, you can use the <code class="literal">cinder
+        quota-*</code> commands, which are provided by the
+        <code class="literal">python-cinderclient</code> package, to view and update
+        tenant quotas.</p><div class="procedure"><a id="d9e3778"> </a><p class="title"><strong>To view and update default Block Storage quota values</strong></p><ol class="procedure" type="1"><li class="step"><p>List all default quotas for all tenants, as follows:</p><pre class="screen">$ cinder quota-defaults</pre><p>For example:</p><pre class="screen">$ cinder quota-defaults
++-----------+-------+
+|  Property | Value |
++-----------+-------+
+| gigabytes |  1000 |
+| snapshots |   10  |
+|  volumes  |   10  |
++-----------+-------+</pre></li><li class="step"><p>To update a default value for a new tenant, update the
+            property in the <code class="filename">/etc/cinder/cinder.conf</code>
+            file.</p></li></ol></div><div class="procedure"><a id="d9e3788"> </a><p class="title"><strong>To view Block Storage quotas for a tenant (project)</strong></p><ul class="procedure"><li class="step"><p>View quotas for the tenant, as follows:</p><pre class="screen"># cinder quota-show <em class="replaceable"><code>tenantName</code></em></pre><p>For example:</p><pre class="screen"># cinder quota-show tenant01
++-----------+-------+
+|  Property | Value |
++-----------+-------+
+| gigabytes |  1000 |
+| snapshots |   10  |
+|  volumes  |   10  |
++-----------+-------+</pre></li></ul></div><div class="procedure"><a id="d9e3796"> </a><p class="title"><strong>To update Block Storage quotas for a tenant (project)</strong></p><ol class="procedure" type="1"><li class="step"><p>Place the tenant ID in a variable:</p><pre class="screen">$ tenant=$(openstack project list | awk '/<em class="replaceable"><code>tenantName</code></em>/ {print $2}')</pre></li><li class="step"><p>Update a particular quota value, as follows:</p><pre class="screen"># cinder quota-update --<em class="replaceable"><code>quotaName</code></em> <em class="replaceable"><code>NewValue</code></em> <em class="replaceable"><code>tenantID</code></em></pre><p>For example:<a id="d9e3809" class="indexterm"/></p><pre class="screen"># cinder quota-update --volumes 15 $tenant
+# cinder quota-show tenant01
++-----------+-------+
+|  Property | Value |
++-----------+-------+
+| gigabytes |  1000 |
+| snapshots |   10  |
+|  volumes  |   15  |
++-----------+-------+</pre></li></ol></div></div></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="user_mgmt"> </a>User Management</h2></div></div></div><p>The command-line tools for managing users are inconvenient to use
+    directly. They require issuing multiple commands to complete a single
+    task, and they use UUIDs rather than symbolic names for many items. In
+    practice, humans typically do not use these tools directly. Fortunately,
+    the OpenStack dashboard provides a reasonable interface to this. In
+    addition, many sites write custom tools for local needs to enforce local
+    policies and provide levels of self-service to users that aren't currently
+    available with packaged tools.<a id="d9e3814" class="indexterm"/></p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="create_new_users"> </a>Creating New Users</h2></div></div></div><p>To create a user, you need the following information:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Username</p></li><li class="listitem"><p>Email address</p></li><li class="listitem"><p>Password</p></li><li class="listitem"><p>Primary project</p></li><li class="listitem"><p>Role</p></li></ul></div><p>Username and email address are self-explanatory, though your site
+    may have local conventions you should observe.
+    The primary project is simply the first project the user is associated
+    with and must exist prior to creating the user. Role is almost always
+    going to be "member." Out of the box, OpenStack comes with two roles
+    defined:</p><div class="variablelist"><dl><dt><span class="term">member</span></dt><dd><p>A typical user</p></dd><dt><span class="term">admin</span></dt><dd><p>An administrative super user, which has full permissions
+          across all projects and should be used with great care</p></dd></dl></div><p>It is possible to define other roles, but doing so is
+    uncommon.</p><p>Once you've gathered this information, creating the user in the
+    dashboard is just another web form similar to what we've seen before and
+    can be found by clicking the Users link in the Identity navigation bar and
+    then clicking the Create User button at the top right.</p><p>Modifying users is also done from this Users page. If you have a
+    large number of users, this page can get quite crowded. The Filter search
+    box at the top of the page can be used to limit the users listing. A form
+    very similar to the user creation dialog can be pulled up by selecting
+    Edit from the actions dropdown menu at the end of the line for the user
+    you are modifying.</p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="associate_users_with_projects"> </a>Associating Users with Projects</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="projects_users.html#customize_auth">Customizing Authorization</a></span></dt><dt><span class="section"><a href="projects_users.html#problem_users">Users Who Disrupt Other Users</a></span></dt></dl></div><p>Many sites run with users being associated with only one project.
+    This is a more conservative and simpler choice both for administration and
+    for users. Administratively, if a user reports a problem with an instance
+    or quota, it is obvious which project this relates to. Users needn't worry
+    about what project they are acting in if they are only in one project.
+    However, note that, by default, any user can affect the resources of any
+    other user within their project. It is also possible to associate users
+    with multiple projects if that makes sense for your
+    organization.<a id="d9e3847" class="indexterm"/><a id="d9e3849" class="indexterm"/></p><p>Associating existing users with an additional project or removing
+    them from an older project is done from the Projects page of the dashboard
+    by selecting Modify Users from the Actions column, as shown in <a class="xref" href="projects_users.html#horizon-edit-project" title="Figure 9.2. Edit Project Members tab">Figure 9.2, “<span class="guilabel">Edit Project Members</span> tab”</a>.</p><p>From this view, you can do a number of useful things, as well as a
+    few dangerous ones.</p><p>The first column of this form, named All Users, includes a list of
+    all the users in your cloud who are not already associated with this
+    project. The second column shows all the users who are. These lists can be
+    quite long, but they can be limited by typing a substring of the username
+    you are looking for in the filter field at the top of the <span class="keep-together">column</span>.</p><p>From here, click the <span class="guiicon"><strong>+</strong></span> icon to add users to the
+    project. Click the <span class="guiicon"><strong>-</strong></span> to remove them.</p><div class="figure"><a id="horizon-edit-project"> </a><p class="title"><strong>Figure 9.2. <span class="guilabel">Edit Project Members</span> tab</strong></p><div class="figure-contents"><div class="mediaobject"><img src="http://git.openstack.org/cgit/openstack/operations-guide/plain/doc/openstack-ops/figures/osog_0902.png"/></div></div></div><br class="figure-break"/><p>The dangerous possibility comes with the ability to change member
+    roles. This is the dropdown list below the username in the
+    <span class="guilabel"><strong>Project Members</strong></span> list. In virtually all cases, this
+    value should be set to Member. This example purposefully shows an
+    administrative user where this value is admin.</p><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Warning"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Warning]" src="../common/images/admon/warning.png"/></td><th align="left">Warning</th></tr><tr><td align="left" valign="top"><p>The admin is global, not per project, so granting a user the admin
+      role in any project gives the user administrative rights across the
+      whole cloud.</p></td></tr></table></div><p>Typical use is to only create administrative users in a single
+    project, by convention the admin project, which is created by default
+    during cloud setup. If your administrative users also use the cloud to
+    launch and manage instances, it is strongly recommended that you use
+    separate user accounts for administrative access and normal operations and
+    that they be in distinct projects.<a id="d9e3871" class="indexterm"/></p><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="customize_auth"> </a>Customizing Authorization</h3></div></div></div><p>The default <a class="gloss" href="#" def="&lt;strong&gt;authorization: &lt;/strong&gt; &lt;p&gt;The act of verifying that a user, process, or client is authorized to perform an action. &lt;/p&gt;">authorization</a> settings allow
+      administrative users only to create resources on behalf of a different
+      project. OpenStack handles two kinds of authorization <span class="keep-together">policies</span>:<a id="d9e3878" class="indexterm"/></p><div class="variablelist"><dl><dt><span class="term">Operation based</span></dt><dd><p>Policies specify access criteria for specific operations,
+            possibly with fine-grained control over specific
+            attributes.</p></dd><dt><span class="term">Resource based</span></dt><dd><p>Whether access to a specific resource might be granted or
+            not according to the permissions configured for the resource
+            (currently available only for the network resource). The actual
+            authorization policies enforced in an OpenStack service vary from
+            deployment to deployment.</p></dd></dl></div><p>The policy engine reads entries from the <code class="code">policy.json</code>
+      file. The actual location of this file might vary from distribution to
+      distribution: for nova, it is typically in
+      <code class="code">/etc/nova/policy.json</code>. You can update entries while the
+      system is running, and you do not have to restart services. Currently,
+      the only way to update such policies is to edit the policy file.</p><p>The OpenStack service's policy engine matches a policy directly. A
+      rule indicates evaluation of the elements of such policies. For
+      instance, in a <code class="code">compute:create: [["rule:admin_or_owner"]]</code>
+      statement, the policy is <code class="code">compute:create</code>, and the rule is
+      <code class="code">admin_or_owner</code>.</p><p>Policies are triggered by an OpenStack policy engine whenever one
+      of them matches an OpenStack API operation or a specific attribute being
+      used in a given operation. For instance, the engine tests the
+      <code class="code">create:compute</code> policy every time a user sends a <code class="code">POST
+      /v2/{tenant_id}/servers</code> request to the OpenStack Compute API
+      server. Policies can be also related to specific <a class="gloss" href="#" def="&lt;strong&gt;API extension: &lt;/strong&gt; &lt;p&gt;Custom modules that extend some OpenStack core APIs. &lt;/p&gt;">API extension</a>s. For instance, if a user needs an extension like
+      <code class="code">compute_extension:rescue</code>, the attributes defined by the
+      provider extensions trigger the rule test for that operation.</p><p>An authorization policy can be composed by one or more rules. If
+      more rules are specified, evaluation policy is successful if any of the
+      rules evaluates successfully; if an API operation matches multiple
+      policies, then all the policies must evaluate successfully. Also,
+      authorization rules are recursive. Once a rule is matched, the rule(s)
+      can be resolved to another rule, until a terminal rule is reached. These
+      are the rules <span class="keep-together">defined</span>:</p><div class="variablelist"><dl><dt><span class="term">Role-based rules</span></dt><dd><p>Evaluate successfully if the user submitting the request has
+            the specified role. For instance, <code class="code">"role:admin"</code> is
+            successful if the user submitting the request is an
+            administrator.</p></dd><dt><span class="term">Field-based rules</span></dt><dd><p>Evaluate successfully if a field of the resource specified
+            in the current request matches a specific value. For instance,
+            <code class="code">"field:networks:shared=True"</code> is successful if the
+            attribute shared of the network resource is set to
+            <code class="literal">true</code>.</p></dd><dt><span class="term">Generic rules</span></dt><dd><p>Compare an attribute in the resource with an attribute
+            extracted from the user's security credentials and evaluates
+            successfully if the comparison is successful. For instance,
+            <code class="code">"tenant_id:%(tenant_id)s"</code> is successful if the tenant
+            identifier in the resource is equal to the tenant identifier of
+            the user submitting the request.</p></dd></dl></div><p>Here are snippets of the default nova
+      <code class="filename">policy.json</code> file:</p>
+<pre class="programlisting brush: json; ">{
+        "context_is_admin":  [["role:admin"]],
+        "admin_or_owner":  [["is_admin:True"], \
+        ["project_id:%(project_id)s"]], <a id="ch9-co-1"> </a><img src="../common/images/callouts/1.png" alt="1" border="0"/>
+        "default": [["rule:admin_or_owner"]], <a id="ch9-co-2"> </a><img src="../common/images/callouts/2.png" alt="2" border="0"/>
+        "compute:create": [ ],
+        "compute:create:attach_network": [ ],
+        "compute:create:attach_volume": [ ],
+        "compute:get_all": [ ],
+    "admin_api": [["is_admin:True"]],
+        "compute_extension:accounts": [["rule:admin_api"]],
+        "compute_extension:admin_actions": [["rule:admin_api"]],
+        "compute_extension:admin_actions:pause": [["rule:admin_or_owner"]],
+        "compute_extension:admin_actions:unpause": [["rule:admin_or_owner"]],
+        ...
+        "compute_extension:admin_actions:migrate": [["rule:admin_api"]],
+        "compute_extension:aggregates": [["rule:admin_api"]],
+        "compute_extension:certificates": [ ],
+        ...
+        "compute_extension:flavorextraspecs": [ ],
+        "compute_extension:flavormanage": [["rule:admin_api"]], <a id="ch9-co-3"> </a><img src="../common/images/callouts/3.png" alt="3" border="0"/>
+        }
+        </pre>
+<div class="calloutlist"><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><a href="#ch9-co-1"><img src="../common/images/callouts/1.png" alt="1" border="0"/></a> </p></td><td valign="top" align="left"><p>Shows a rule that evaluates successfully if the current user
+          is an administrator or the owner of the resource specified in the
+          request (tenant identifier is equal).</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#ch9-co-2"><img src="../common/images/callouts/2.png" alt="2" border="0"/></a> </p></td><td valign="top" align="left"><p>Shows the default policy, which is always evaluated if an API
+          operation does not match any of the policies in
+          <code class="code">policy.json</code>.</p></td></tr><tr><td width="5%" valign="top" align="left"><p><a href="#ch9-co-3"><img src="../common/images/callouts/3.png" alt="3" border="0"/></a> </p></td><td valign="top" align="left"><p>Shows a policy restricting the ability to manipulate flavors
+          to administrators using the Admin API only.<a id="d9e3934" class="indexterm"/></p></td></tr></table></div><p>In some cases, some operations should be restricted to
+      administrators only. Therefore, as a further example, let us consider
+      how this sample policy file could be modified in a scenario where we
+      enable users to create their own flavors:</p><pre class="programlisting">"compute_extension:flavormanage": [ ],</pre></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="problem_users"> </a>Users Who Disrupt Other Users</h3></div></div></div><p>Users on your cloud can disrupt other users, sometimes
+      intentionally and maliciously and other times by accident. Understanding
+      the situation allows you to make a better decision on how to handle the
+      disruption.<a id="d9e3941" class="indexterm"/></p><p>For example, a group of users have instances that are utilizing a
+      large amount of compute resources for very compute-intensive tasks. This
+      is driving the load up on compute nodes and affecting other users. In
+      this situation, review your user use cases. You may find that high
+      compute scenarios are common, and should then plan for proper
+      segregation in your cloud, such as host aggregation or regions.</p><p>Another example is a user consuming a very large amount of
+      bandwidth<a id="d9e3946" class="indexterm"/>. Again, the key is to understand what the user is doing.
+      If she naturally needs a high amount of bandwidth, you might have to
+      limit her transmission rate as to not affect other users or move her to
+      an area with more bandwidth available. On the other hand, maybe her
+      instance has been hacked and is part of a botnet launching DDOS attacks.
+      Resolution of this issue is the same as though any other server on your
+      network has been hacked. Contact the user and give her time to respond.
+      If she doesn't respond, shut down the instance.</p><p>A final example is if a user is hammering cloud resources
+      repeatedly. Contact the user and learn what he is trying to do. Maybe he
+      doesn't understand that what he’s doing is inappropriate, or maybe there
+      is an issue with the resource he is trying to access that is causing his
+      requests to queue or lag.</p></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="projects_users_summary"> </a>Summary</h2></div></div></div><p>One key element of systems administration that is often overlooked
+    is that end users are the reason systems administrators exist. Don't go
+    the BOFH route and terminate every user who causes an alert to go off.
+    Work with users to understand what they're trying to accomplish and see
+    how your environment can better assist them in achieving their goals. Meet
+    your users needs by organizing your users into projects, applying
+    policies, managing quotas, and working with them.<a id="d9e3953" class="indexterm"/></p></div></div><script type="text/javascript" src="../common/main.js"><!----></script><div class="logabug" style="text-align: center"><a id="AskOOLink2" href="http://ask.openstack.org" target="_blank"><i class="icon-question"><!----></i>Questions? Discuss on ask.openstack.org</a><br/><a id="logABugLink2" href="" target="_blank"><i class="icon-bug"><!----></i>Found an error? Report a bug against this page</a></div><script language="JavaScript">
+	  var sourceFile = "source File: file:/home/max/projects/operations-guide/doc/openstack-ops/ch_ops_projects_users.xml"
+	  var xmlId = "xml:id: projects_users"
+	  var lineFeed = "%0A";
+	  var docUrl = "URL: " + window.location;
+	  var bugTitle = "Chapter 9. Managing Projects and Users in OpenStack Operations Guide";
+	  var buildTime = "Built: 2015-10-02T19:02:29+02:00";
+	  var gitSha = "git SHA: 9e75fe0721d9e5af9030ba232fccd38c560792f7";
+	  var fieldComment = encodeURI(buildTime) +  lineFeed + encodeURI(gitSha) + lineFeed + encodeURI(docUrl) + lineFeed + encodeURI(sourceFile) + lineFeed + encodeURI(xmlId);
+	  logABug(bugTitle,fieldComment);
+	</script><hr/><div class="legal"><a href="index.html">Legal notices</a></div></div><div><div id="leftnavigation" style="padding-top:3px; background-color:white;"><div id="tabs"><ul><li><a href="#treeDiv" tabindex="1"><span class="contentsTab">Contents</span></a></li><li><a href="#searchDiv" tabindex="1"><span class="searchTab">Search</span></a></li></ul><div id="treeDiv"><img src="../common/images/loading.gif" alt="loading table of contents..." id="tocLoading" style="display:block;"/><div id="ulTreeDiv" style="display:none" class="thisisthat"><ul id="tree" class="filetree"><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html">Preface</a></span><ul><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#introduction-to-openstack">Introduction to OpenStack</a></span></li><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#preface_getting_started">Getting Started with OpenStack</a></span><ul><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#preface_using_openstack">Using OpenStack</a></span></li><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#preface_plug_and_play">Plug and Play OpenStack</a></span></li><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#preface_roll_your_own_openstack">Roll Your Own OpenStack</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#who-this-book-is-for">Who This Book Is For</a></span><ul><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#further_reading">Further Reading</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#how-this-book-is-organized">How This Book Is Organized</a></span></li><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#why-and-how-we-wrote-this-book">Why and How We Wrote This Book</a></span></li><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#how-to-contribute-to-ops-guide">How to Contribute to This Book</a></span></li><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#conventions_used_in_this_book">Conventions Used in This Book</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="architecture.html">Architecture</a></span><ul><li tabindex="2"><span class="file"><a href="example_architecture.html">1. Architecture Examples</a></span><ul><li tabindex="2"><span class="file"><a href="example_architecture.html#example_architecture-nova">Example Architecture—Legacy Networking (nova)</a></span><ul><li tabindex="2"><span class="file"><a href="example_architecture.html#overview">Overview</a></span><ul><li tabindex="2"><span class="file"><a href="example_architecture.html#overview_components-nova">Components</a></span></li><li tabindex="2"><span class="file"><a href="example_architecture.html#rationale">Rationale</a></span></li><li tabindex="2"><span class="file"><a href="example_architecture.html#neutron">Why not use OpenStack Networking?</a></span></li><li tabindex="2"><span class="file"><a href="example_architecture.html#multi-host-networking">Why use multi-host networking?</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="example_architecture.html#detailed_desc">Detailed Description</a></span></li><li tabindex="2"><span class="file"><a href="example_architecture.html#optional_extensions">Optional Extensions</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="example_architecture.html#example_architecture-neutron">Example Architecture—OpenStack Networking</a></span><ul><li tabindex="2"><span class="file"><a href="example_architecture.html#overview-neutron">Overview</a></span><ul><li tabindex="2"><span class="file"><a href="example_architecture.html#overview_components_neutron">Components</a></span></li><li tabindex="2"><span class="file"><a href="example_architecture.html#rational-neutron">Rationale</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="example_architecture.html#detailed_description">Detailed Description</a></span><ul><li tabindex="2"><span class="file"><a href="example_architecture.html#node_types">Node types</a></span></li><li tabindex="2"><span class="file"><a href="example_architecture.html#networking_layout">Networking layout</a></span><ul><li tabindex="2"><span class="file"><a href="example_architecture.html#OS_network">OpenStack internal network</a></span></li><li tabindex="2"><span class="file"><a href="example_architecture.html#public_network">Public Network</a></span></li><li tabindex="2"><span class="file"><a href="example_architecture.html#vm_network">VM traffic network</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="example_architecture.html#node_connectivity">Node connectivity</a></span><ul><li tabindex="2"><span class="file"><a href="example_architecture.html#node_connectivity-initial">Initial deployment</a></span></li><li tabindex="2"><span class="file"><a href="example_architecture.html#node_connectivity-performance">Connectivity for maximum performance</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="example_architecture.html#node_diagrams">Node diagrams</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="example_architecture.html#software_config">Example Component Configuration</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="example_architecture.html#example_archs_conclusion">Parting Thoughts on Architecture Examples</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="section_arch_provision.html">2. Provisioning and Deployment</a></span><ul><li tabindex="2"><span class="file"><a href="section_arch_provision.html#automated_deploy">Automated Deployment</a></span><ul><li tabindex="2"><span class="file"><a href="section_arch_provision.html#disk_partition_raid">Disk Partitioning and RAID</a></span></li><li tabindex="2"><span class="file"><a href="section_arch_provision.html#network_config">Network Configuration</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="section_arch_provision.html#auto_config">Automated Configuration</a></span></li><li tabindex="2"><span class="file"><a href="section_arch_provision.html#remote_mgmt">Remote Management</a></span></li><li tabindex="2"><span class="file"><a href="section_arch_provision.html#provision-deploy-summary">Parting Thoughts for Provisioning and Deploying OpenStack</a></span></li><li tabindex="2"><span class="file"><a href="section_arch_provision.html#provision_conclusion">Conclusion</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html">3. Designing for Cloud Controllers and Cloud Management</a></span><ul><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#hardware_consid">Hardware Considerations</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#separate_services">Separation of Services</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#database">Database</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#message_queue">Message Queue</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#conductor">Conductor Services</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#api">Application Programming Interface (API)</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#extensions">Extensions</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#scheduling">Scheduling</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#images">Images</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#dashboard">Dashboard</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#authentication">Authentication and Authorization</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#network_consid">Network Considerations</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="compute_nodes.html">4. Compute Nodes</a></span><ul><li tabindex="2"><span class="file"><a href="compute_nodes.html#cpu_choice">Choosing a CPU</a></span></li><li tabindex="2"><span class="file"><a href="compute_nodes.html#hypervisor_choice">Choosing a Hypervisor</a></span></li><li tabindex="2"><span class="file"><a href="compute_nodes.html#instance_storage">Instance Storage Solutions</a></span><ul><li tabindex="2"><span class="file"><a href="compute_nodes.html#off_compute_node_storage">Off Compute Node Storage—Shared File System</a></span></li><li tabindex="2"><span class="file"><a href="compute_nodes.html#on_compute_node_storage">On Compute Node Storage—Shared File System</a></span></li><li tabindex="2"><span class="file"><a href="compute_nodes.html#on_compute_node_storage_nonshared">On Compute Node Storage—Nonshared File System</a></span></li><li tabindex="2"><span class="file"><a href="compute_nodes.html#live_migration">Issues with Live Migration</a></span></li><li tabindex="2"><span class="file"><a href="compute_nodes.html#file_systems">Choice of File System</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="compute_nodes.html#overcommit">Overcommitting</a></span></li><li tabindex="2"><span class="file"><a href="compute_nodes.html#logging">Logging</a></span></li><li tabindex="2"><span class="file"><a href="compute_nodes.html#networking">Networking</a></span></li><li tabindex="2"><span class="file"><a href="compute_nodes.html#conclusion">Conclusion</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="scaling.html">5. Scaling</a></span><ul><li tabindex="2"><span class="file"><a href="scaling.html#starting">The Starting Point</a></span></li><li tabindex="2"><span class="file"><a href="scaling.html#add_controller_nodes">Adding Cloud Controller Nodes</a></span></li><li tabindex="2"><span class="file"><a href="scaling.html#segregate_cloud">Segregating Your Cloud</a></span><ul><li tabindex="2"><span class="file"><a href="scaling.html#cells_regions">Cells and Regions</a></span></li><li tabindex="2"><span class="file"><a href="scaling.html#availability_zones">Availability Zones and Host Aggregates</a></span><ul><li tabindex="2"><span class="file"><a href="scaling.html#az_s3">Availability zone</a></span></li><li tabindex="2"><span class="file"><a href="scaling.html#ha_s3">Host aggregates zone</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="scaling.html#scalable_hardware">Scalable Hardware</a></span><ul><li tabindex="2"><span class="file"><a href="scaling.html#hardware_procure">Hardware Procurement</a></span></li><li tabindex="2"><span class="file"><a href="scaling.html#capacity_planning">Capacity Planning</a></span></li><li tabindex="2"><span class="file"><a href="scaling.html#burin_testing">Burn-in Testing</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="storage_decision.html">6. Storage Decisions</a></span><ul><li tabindex="2"><span class="file"><a href="storage_decision.html#ephemeral_storage">Ephemeral Storage</a></span></li><li tabindex="2"><span class="file"><a href="storage_decision.html#persistent_storage">Persistent Storage</a></span><ul><li tabindex="2"><span class="file"><a href="storage_decision.html#object_storage">Object Storage</a></span></li><li tabindex="2"><span class="file"><a href="storage_decision.html#block_storage">Block Storage</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="storage_decision.html#shared_file_system">Shared File System</a></span></li><li tabindex="2"><span class="file"><a href="storage_decision.html#storage_concepts">OpenStack Storage Concepts</a></span></li><li tabindex="2"><span class="file"><a href="storage_decision.html#storage_backends">Choosing Storage Back Ends</a></span><ul><li tabindex="2"><span class="file"><a href="storage_decision.html#commodity_storage_backends">Commodity Storage Back-end Technologies</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="storage_decision.html#storagedecisions_conclusion">Conclusion</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="network_design.html">7. Network Design</a></span><ul><li tabindex="2"><span class="file"><a href="network_design.html#mgmt_network">Management Network</a></span></li><li tabindex="2"><span class="file"><a href="network_design.html#public_addressing">Public Addressing Options</a></span></li><li tabindex="2"><span class="file"><a href="network_design.html#ip_address_planning">IP Address Planning</a></span></li><li tabindex="2"><span class="file"><a href="network_design.html#network_topology">Network Topology</a></span><ul><li tabindex="2"><span class="file"><a href="network_design.html#vlans">VLAN Configuration Within OpenStack VMs</a></span></li><li tabindex="2"><span class="file"><a href="network_design.html#multi_nic">Multi-NIC Provisioning</a></span></li><li tabindex="2"><span class="file"><a href="network_design.html#multi_host_single_host_networks">Multi-Host and Single-Host Networking</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="network_design.html#services_for_networking">Services for Networking</a></span><ul><li tabindex="2"><span class="file"><a href="network_design.html#ntp">NTP</a></span></li><li tabindex="2"><span class="file"><a href="network_design.html#dns">DNS</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="network_design.html#ops-network-conclusion">Conclusion</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="operations.html">Operations</a></span><ul><li tabindex="2"><span class="file"><a href="lay_of_the_land.html">8. Lay of the Land</a></span><ul><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#dashboard_admin">Using the OpenStack Dashboard for Administration</a></span></li><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#cli_tools">Command-Line Tools</a></span><ul><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#install_tools">Installing the Tools</a></span></li><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#admin_cli">Administrative Command-Line Tools</a></span></li><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#get_creds">Getting Credentials</a></span></li><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#cli_tricks">Inspecting API Calls</a></span><ul><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#curl">Using cURL for further inspection</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#servers_services">Servers and Services</a></span></li><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#diagnose-compute">Diagnose Your Compute Nodes</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#network">Network Inspection</a></span></li><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#users_projects">Users and Projects</a></span></li><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#running_instances">Running Instances</a></span></li><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#ops-lay-of-land-summary">Summary</a></span></li></ul></li><li tabindex="2" id="webhelp-currentid"><span class="file"><a href="projects_users.html">9. Managing Projects and Users</a></span><ul><li tabindex="2"><span class="file"><a href="projects_users.html#projects_or_tenants">Projects or Tenants?</a></span></li><li tabindex="2"><span class="file"><a href="projects_users.html#managing_projects">Managing Projects</a></span><ul><li tabindex="2"><span class="file"><a href="projects_users.html#add_projects">Adding Projects</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="projects_users.html#quotas">Quotas</a></span><ul><li tabindex="2"><span class="file"><a href="projects_users.html#set_image_quotas">Set Image Quotas</a></span></li><li tabindex="2"><span class="file"><a href="projects_users.html#cli_set_compute_quotas">Set Compute Service Quotas</a></span><ul><li tabindex="2"><span class="file"><a href="projects_users.html#cli_set_compute_quotas_procedure">View and update compute quotas for a tenant (project)</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="projects_users.html#cli_set_object_storage_quotas">Set Object Storage Quotas</a></span></li><li tabindex="2"><span class="file"><a href="projects_users.html#cli_set_block_storage_quotas">Set Block Storage Quotas</a></span><ul><li tabindex="2"><span class="file"><a href="projects_users.html#cli_set_block_storage_quotas_procedure">View and update Block Storage quotas for a tenant
+        (project)</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="projects_users.html#user_mgmt">User Management</a></span></li><li tabindex="2"><span class="file"><a href="projects_users.html#create_new_users">Creating New Users</a></span></li><li tabindex="2"><span class="file"><a href="projects_users.html#associate_users_with_projects">Associating Users with Projects</a></span><ul><li tabindex="2"><span class="file"><a href="projects_users.html#customize_auth">Customizing Authorization</a></span></li><li tabindex="2"><span class="file"><a href="projects_users.html#problem_users">Users Who Disrupt Other Users</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="projects_users.html#projects_users_summary">Summary</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="user_facing_operations.html">10. User-Facing Operations</a></span><ul><li tabindex="2"><span class="file"><a href="user_facing_images.html">Images</a></span><ul><li tabindex="2"><span class="file"><a href="user_facing_images.html#add_images">Adding Images</a></span></li><li tabindex="2"><span class="file"><a href="user_facing_images.html#sharing_images">Sharing Images Between Projects</a></span></li><li tabindex="2"><span class="file"><a href="user_facing_images.html#delete_images">Deleting Images</a></span></li><li tabindex="2"><span class="file"><a href="user_facing_images.html#other_cli">Other CLI Options</a></span></li><li tabindex="2"><span class="file"><a href="user_facing_images.html#image_service_and_database">The Image service and the Database</a></span></li><li tabindex="2"><span class="file"><a href="user_facing_images.html#sample_image_database">Example Image service Database Queries</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="flavors.html">Flavors</a></span><ul><li tabindex="2"><span class="file"><a href="private-flavors.html">Private Flavors</a></span></li><li tabindex="2"><span class="file"><a href="flavors.html#d9e4154">How Do I Modify an Existing Flavor?</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="security_groups.html">Security Groups</a></span><ul><li tabindex="2"><span class="file"><a href="security_groups.html#general-security-group-config">General Security Groups Configuration</a></span></li><li tabindex="2"><span class="file"><a href="security_groups.html#end-user-config-sec-group">End-User Configuration of Security Groups</a></span><ul><li tabindex="2"><span class="file"><a href="security_groups.html#config-sec-group-by-nova-command">Setting with nova command</a></span></li><li tabindex="2"><span class="file"><a href="security_groups.html#config-sec-group-by-neutron-command">Setting with neutron command</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="user_facing_block_storage.html">Block Storage</a></span><ul><li tabindex="2"><span class="file"><a href="user_facing_block_storage.html#block_storage_creation_failures">Block Storage Creation Failures</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="instances.html">Instances</a></span><ul><li tabindex="2"><span class="file"><a href="instances.html#start_instances">Starting Instances</a></span></li><li tabindex="2"><span class="file"><a href="instances.html#instance_boot_failures">Instance Boot Failures</a></span></li><li tabindex="2"><span class="file"><a href="instances.html#instance_specific_data">Using Instance-Specific Data</a></span><ul><li tabindex="2"><span class="file"><a href="instances.html#instance_metadata">Instance metadata</a></span></li><li tabindex="2"><span class="file"><a href="instances.html#instance_user_data">Instance user data</a></span></li><li tabindex="2"><span class="file"><a href="instances.html#file_injection">File injection</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="associate_security_groups.html">Associating Security Groups</a></span></li><li tabindex="2"><span class="file"><a href="floating_ips.html">Floating IPs</a></span></li><li tabindex="2"><span class="file"><a href="attach_block_storage.html">Attaching Block Storage</a></span></li><li tabindex="2"><span class="file"><a href="snapshots.html">Taking Snapshots</a></span><ul><li tabindex="2"><span class="file"><a href="snapshots.html#live-snapshots">Live Snapshots</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="database_instances.html">Instances in the Database</a></span></li><li tabindex="2"><span class="file"><a href="user-facing-outro.html">Good Luck!</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="maintenance.html">11. Maintenance, Failures, and Debugging</a></span><ul><li tabindex="2"><span class="file"><a href="maintenance.html#cloud_controller_storage">Cloud Controller and Storage Proxy Failures and Maintenance</a></span><ul><li tabindex="2"><span class="file"><a href="maintenance.html#planned_maintenance">Planned Maintenance</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#reboot_cloud_controller">Rebooting a Cloud Controller or Storage Proxy</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#after_a_cc_reboot">After a Cloud Controller or Storage Proxy Reboots</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#cc_failure">Total Cloud Controller Failure</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="maintenance.html#compute_node_failures">Compute Node Failures and Maintenance</a></span><ul><li tabindex="2"><span class="file"><a href="maintenance.html#planned_maintenance_compute_node">Planned Maintenance</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#after_compute_node_reboot">After a Compute Node Reboots</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#maintenance_instances">Instances</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#inspect_and_recover_failed_instances">Inspecting and Recovering Data from Failed Instances</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#volumes">Volumes</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#totle_compute_node_failure">Total Compute Node Failure</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#var_lib_nova_instances">/var/lib/nova/instances</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="maintenance.html#storage_node_failures">Storage Node Failures and Maintenance</a></span><ul><li tabindex="2"><span class="file"><a href="maintenance.html#reboot_storage_node">Rebooting a Storage Node</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#shut_down_storage_node">Shutting Down a Storage Node</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#replace_swift_disk">Replacing a Swift Disk</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="maintenance.html#complete_failure">Handling a Complete Failure</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#config_mgmt">Configuration Management</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#hardware">Working with Hardware</a></span><ul><li tabindex="2"><span class="file"><a href="maintenance.html#add_new_node">Adding a Compute Node</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#add_new_object_node">Adding an Object Storage Node</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#replace_components">Replacing Components</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="maintenance.html#databases">Databases</a></span><ul><li tabindex="2"><span class="file"><a href="maintenance.html#database_connect">Database Connectivity</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#perf_and_opt">Performance and Optimizing</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="maintenance.html#hdmy">HDWMY</a></span><ul><li tabindex="2"><span class="file"><a href="maintenance.html#hourly">Hourly</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#daily">Daily</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#weekly">Weekly</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#monthly">Monthly</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#quarterly">Quarterly</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#semiannual">Semiannually</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="maintenance.html#broken_component">Determining Which Component Is Broken</a></span><ul><li tabindex="2"><span class="file"><a href="maintenance.html#tailing_logs">Tailing Logs</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#daemons_cli">Running Daemons on the CLI</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="maintenance.html#uninstalling">Uninstalling</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html">12. Network Troubleshooting</a></span><ul><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#check_interface_states">Using "ip a" to Check Interface States</a></span></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#nova_network_traffic_in_cloud">Visualizing nova-network Traffic in the Cloud</a></span></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#neutron_network_traffic_in_cloud">Visualizing OpenStack Networking Service Traffic in the
+    Cloud</a></span></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#failure_in_path">Finding a Failure in the Path</a></span></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#tcpdump">tcpdump</a></span></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#iptables">iptables</a></span></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#network_config_database">Network Configuration in the Database for nova-network</a></span><ul><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#dissasociate_floating_ip">Manually Disassociating a Floating IP</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#debug_dhcp_issues">Debugging DHCP Issues with nova-network</a></span></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#debugging_dns_issues">Debugging DNS Issues</a></span></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#trouble_shooting_ovs">Troubleshooting Open vSwitch</a></span></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#dealing_with_netns">Dealing with Network Namespaces</a></span></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#ops-network-troubleshooting-summary">Summary</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html">13. Logging and Monitoring</a></span><ul><li tabindex="2"><span class="file"><a href="logging_monitoring.html#where_are_logs">Where Are the Logs?</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#how_to_read_logs">Reading the Logs</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#tracing_instance_request">Tracing Instance Requests</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#add_custom_logging">Adding Custom Logging Statements</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#rabbitmq">RabbitMQ Web Management Interface or rabbitmqctl</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#manage_logs_centrally">Centrally Managing Logs</a></span><ul><li tabindex="2"><span class="file"><a href="logging_monitoring.html#rsyslog_client_config">rsyslog Client Configuration</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#rsyslog_server_config">rsyslog Server Configuration</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#monitoring">Monitoring</a></span><ul><li tabindex="2"><span class="file"><a href="logging_monitoring.html#process_monitoring">Process Monitoring</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#resource_alerting">Resource Alerting</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#stacktach">StackTach</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#metering_telemetry">OpenStack Telemetry</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#os_resources">OpenStack-Specific Resources</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#intelligent_alerting">Intelligent Alerting</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#trending">Trending</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#ops-log-monitor-summary">Summary</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="backup_and_recovery.html">14. Backup and Recovery</a></span><ul><li tabindex="2"><span class="file"><a href="backup_and_recovery.html#what_to_backup">What to Back Up</a></span></li><li tabindex="2"><span class="file"><a href="backup_and_recovery.html#database_backups">Database Backups</a></span></li><li tabindex="2"><span class="file"><a href="backup_and_recovery.html#file_system_backups">File System Backups</a></span><ul><li tabindex="2"><span class="file"><a href="backup_and_recovery.html#compute">Compute</a></span></li><li tabindex="2"><span class="file"><a href="backup_and_recovery.html#image_catalog_delivery">Image Catalog and Delivery</a></span></li><li tabindex="2"><span class="file"><a href="backup_and_recovery.html#identity">Identity</a></span></li><li tabindex="2"><span class="file"><a href="backup_and_recovery.html#ops_block_storage">Block Storage</a></span></li><li tabindex="2"><span class="file"><a href="backup_and_recovery.html#ops_object_storage">Object Storage</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="backup_and_recovery.html#recovering_backups">Recovering Backups</a></span></li><li tabindex="2"><span class="file"><a href="backup_and_recovery.html#ops-backup-recovery-summary">Summary</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="customize.html">15. Customization</a></span><ul><li tabindex="2"><span class="file"><a href="customize.html#devstack">Create an OpenStack Development Environment</a></span></li><li tabindex="2"><span class="file"><a href="customize.html#swift_middleware_example">Customizing Object Storage (Swift) Middleware</a></span></li><li tabindex="2"><span class="file"><a href="customize.html#nova_scheduler_example">Customizing the OpenStack Compute (nova) Scheduler</a></span></li><li tabindex="2"><span class="file"><a href="customize.html#ops_dashboard">Customizing the Dashboard (Horizon)</a></span></li><li tabindex="2"><span class="file"><a href="customize.html#customize_conclusion">Conclusion</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="upstream_openstack.html">16. Upstream OpenStack</a></span><ul><li tabindex="2"><span class="file"><a href="upstream_openstack.html#get_help">Getting Help</a></span></li><li tabindex="2"><span class="file"><a href="upstream_openstack.html#report_bugs">Reporting Bugs</a></span><ul><li tabindex="2"><span class="file"><a href="upstream_openstack.html#confirm_priority">Confirming and Prioritizing</a></span></li><li tabindex="2"><span class="file"><a href="upstream_openstack.html#bug_fixing">Bug Fixing</a></span></li><li tabindex="2"><span class="file"><a href="upstream_openstack.html#after_change_is_accepted">After the Change Is Accepted</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="upstream_openstack.html#openstack_community">Join the OpenStack Community</a></span></li><li tabindex="2"><span class="file"><a href="upstream_openstack.html#contribute_to_docs">How to Contribute to the Documentation</a></span></li><li tabindex="2"><span class="file"><a href="upstream_openstack.html#security_info">Security Information</a></span></li><li tabindex="2"><span class="file"><a href="upstream_openstack.html#additional_info">Finding Additional Information</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="advanced_configuration.html">17. Advanced Configuration</a></span><ul><li tabindex="2"><span class="file"><a href="advanced_configuration.html#driver_differences">Differences Between Various Drivers</a></span></li><li tabindex="2"><span class="file"><a href="advanced_configuration.html#periodic_tasks">Implementing Periodic Tasks</a></span></li><li tabindex="2"><span class="file"><a href="advanced_configuration.html#specific-advanced-config-topics">Specific Configuration Topics</a></span><ul><li tabindex="2"><span class="file"><a href="advanced_configuration.html#adv-config-security">Security Configuration for Compute, Networking, and
+      Storage</a></span></li><li tabindex="2"><span class="file"><a href="advanced_configuration.html#adv-config-ha">High Availability</a></span></li><li tabindex="2"><span class="file"><a href="advanced_configuration.html#adv-config-ipv6">Enabling IPv6 Support</a></span></li><li tabindex="2"><span class="file"><a href="advanced_configuration.html#specific-advanced-config-period-tasks">Periodic Task Frequency for Compute</a></span></li><li tabindex="2"><span class="file"><a href="advanced_configuration.html#adv-config-geography">Geographical Considerations for Object Storage</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="ch_ops_upgrades.html">18. Upgrades</a></span><ul><li tabindex="2"><span class="file"><a href="ops_upgrades-pre-testing.html">Pre-Upgrade Testing Environment</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades-prepare-roll-back.html">Preparing for a Rollback</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades-general-steps.html">Upgrades</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_upgrade_levels.html">Upgrade Levels</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-ubuntu.html">How to Perform an Upgrade from Grizzly to
+      Havana—Ubuntu</a></span><ul><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-ubuntu.html#upgrade_impact_users-ubuntu">Impact on Users</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-ubuntu.html#upgrade_considerations-ubuntu">Upgrade Considerations</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-ubuntu.html#upgrade_backup-ubuntu">Perform a Backup</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-ubuntu.html#upgrade_manage_repos-ubuntu">Manage Repositories</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-ubuntu.html#upgrade_update_configuration-ubuntu">Update Configuration Files</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-ubuntu.html#upgrade_packages_controller-ubuntu">Upgrade Packages on the Controller Node</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-ubuntu.html#upgrade_database_restart-ubuntu">Stop Services, Update Database Schemas, and Restart
+        Services on the Controller Node</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-ubuntu.html#upgrade_packages_compute-ubuntu">Upgrade Packages and Restart Services on the Compute
+        Nodes</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-ubuntu.html#upgrade_packages_storage-ubuntu">Upgrade Packages and Restart Services on the Block
+        Storage Nodes</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-rhel.html">How to Perform an Upgrade from Grizzly to Havana—Red Hat
+      Enterprise Linux and Derivatives</a></span><ul><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-rhel.html#upgrade_impact_users-rhel">Impact on Users</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-rhel.html#upgrade_considerations-rhel">Upgrade Considerations</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-rhel.html#upgrade_backup-rhel">Perform a Backup</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-rhel.html#upgrade_manage_repos-rhel">Manage Repositories</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-rhel.html#upgrade_update_configuration-rhel">Update Configuration Files</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-rhel.html#upgrade_packages_controller-rhel">Upgrade Packages on the Controller Node</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-rhel.html#upgrade_database_restart-rhel">Stop Services, Update Database Schemas, and Restart
+        Services on the Controller Node</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-rhel.html#upgrade_packages_compute-rhel">Upgrade Packages and Restart Services on the Compute
+        Nodes</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-rhel.html#upgrade_packages_storage-rhel">Upgrade Packages and Restart Services on the Block
+        Storage Nodes</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-ubuntu.html">How to Perform an Upgrade from Havana to
+      Icehouse—Ubuntu</a></span><ul><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-ubuntu.html#upgrade_icehouse-ubuntu-impact">Impact on Users</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-ubuntu.html#upgrade_icehouse-ubuntu-considerations">Upgrade Considerations</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-ubuntu.html#upgrade_icehouse-ubuntu-backup">Perform a Backup</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-ubuntu.html#upgrade_icehouse-ubuntu-manage-repos">Manage Repositories</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-ubuntu.html#upgrade_icehouse-ubuntu-controller-node">Upgrade the Controller Node</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-ubuntu.html#upgrade_icehouse-ubuntu-services">Upgrade Each Service</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-ubuntu.html#upgrade_icehouse-ubuntu-network-node">Upgrade the Network Node</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-ubuntu.html#upgrade_icehouse-ubuntu-compute-nodes">Upgrade the Compute Nodes</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-ubuntu.html#upgrade_icehouse-ubuntu-storage-nodes">Upgrade the Storage Nodes</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-rhel.html">How to Perform an Upgrade from Havana to Icehouse—Red Hat
+      Enterprise Linux and Derivatives</a></span><ul><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-rhel.html#upgrade_icehouse-rhel-impact">Impact on Users</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-rhel.html#upgrade_icehouse-rhel-considerations">Upgrade Considerations</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-rhel.html#upgrade_icehouse-rhel-backup">Perform a Backup</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-rhel.html#upgrade_icehouse-rhel-manage-repos">Manage Repositories</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-rhel.html#upgrade_icehouse-rhel-controller-node">Upgrade the Controller Node</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-rhel.html#upgrade_icehouse-rhel-services">Upgrade Each Service</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-rhel.html#upgrade_icehouse-rhel-network-node">Upgrade the Network Node</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-rhel.html#upgrade_icehouse-rhel-compute-nodes">Upgrade the Compute Nodes</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-rhel.html#upgrade_icehouse-rhel-storage-nodes">Upgrade the Storage Nodes</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html">How to Perform an Upgrade from Icehouse to Juno</a></span><ul><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-considerations">Before you begin</a></span></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-backup">Perform a backup</a></span></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-repos">Manage repositories</a></span></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-controller">Controller nodes</a></span><ul><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-controller-packages">Upgrade packages to Juno</a></span></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-controller-services">Update services</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-network">Network nodes</a></span><ul><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-network-packages">Upgrade packages to Juno</a></span></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-network-services">Update services</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-compute">Compute nodes</a></span><ul><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-compute-packages">Upgrade packages to Juno</a></span></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-compute-services">Update services</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-storage">Storage nodes</a></span><ul><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-storage-packages">Upgrade packages to Juno</a></span></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-storage-services">Update services</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="ops_upgrades-final-steps.html">Cleaning Up and Final Configuration File Updates</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades-roll-back.html">Rolling Back a Failed Upgrade</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="use-cases.html">A. Use Cases</a></span><ul><li tabindex="2"><span class="file"><a href="nectar.html">NeCTAR</a></span><ul><li tabindex="2"><span class="file"><a href="nectar_deploy.html">Deployment</a></span></li><li tabindex="2"><span class="file"><a href="nectar_resources.html">Resources</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="mit_csail.html">MIT CSAIL</a></span><ul><li tabindex="2"><span class="file"><a href="mit_csail_deploy.html">Deployment</a></span></li><li tabindex="2"><span class="file"><a href="CSAIL_resources.html">Resources</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="dair.html">DAIR</a></span><ul><li tabindex="2"><span class="file"><a href="dair_deploy.html">Deployment</a></span></li><li tabindex="2"><span class="file"><a href="dair_resources.html">Resources</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="cern.html">CERN</a></span><ul><li tabindex="2"><span class="file"><a href="cern_deploy.html">Deployment</a></span></li><li tabindex="2"><span class="file"><a href="cern_resources.html">Resources</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="app_crypt.html">B. Tales From the Cryp^H^H^H^H Cloud</a></span><ul><li tabindex="2"><span class="file"><a href="double_vlan.html">Double VLAN</a></span></li><li tabindex="2"><span class="file"><a href="issue.html">"The Issue"</a></span></li><li tabindex="2"><span class="file"><a href="disappear_images.html">Disappearing Images</a></span></li><li tabindex="2"><span class="file"><a href="valentines.html">The Valentine's Day Compute Node Massacre</a></span></li><li tabindex="2"><span class="file"><a href="rabbithole.html">Down the Rabbit Hole</a></span></li><li tabindex="2"><span class="file"><a href="haunted.html">Havana Haunted by the Dead</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="working-with-roadmaps.html">C. Working with Roadmaps</a></span><ul><li tabindex="2"><span class="file"><a href="roadmap-information-available.html">Information Available to You</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-influencing.html">Influencing the Roadmap</a></span></li><li tabindex="2"><span class="file"><a href="aspects-to-watch.html">Aspects to Watch</a></span><ul><li tabindex="2"><span class="file"><a href="roadmap-driver-improvements.html">Driver Quality Improvements</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-easier-upgrades.html">Easier Upgrades</a></span></li><li tabindex="2"><span class="file"><a href="nova-network-deprecation.html">Deprecation of Nova Network</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="roadmap-DVR.html">Distributed Virtual Router</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-ML2.html">Replacement of Open vSwitch Plug-in with Modular Layer 2</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-new-api.html">New API Versions</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-triple-o.html">OpenStack on OpenStack (TripleO)</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-savanna.html">Data processing service for OpenStack (sahara)</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-baremetal.html">Bare metal Deployment (ironic)</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-trove.html">Database as a Service (trove)</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-zaqar.html">Message Service (zaqar)</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-designate.html">DNS service (designate)</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-scheduling.html">Scheduler Improvements</a></span><ul><li tabindex="2"><span class="file"><a href="roadmap-volumes.html">Block Storage Improvements</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-python-sdk.html">Toward a Python SDK</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="recommended-reading.html">D. Resources</a></span><ul><li tabindex="2"><span class="file"><a href="recommended-reading.html#openstack-resources">OpenStack</a></span></li><li tabindex="2"><span class="file"><a href="recommended-reading.html#cloud-general-resources">Cloud (General)</a></span></li><li tabindex="2"><span class="file"><a href="recommended-reading.html#python-resources">Python</a></span></li><li tabindex="2"><span class="file"><a href="recommended-reading.html#networking-resources">Networking</a></span></li><li tabindex="2"><span class="file"><a href="recommended-reading.html#system-admin-resources">Systems Administration</a></span></li><li tabindex="2"><span class="file"><a href="recommended-reading.html#virtualization-resources">Virtualization</a></span></li><li tabindex="2"><span class="file"><a href="recommended-reading.html#config-management-resources">Configuration Management</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="openstack_glossary.html">Glossary</a></span></li><li tabindex="2"><span class="file"><a href="ix01.html">Index</a></span></li></ul></div></div><div id="searchDiv"><div id="search"><form onsubmit="Verifie(ditaSearch_Form);return false" name="ditaSearch_Form" class="searchForm"><fieldset class="searchFieldSet"><legend>Search</legend><center><input id="textToSearch" name="textToSearch" type="text" class="searchText"/> &nbsp; <input onclick="Verifie(ditaSearch_Form)" type="button" class="searchButton" value="Go" id="doSearch"/></center></fieldset></form></div><div id="searchResults"><center/></div><p class="searchHighlight"><a href="#" onclick="toggleHighlight()">Search Highlighter (On/Off)</a></p></div></div></div></div></body></html>
