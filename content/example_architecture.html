@@ -1,0 +1,776 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:exsl="http://exslt.org/common" xmlns:ng="http://docbook.org/docbook-ng" xmlns:fb="http://ogp.me/ns/fb#"><head>
+<link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"/>
+<title>Chapter 1. Architecture Examples - OpenStack Operations Guide</title><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><meta name="mavenGroupId" content="org.openstack.docs"/><meta name="mavenArtifactId" content="openstack-ops-manual"/><meta name="mavenVersionId" content="1.0.0"/><link rel="home" href="index.html" title="OpenStack Operations Guide"/><link rel="up" href="architecture.html" title="Architecture"/><link rel="prev" href="architecture.html" title="Architecture"/><link rel="next" href="section_arch_provision.html" title="Chapter 2. Provisioning and Deployment"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="git-sha" content="dbaae13da977db5f75edb276d238702e5383faf1"/><meta name="buildTime" content="2015-10-19T02:19:09+02:00"/><script type="text/javascript">
+            //The id for tree cookie
+            var treeCookieId = "treeview-openstack-operations-guide";
+            var language = "en";
+            var w = new Object();
+            //Localization
+            txt_filesfound = 'Results';
+            txt_enter_at_least_1_char = "You must enter at least one character.";
+            txt_browser_not_supported = "Please enable JavaScript.";
+            txt_please_wait = "Please wait. Search in progress...";
+            txt_results_for = "Results for: ";
+        </script><style type="text/css">
+            input {
+            margin-bottom: 5px;
+            margin-top: 2px;
+            }
+
+            .folder {
+            display: block;
+            height: 22px;
+            padding-left: 20px;
+            background: transparent url(../common/jquery/treeview/images/folder.gif) 0 0px no-repeat;
+            }
+            
+        </style><link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"/><link rel="stylesheet" type="text/css" href="../common/css/positioning.css"/><link rel="stylesheet" type="text/css" href="../common/css/custom.css"/><link rel="canonical" href="http://docs.openstack.org/openstack-ops/content//example_architecture.html"/><!--[if IE]>
+	<link rel="stylesheet" type="text/css" href="../common/css/ie.css"/>
+	<![endif]--><link rel="stylesheet" type="text/css" href="../common/jquery/theme-redmond/jquery-ui-1.8.2.custom.css"/><link rel="stylesheet" type="text/css" href="../common/jquery/treeview/jquery.treeview.css"/><script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"><!----></script><script type="text/javascript" src="../common/jquery/jquery-ui-1.8.2.custom.min.js"><!----></script><script type="text/javascript" src="../common/jquery/jquery.cookie.js"><!----></script><script type="text/javascript" src="../common/jquery/treeview/jquery.treeview.min.js"><!----></script><link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/qtip2/2.2.0/jquery.qtip.min.css"/><script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.0/jquery.qtip.min.js"><!--jQuery plugin for glossary popups. --></script><script type="text/javascript" src="search/htmlFileList.js"><!----></script><script type="text/javascript" src="search/htmlFileInfoList.js"><!----></script><script type="text/javascript" src="search/nwSearchFnt.js"><!----></script><script type="text/javascript" src="search/stemmers/en_stemmer.js"><!--//make this scalable to other languages as well.--></script><script type="text/javascript" src="search/index-1.js"><!----></script><script type="text/javascript" src="search/index-2.js"><!----></script><script type="text/javascript" src="search/index-3.js"><!----></script><script type="text/javascript">
+	    var _gaq = _gaq || [];
+	    _gaq.push(['_setAccount', 'UA-17511903-1']);
+	    
+	    _gaq.push(['_setDomainName', '.openstack.org']);	        
+	        </script><script type="text/javascript" src="../common/ga.js"><!----></script></head><body><div id="header"><a onclick="_gaq.push(['_trackEvent', 'Header', 'logo', 'click', 1]);" target="_blank" href="http://www.openstack.org"><img src="../common/images/openstack-logo.png" alt="OpenStack Documentation" width="157" height="47"/></a><h1>Chapter 1. Architecture Examples</h1><div id="navheader" align="right"><!----><table class="navLinks"><tr><td><a id="showHideButton" onclick="showHideToc(); _gaq.push(['_trackEvent', 'Header', 'show/hide', 'click', 1]);" class="pointLeft" title="Hide TOC tree">Sidebar
+                            </a></td><td><a accesskey="p" class="navLinkPrevious" onclick="_gaq.push(['_trackEvent', 'Header', 'prevLink', 'click', 1]);" tabindex="5" href="architecture.html">Prev</a>
+				      |
+                                        <a accesskey="u" class="navLinkUp" onclick="_gaq.push(['_trackEvent', 'Header', 'upLink', 'click', 1]);" tabindex="5" href="architecture.html">Up</a>
+				  |
+                                    <a accesskey="n" class="navLinkNext" onclick="_gaq.push(['_trackEvent', 'Header', 'nextLink', 'click', 1]);" tabindex="5" href="section_arch_provision.html">Next</a></td></tr></table></div></div><div id="toolbar" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all"><div id="toolbar-left"><p class="breadcrumbs"><a href="http://docs.openstack.org/">OpenStack Manuals</a><a href="index.html">OpenStack Operations Guide</a></p><a onclick="_gaq.push(['_trackEvent', 'Header', 'pdfDownload', 'click', 1]);" alt="Download a pdf of this document" class="pdficon" href="../openstack-ops-manual.pdf"><img src="../common/images/pdf.png"/></a><div id="gplusone"><a id="AskOOLink1" href="http://ask.openstack.org" target="_blank" title="Questions? Discuss on ask.openstack.org"><i class="icon-question"><!----></i></a>  
+        <a id="logABugLink1" href="" target="_blank" title="Found an error? Report a bug against this page"><i class="icon-bug"><!----></i></a></div></div></div><div id="content"><div class="chapter"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="example_architecture"> </a>Chapter 1. Architecture Examples</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="example_architecture.html#example_architecture-nova">Example Architecture—Legacy Networking (nova)</a></span></dt><dt><span class="section"><a href="example_architecture.html#example_architecture-neutron">Example Architecture—OpenStack Networking</a></span></dt><dt><span class="section"><a href="example_architecture.html#example_archs_conclusion">Parting Thoughts on Architecture Examples</a></span></dt></dl></div><p>To understand the possibilities that OpenStack offers, it's best to start
+  with basic architecture that has been tested in
+  production environments. We offer two examples with basic pivots on the
+  base operating system (Ubuntu and Red Hat Enterprise Linux) and the
+  networking architecture. There are other differences between these two
+  examples and this guide provides reasons for each choice made.</p><p>Because OpenStack is highly configurable, with many different back ends
+  and network configuration options, it is difficult to write documentation
+  that covers all possible OpenStack deployments. Therefore, this guide
+  defines examples of architecture to simplify the task of documenting, as well
+  as to provide the scope for this guide. Both of the offered architecture
+  examples are currently running in production and serving users.</p><div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Tip"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Tip]" src="../common/images/admon/tip.png"/></td><th align="left">Tip</th></tr><tr><td align="left" valign="top"><p>As always, refer to the <a class="xref" href="openstack_glossary.html" title="Glossary">Glossary</a> if you
+    are unclear about any of the terminology mentioned in architecture
+    examples.</p></td></tr></table></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="example_architecture-nova"> </a>Example Architecture—Legacy Networking (nova)</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="example_architecture.html#overview">Overview</a></span></dt><dt><span class="section"><a href="example_architecture.html#detailed_desc">Detailed Description</a></span></dt><dt><span class="section"><a href="example_architecture.html#optional_extensions">Optional Extensions</a></span></dt></dl></div><p>This particular example architecture has been upgraded from Grizzly to
+  Havana and tested in production environments where many public IP addresses
+  are available for assignment to multiple instances. You can find a second
+  example architecture that uses OpenStack Networking (neutron) after this
+  section. Each example offers high availability, meaning that if a particular
+  node goes down, another node with the same configuration can take over the
+  tasks so that the services continue to be available.<a id="d9e449" class="indexterm"/><a id="d9e451" class="indexterm"/></p><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="overview"> </a>Overview</h3></div></div></div><div class="toc"><dl><dt><span class="section"><a href="example_architecture.html#overview_components-nova">Components</a></span></dt><dt><span class="section"><a href="example_architecture.html#rationale">Rationale</a></span></dt><dt><span class="section"><a href="example_architecture.html#neutron">Why not use OpenStack Networking?</a></span></dt><dt><span class="section"><a href="example_architecture.html#multi-host-networking">Why use multi-host networking?</a></span></dt></dl></div><p>The simplest architecture you can build upon for Compute has a
+    single cloud controller and multiple compute nodes. The simplest
+    architecture for Object Storage has five nodes: one for identifying users
+    and proxying requests to the API, then four for storage itself to provide
+    enough replication for eventual consistency. This example architecture
+    does not dictate a particular number of nodes, but shows the thinking
+    <span class="keep-together">and considerations</span> that went into
+    choosing this architecture including the features <span class="keep-together">offered</span>.<a id="d9e458" class="indexterm"/><a id="d9e460" class="indexterm"/><a id="d9e462" class="indexterm"/><a id="d9e464" class="indexterm"/><a id="d9e467" class="indexterm"/><a id="d9e470" class="indexterm"/><a id="d9e473" class="indexterm"/></p><div class="section"><div xmlns="" class="titlepage"><div><div><h4 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="overview_components-nova"> </a>Components</h4></div></div></div><table rules="all" id="d9e478"><col width="40%"/><col width="60%"/><thead><tr>
+            <th>Component</th>
+
+            <th>Details</th>
+          </tr></thead><tbody><tr>
+            <td><p>OpenStack release</p></td>
+
+            <td><p>Havana</p></td>
+          </tr><tr>
+            <td><p>Host operating system</p></td>
+
+            <td><p>Ubuntu 12.04 LTS or Red Hat Enterprise Linux 6.5,
+            including derivatives such as CentOS and Scientific
+            Linux</p></td>
+          </tr><tr>
+            <td><p>OpenStack package repository</p></td>
+
+            <td><p><a class="link" href="https://wiki.ubuntu.com/ServerTeam/CloudArchive" target="_top">Ubuntu Cloud
+            Archive</a> or <a class="link" href="http://openstack.redhat.com/Frequently_Asked_Questions" target="_top">RDO</a>*</p></td>
+          </tr><tr>
+            <td><p>Hypervisor</p></td>
+
+            <td><p>KVM</p></td>
+          </tr><tr>
+            <td><p>Database</p></td>
+
+            <td><p>MySQL*</p></td>
+          </tr><tr>
+            <td><p>Message queue</p></td>
+
+            <td><p>RabbitMQ for Ubuntu; Qpid for Red Hat Enterprise Linux
+            and derivatives</p></td>
+          </tr><tr>
+            <td><p>Networking service</p></td>
+
+            <td><p><code class="literal">nova-network</code></p></td>
+          </tr><tr>
+            <td><p>Network manager</p></td>
+
+            <td><p>FlatDHCP</p></td>
+          </tr><tr>
+            <td><p>Single <code class="literal">nova-network</code> or
+            multi-host?</p></td>
+
+            <td><p>multi-host*</p></td>
+          </tr><tr>
+            <td><p>Image service (glance) back end</p></td>
+
+            <td><p>file</p></td>
+          </tr><tr>
+            <td><p>Identity (keystone) driver</p></td>
+
+            <td><p>SQL</p></td>
+          </tr><tr>
+            <td><p>Block Storage (cinder) back end</p></td>
+
+            <td><p>LVM/iSCSI</p></td>
+          </tr><tr>
+            <td><p>Live Migration back end</p></td>
+
+            <td><p>Shared storage using NFS*</p></td>
+          </tr><tr>
+            <td><p>Object storage</p></td>
+
+            <td><p>OpenStack Object Storage (swift)</p></td>
+          </tr></tbody></table><p>An asterisk (*) indicates when the example architecture deviates
+      from the settings of a default installation. We'll offer explanations
+      for those deviations next.<a id="d9e561" class="indexterm"/><a id="d9e564" class="indexterm"/><a id="d9e567" class="indexterm"/><a id="d9e569" class="indexterm"/><a id="d9e571" class="indexterm"/><a id="d9e574" class="indexterm"/><a id="d9e576" class="indexterm"/><a id="d9e579" class="indexterm"/><a id="d9e581" class="indexterm"/><a id="d9e583" class="indexterm"/></p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../common/images/admon/note.png"/></td><th align="left">Note</th></tr><tr><td align="left" valign="top"><p>The following features of OpenStack are supported by the example
+        architecture documented in this guide, but are optional:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p><a class="gloss" href="#" def="&lt;strong&gt;Dashboard: &lt;/strong&gt; ">Dashboard</a>: You probably want to
+              offer a dashboard, but your users may be more interested in API
+              access only.</p></li><li class="listitem"><p><a class="gloss" href="#" def="&lt;strong&gt;Block storage: &lt;/strong&gt; ">Block storage</a>: You don't have to
+              offer users block storage if their use case only needs ephemeral
+              storage on compute nodes, for example.</p></li><li class="listitem"><p><a class="gloss" href="#" def="&lt;strong&gt;Floating IP address: &lt;/strong&gt; ">Floating IP address</a>: Floating IP
+              addresses are public IP addresses that you allocate from a
+              predefined pool to assign to virtual machines at launch.
+              Floating IP address ensure that the public IP address is
+              available whenever an instance is booted. Not every organization
+              can offer thousands of public floating IP addresses for
+              thousands of instances, so this feature is considered
+              optional.</p></li><li class="listitem"><p><a class="gloss" href="#" def="&lt;strong&gt;Live migration: &lt;/strong&gt; ">Live migration</a>: If you need to move
+              running virtual machine instances from one host to another with
+              little or no service interruption, you would enable live
+              migration, but it is considered optional.</p></li><li class="listitem"><p><a class="gloss" href="#" def="&lt;strong&gt;Object storage: &lt;/strong&gt; ">Object storage</a>: You may choose to
+              store machine images on a file system rather than in object
+              storage if you do not have the extra hardware for the required
+              replication and redundancy that OpenStack Object Storage
+              offers.</p></li></ul></div></td></tr></table></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h4 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="rationale"> </a>Rationale</h4></div></div></div><p>This example architecture has been selected based on the current
+      default feature set of OpenStack <a class="gloss" href="#" def="&lt;strong&gt;Havana: &lt;/strong&gt; &lt;p&gt;The code name for the eighth release of OpenStack. The design summit took place in Portland, Oregon, US and Havana is an unincorporated community in Oregon. &lt;/p&gt;">Havana</a>, with an
+      emphasis on stability. We believe that many clouds that currently run
+      OpenStack in production have made similar choices.<a id="d9e608" class="indexterm"/></p><p>You must first choose the operating system that runs on all of the
+      physical nodes. While OpenStack is supported on several distributions of
+      Linux, we used <span class="emphasis"><em>Ubuntu 12.04 LTS (Long Term
+      Support)</em></span>, which is used by the majority of the development
+      community, has feature completeness compared with other distributions
+      and has clear future support plans.</p><p>We recommend that you do not use the default Ubuntu OpenStack
+      install packages and instead use the <a class="link" href="https://wiki.ubuntu.com/ServerTeam/CloudArchive" target="_top">Ubuntu Cloud Archive</a>. The
+      Cloud Archive is a package repository supported by Canonical that allows
+      you to upgrade to future OpenStack releases while remaining on Ubuntu
+      12.04.</p><p><span class="emphasis"><em>KVM</em></span> as a <a class="gloss" href="#" def="&lt;strong&gt;hypervisor: &lt;/strong&gt; &lt;p&gt;Software that arbitrates and controls VM access to the actual underlying hardware. &lt;/p&gt;">hypervisor</a>
+      complements the choice of Ubuntu—being a matched pair in terms of
+      support, and also because of the significant degree of attention it
+      garners from the OpenStack development community (including the authors,
+      who mostly use KVM). It is also feature complete, free from licensing
+      charges and restrictions.<a id="d9e618" class="indexterm"/><a id="d9e620" class="indexterm"/></p><p><span class="emphasis"><em>MySQL</em></span> follows a similar trend. Despite its
+      recent change of ownership, this database is the most tested for use
+      with OpenStack and is heavily documented. We deviate from the default
+      database, <span class="emphasis"><em>SQLite</em></span>, because SQLite is not an
+      appropriate database for production usage.</p><p>The choice of <span class="emphasis"><em>RabbitMQ</em></span> over other AMQP
+      compatible options that are gaining support in OpenStack, such as ZeroMQ
+      and Qpid, is due to its ease of use and significant testing in
+      production. It also is the only option that supports features such as
+      Compute cells. We recommend clustering with RabbitMQ, as it is an
+      integral component of the system and fairly simple to implement due to
+      its inbuilt nature.<a id="d9e628" class="indexterm"/></p><p>As discussed in previous chapters, there are several options for
+      networking in OpenStack Compute. We recommend
+      <span class="emphasis"><em>FlatDHCP</em></span> and to use <span class="emphasis"><em>Multi-Host</em></span>
+      networking mode for high availability, running one
+      <code class="code">nova-network</code> daemon per OpenStack compute host. This
+      provides a robust mechanism for ensuring network interruptions are
+      isolated to individual compute hosts, and allows for the direct use of
+      hardware network gateways.</p><p><span class="emphasis"><em>Live Migration</em></span> is supported by way of shared
+      storage, with <span class="emphasis"><em>NFS</em></span> as the distributed file
+      system.</p><p>Acknowledging that many small-scale deployments see running Object
+      Storage just for the storage of virtual machine images as too costly, we
+      opted for the file back end in the OpenStack Image service (Glance). If
+      your cloud will include Object Storage, you can easily add it as a
+      back end.</p><p>We chose the <span class="emphasis"><em>SQL back end for Identity</em></span>
+      over others, such as LDAP. This back end is simple
+      to install and is robust. The authors acknowledge that many
+      installations want to bind with existing directory services and caution
+      careful understanding of the <a class="link" href="http://docs.openstack.org/havana/config-reference/content/ch_configuring-openstack-identity.html#configuring-keystone-for-ldap-backend" title="LDAP config options" target="_top">array of options
+      available</a>.</p><p>Block Storage (cinder) is installed natively on external storage
+      nodes and uses the <span class="emphasis"><em>LVM/iSCSI plug-in</em></span>. Most Block
+      Storage plug-ins are tied to particular vendor products and
+      implementations limiting their use to consumers of those hardware
+      platforms, but LVM/iSCSI is robust and stable on commodity
+      hardware.</p><p>While the cloud can be run without the <span class="emphasis"><em>OpenStack
+      Dashboard</em></span>, we consider it to be indispensable, not just for
+      user interaction with the cloud, but also as a tool for operators.
+      Additionally, the dashboard's use of Django makes it a flexible
+      framework for <span class="keep-together">extension</span>.</p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h4 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="neutron"> </a>Why not use OpenStack Networking?</h4></div></div></div><p>This example architecture does not use OpenStack Networking,
+      because it does not yet support multi-host networking
+      and our organizations (university, government) have access to a large
+      range of publicly-accessible IPv4 addresses.<a id="d9e649" class="indexterm"/></p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h4 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="multi-host-networking"> </a>Why use multi-host networking?</h4></div></div></div><p>In a default OpenStack deployment, there is a single
+      <code class="code">nova-network</code> service that runs within the cloud (usually on
+      the cloud controller) that provides services such as network address
+      translation (NAT), DHCP, and DNS to the guest instances. If the single
+      node that runs the <code class="code">nova-network</code> service goes down, you
+      cannot access your instances, and the instances cannot access the
+      Internet. The single node that runs the <code class="literal">nova-network</code>
+      service can become a bottleneck if excessive network traffic comes in
+      and goes out of the cloud.<a id="d9e658" class="indexterm"/><a id="d9e661" class="indexterm"/><a id="d9e663" class="indexterm"/></p><div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Tip"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Tip]" src="../common/images/admon/tip.png"/></td><th align="left">Tip</th></tr><tr><td align="left" valign="top"><p><a class="link" href="http://docs.openstack.org/havana/install-guide/install/apt/content/nova-network.html" target="_top">Multi-host</a> is
+        a high-availability option for the network configuration, where the
+        <code class="literal">nova-network</code> service is run on every compute node
+        instead of running on only a single node.</p></td></tr></table></div></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="detailed_desc"> </a>Detailed Description</h3></div></div></div><p>The reference architecture consists of multiple compute nodes, a
+    cloud controller, an external NFS storage server for instance storage, and
+    an OpenStack Block Storage server for <a class="gloss" href="#" def="&lt;strong&gt;volume: &lt;/strong&gt; &lt;p&gt;Disk-based data storage generally represented as an iSCSI target with a file system that supports extended attributes; can be persistent or ephemeral. &lt;/p&gt;">volume</a>
+    storage.<a id="d9e674" class="indexterm"/> A network time service (Network Time Protocol, or NTP)
+    synchronizes time on all the nodes. FlatDHCPManager in multi-host mode is
+    used for the networking. A logical diagram for this example architecture
+    shows which services are running on each node:</p><div class="informalfigure"><div class="mediaobject"><img src="http://git.openstack.org/cgit/openstack/operations-guide/plain/doc/openstack-ops/figures/osog_01in01.png"/></div></div><p>The cloud controller runs the dashboard, the API services, the
+    database (MySQL), a message queue server (RabbitMQ), the scheduler for
+    choosing compute resources (<code class="literal">nova-scheduler</code>), Identity
+    services (keystone, <code class="code">nova-consoleauth</code>), Image services
+    (<code class="code">glance-api</code>, <code class="code">glance-registry</code>), services for
+    console access of guests, and Block Storage services, including the
+    scheduler for storage resources (<code class="code">cinder-api</code> and
+    <code class="code">cinder-scheduler</code>).<a id="d9e688" class="indexterm"/></p><p>Compute nodes are where the computing resources are held, and in our
+    example architecture, they run the hypervisor (KVM), libvirt (the driver
+    for the hypervisor, which enables live migration from node to node),
+    <code class="code">nova-compute</code>, <code class="code">nova-api-metadata</code> (generally only
+    used when running in multi-host mode, it retrieves instance-specific
+    metadata), <code class="code">nova-vncproxy</code>, and
+    <code class="code">nova-network</code>.</p><p>The network consists of two switches, one for the management or
+    private traffic, and one that covers public access, including floating
+    IPs. To support this, the cloud controller and the compute nodes have two
+    network cards. The OpenStack Block Storage and NFS storage servers only
+    need to access the private network and therefore only need one network
+    card, but multiple cards run in a bonded configuration are recommended if
+    possible. Floating IP access is direct to the Internet, whereas Flat IP
+    access goes through a NAT. To envision the network traffic, use this
+    diagram:</p><div class="informalfigure"><div class="mediaobject"><img src="http://git.openstack.org/cgit/openstack/operations-guide/plain/doc/openstack-ops/figures/osog_01in02.png"/></div></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="optional_extensions"> </a>Optional Extensions</h3></div></div></div><p>You can extend this reference architecture as<a id="d9e704" class="indexterm"/> follows:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Add additional cloud controllers (see <a class="xref" href="maintenance.html" title="Chapter 11. Maintenance, Failures, and Debugging">Chapter 11, <em>Maintenance, Failures, and Debugging</em></a>).</p></li><li class="listitem"><p>Add an OpenStack Storage service (see the Object Storage chapter
+        in the <span class="emphasis"><em>OpenStack Installation Guide</em></span> for your
+        distribution).</p></li><li class="listitem"><p>Add additional OpenStack Block Storage hosts (see <a class="xref" href="maintenance.html" title="Chapter 11. Maintenance, Failures, and Debugging">Chapter 11, <em>Maintenance, Failures, and Debugging</em></a>).</p></li></ul></div></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="example_architecture-neutron"> </a>Example Architecture—OpenStack Networking</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="example_architecture.html#overview-neutron">Overview</a></span></dt><dt><span class="section"><a href="example_architecture.html#detailed_description">Detailed Description</a></span></dt><dt><span class="section"><a href="example_architecture.html#software_config">Example Component Configuration</a></span></dt></dl></div><p>This chapter provides an example architecture using OpenStack
+  Networking, also known as the Neutron project, in a highly available
+  environment.</p><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="overview-neutron"> </a>Overview</h3></div></div></div><div class="toc"><dl><dt><span class="section"><a href="example_architecture.html#overview_components_neutron">Components</a></span></dt><dt><span class="section"><a href="example_architecture.html#rational-neutron">Rationale</a></span></dt></dl></div><p>A highly-available environment can be put into place if you require
+    an environment that can scale horizontally, or want your cloud to continue
+    to be operational in case of node failure. This example architecture has
+    been written based on the current default feature set of OpenStack Havana,
+    with an emphasis on high availability.<a id="d9e723" class="indexterm"/><a id="d9e725" class="indexterm"/></p><div class="section"><div xmlns="" class="titlepage"><div><div><h4 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="overview_components_neutron"> </a>Components</h4></div></div></div><table rules="all" id="d9e730"><col width="40%"/><col width="60%"/><thead><tr>
+            <th>Component</th>
+
+            <th>Details</th>
+          </tr></thead><tbody><tr>
+            <td><p>OpenStack release</p></td>
+
+            <td><p>Havana</p></td>
+          </tr><tr>
+            <td><p>Host operating system</p></td>
+
+            <td><p>Red Hat Enterprise Linux 6.5</p></td>
+          </tr><tr>
+            <td><p>OpenStack package repository</p></td>
+
+            <td><p><a class="link" href="https://repos.fedorapeople.org/repos/openstack/" target="_top">Red Hat
+            Distributed OpenStack (RDO)</a></p></td>
+          </tr><tr>
+            <td><p>Hypervisor</p></td>
+
+            <td><p>KVM</p></td>
+          </tr><tr>
+            <td><p>Database</p></td>
+
+            <td><p>MySQL</p></td>
+          </tr><tr>
+            <td><p>Message queue</p></td>
+
+            <td><p>Qpid</p></td>
+          </tr><tr>
+            <td><p>Networking service</p></td>
+
+            <td><p>OpenStack Networking</p></td>
+          </tr><tr>
+            <td><p>Tenant Network Separation</p></td>
+
+            <td><p>VLAN</p></td>
+          </tr><tr>
+            <td><p>Image service back end</p></td>
+
+            <td><p>GlusterFS</p></td>
+          </tr><tr>
+            <td><p>Identity driver</p></td>
+
+            <td><p>SQL</p></td>
+          </tr><tr>
+            <td><p>Block Storage back end</p></td>
+
+            <td><p>GlusterFS</p></td>
+          </tr></tbody></table></div><div class="section"><div xmlns="" class="titlepage"><div><div><h4 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="rational-neutron"> </a>Rationale</h4></div></div></div><p>This example architecture has been selected based on the current
+      default feature set of OpenStack Havana, with an emphasis on high
+      availability. This architecture is currently being deployed in an
+      internal Red Hat OpenStack cloud and used to run hosted and shared
+      services, which by their nature must be highly available.<a id="d9e797" class="indexterm"/></p><p>This architecture's components have been selected for the
+      following reasons:</p><div class="variablelist"><dl><dt><span class="term">Red Hat Enterprise Linux</span></dt><dd><p>You must choose an operating system that can run on all of
+            the physical nodes. This example architecture is based on Red Hat
+            Enterprise Linux, which offers reliability, long-term support,
+            certified testing, and is hardened. Enterprise customers, now
+            moving into OpenStack usage, typically require these
+            advantages.</p></dd><dt><span class="term">RDO</span></dt><dd><p>The Red Hat Distributed OpenStack package offers an easy way
+            to download the most current OpenStack release that is built for
+            the Red Hat Enterprise Linux platform.</p></dd><dt><span class="term">KVM</span></dt><dd><p>KVM is the supported hypervisor of choice for Red Hat
+            Enterprise Linux (and included in distribution). It is feature
+            complete and free from licensing charges and restrictions.</p></dd><dt><span class="term">MySQL</span></dt><dd><p>MySQL is used as the database back end for all databases in
+            the OpenStack environment. MySQL is the supported database of
+            choice for Red Hat Enterprise Linux (and included in
+            distribution); the database is open source, scalable, and handles
+            memory well.</p></dd><dt><span class="term">Qpid</span></dt><dd><p>Apache Qpid offers 100 percent compatibility with the
+            Advanced Message Queuing Protocol Standard, and its broker is
+            available for both C++ and Java.</p></dd><dt><span class="term">OpenStack Networking</span></dt><dd><p>OpenStack Networking offers sophisticated networking
+            functionality, including Layer 2 (L2) network segregation and
+            provider networks.</p></dd><dt><span class="term">VLAN</span></dt><dd><p>Using a virtual local area network offers broadcast control,
+            security, and physical layer transparency. If needed, use VXLAN to
+            extend your address space.</p></dd><dt><span class="term">GlusterFS</span></dt><dd><p>GlusterFS offers scalable storage. As your environment
+            grows, you can continue to add more storage nodes (instead of
+            being restricted, for example, by an expensive storage
+            array).</p></dd></dl></div></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="detailed_description"> </a>Detailed Description</h3></div></div></div><div class="toc"><dl><dt><span class="section"><a href="example_architecture.html#node_types">Node types</a></span></dt><dt><span class="section"><a href="example_architecture.html#networking_layout">Networking layout</a></span></dt><dt><span class="section"><a href="example_architecture.html#node_connectivity">Node connectivity</a></span></dt><dt><span class="section"><a href="example_architecture.html#node_diagrams">Node diagrams</a></span></dt></dl></div><div class="section"><div xmlns="" class="titlepage"><div><div><h4 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="node_types"> </a>Node types</h4></div></div></div><p>This section gives you a breakdown of the different nodes that
+      make up the OpenStack environment. A node is a physical machine that is
+      provisioned with an operating system, and running a defined software
+      stack on top of it. <a class="xref" href="example_architecture.html#node-types-table" title="Table 1.1. Node types">Table 1.1, “Node types”</a> provides node
+      descriptions and specifications.<a id="d9e840" class="indexterm"/></p><table rules="all" id="node-types-table"><caption>Table 1.1. Node types</caption><col width="11%"/><col width="62%"/><col width="27%"/><thead><tr>
+            <th>Type</th>
+
+            <th>Description</th>
+
+            <th>Example hardware</th>
+          </tr></thead><tbody><tr>
+            <td>Controller</td>
+
+            <td><p>Controller nodes are responsible for running the
+            management software services needed for the OpenStack environment
+            to function. These nodes:</p>
+              <p>
+                </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Provide the front door that people access as well as
+                    the API services that all other components in the
+                    environment talk to.</p></li><li class="listitem"><p>Run a number of services in a highly available
+                    fashion, utilizing Pacemaker and HAProxy to provide a
+                    virtual IP and load-balancing functions so all controller
+                    nodes are being used.</p></li><li class="listitem"><p>Supply highly available "infrastructure" services,
+                    such as MySQL and Qpid, that underpin all the
+                    services.</p></li><li class="listitem"><p>Provide what is known as "persistent storage"
+                    through services run on the host as well. This persistent
+                    storage is backed onto the storage nodes for
+                    reliability.</p></li></ul></div><p>
+              </p>
+              <p>See <a class="xref" href="example_architecture.html#node_controller-diagram" title="Figure 1.3. Controller node">Figure 1.3, “Controller node”</a>.</p></td>
+            <td><p>Model: Dell R620</p> <p>CPU: 2x Intel® Xeon® CPU
+            E5-2620 0 @ 2.00 GHz</p> <p>Memory: 32 GB</p> <p>Disk:
+            two 300 GB 10000 RPM SAS Disks</p> <p>Network: two 10G
+            network ports</p></td>
+          </tr><tr>
+            <td>Compute</td>
+            <td><p>Compute nodes run the virtual machine instances in
+            OpenStack. They:</p>
+              <p>
+                </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Run the bare minimum of services needed to
+                    facilitate these instances.</p></li><li class="listitem"><p>Use local storage on the node for the virtual
+                    machines so that no VM migration or instance recovery at
+                    node failure is possible.</p></li></ul></div><p>
+                <span class="keep-together">See <a class="xref" href="example_architecture.html#node_compute-diagram" title="Figure 1.4. Compute node">Figure 1.4, “Compute node”</a>.</span>
+              </p></td>
+            <td><p>Model: Dell R620</p> <p>CPU: 2x Intel® Xeon® CPU
+            E5-2650 0 @ 2.00 GHz</p> <p>Memory: 128 GB</p>
+            <p>Disk: two 600 GB 10000 RPM SAS Disks</p> <p>Network:
+              four 10G network ports (For future proofing expansion)</p></td>
+          </tr><tr>
+            <td>Storage</td>
+            <td><p>Storage nodes store all the data required for the
+            environment, including disk images in the Image service library,
+            and the persistent storage volumes created by the Block Storage
+            service. Storage nodes use GlusterFS technology to keep the data
+            highly available and scalable.</p>
+              <p>See <a class="xref" href="example_architecture.html#node_storage-diagram" title="Figure 1.6. Storage node">Figure 1.6, “Storage node”</a>.</p></td>
+            <td><p>Model: Dell R720xd</p> <p>CPU: 2x Intel® Xeon®
+            CPU E5-2620 0 @ 2.00 GHz</p> <p>Memory: 64 GB</p>
+            <p>Disk: two 500 GB 7200 RPM SAS Disks and twenty-four 600 GB 10000 RPM
+            SAS Disks</p> <p>Raid Controller: PERC H710P Integrated RAID
+            Controller, 1 GB NV Cache</p> <p>Network: two 10G network
+            ports</p></td>
+          </tr><tr>
+            <td>Network</td>
+            <td><p>Network nodes are responsible for doing all the virtual
+            networking needed for people to create public or private networks
+            and uplink their virtual machines into external networks. Network
+            nodes:</p>
+              <p>
+                </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Form the only ingress and egress point for instances
+                    running on top of OpenStack.</p></li><li class="listitem"><p>Run all of the environment's networking services,
+                    with the exception of the networking API service (which
+                    runs on the controller node).</p></li></ul></div><p>
+              </p>
+              <p>See <a class="xref" href="example_architecture.html#node_network-diagram" title="Figure 1.5. Network node">Figure 1.5, “Network node”</a>.</p></td>
+            <td><p>Model: Dell R620</p> <p>CPU: 1x Intel® Xeon® CPU
+            E5-2620 0 @ 2.00 GHz</p> <p>Memory: 32 GB</p> <p>Disk:
+            two 300 GB 10000 RPM SAS Disks</p> <p>Network: five 10G
+            network ports</p></td>
+          </tr><tr>
+            <td>Utility</td>
+            <td><p>Utility nodes are used by internal administration staff
+            only to provide a number of basic system administration functions
+            needed to get the environment up and running and to maintain the
+            hardware, OS, and software on which it runs.</p> <p>These
+            nodes run services such as provisioning, configuration management,
+            monitoring, or GlusterFS management software. They are not
+            required to scale, although these machines are usually backed
+            up.</p></td>
+            <td><p>Model: Dell R620</p> <p>CPU: 2x Intel® Xeon® CPU
+            E5-2620 0 @ 2.00 GHz</p> <p>Memory: 32 GB</p> <p>Disk:
+            two 500 GB 7200 RPM SAS Disks</p> <p>Network: two 10G
+            network ports</p></td>
+          </tr></tbody></table></div><div class="section"><div xmlns="" class="titlepage"><div><div><h4 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="networking_layout"> </a>Networking layout</h4></div></div></div><div class="toc"><dl><dt><span class="section"><a href="example_architecture.html#OS_network">OpenStack internal network</a></span></dt><dt><span class="section"><a href="example_architecture.html#public_network">Public Network</a></span></dt><dt><span class="section"><a href="example_architecture.html#vm_network">VM traffic network</a></span></dt></dl></div><p>The network contains all the management devices for all hardware
+      in the environment (for example, by including Dell iDrac7 devices for
+      the hardware nodes, and management interfaces for network switches). The
+      network is accessed by internal staff only when diagnosing or recovering
+      a hardware issue.</p><div class="section"><div xmlns="" class="titlepage"><div><div><h5 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="OS_network"> </a>OpenStack internal network</h5></div></div></div><p>This network is used for OpenStack management functions and
+        traffic, including services needed for the provisioning of physical
+        nodes (<code class="literal">pxe</code>, <code class="literal">tftp</code>,
+        <code class="literal">kickstart</code>), traffic between various OpenStack node
+        types using OpenStack APIs and messages (for example,
+        <code class="literal">nova-compute</code> talking to <code class="literal">keystone</code>
+        or <code class="literal">cinder-volume</code> talking to
+        <code class="literal">nova-api</code>), and all traffic for storage data to the
+        storage layer underneath by the Gluster protocol. All physical nodes
+        have at least one network interface (typically
+        <code class="literal">eth0</code>) in this network. This network is only
+        accessible from other VLANs on port 22 (for <code class="literal">ssh</code>
+        access to manage machines).</p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h5 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="public_network"> </a>Public Network</h5></div></div></div><p>This network is a combination of: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>IP addresses for public-facing interfaces on the
+              controller nodes (which end users will access the OpenStack
+              services)</p></li><li class="listitem"><p>A range of publicly routable, IPv4 network addresses to be
+              used by OpenStack Networking for floating IPs. You may be
+              restricted in your access to IPv4 addresses; a large range of
+              IPv4 addresses is not necessary.</p></li><li class="listitem"><p>Routers for private networks created within
+              OpenStack.</p></li></ul></div><p>This network is connected to the controller nodes so users can
+        access the OpenStack interfaces, and connected to the network nodes to
+        provide VMs with publicly routable traffic functionality. The network
+        is also connected to the utility machines so that any utility services
+        that need to be made public (such as system monitoring) can be
+        accessed.</p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h5 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="vm_network"> </a>VM traffic network</h5></div></div></div><p>This is a closed network that is not publicly routable and is
+        simply used as a private, internal network for traffic between virtual
+        machines in OpenStack, and between the virtual machines and the
+        network nodes that provide l3 routes out to the public network (and
+        floating IPs for connections back in to the VMs). Because this is a
+        closed network, we are using a different address space to the others
+        to clearly define the separation. Only Compute and OpenStack
+        Networking nodes need to be connected to this network.</p></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h4 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="node_connectivity"> </a>Node connectivity</h4></div></div></div><div class="toc"><dl><dt><span class="section"><a href="example_architecture.html#node_connectivity-initial">Initial deployment</a></span></dt><dt><span class="section"><a href="example_architecture.html#node_connectivity-performance">Connectivity for maximum performance</a></span></dt></dl></div><p>The following section details how the nodes are connected to the
+      different networks (see <a class="xref" href="example_architecture.html#networking_layout" title="Networking layout">the section called “Networking layout”</a>) and what
+      other considerations need to take place (for example, bonding) when
+      connecting nodes to the networks.</p><div class="section"><div xmlns="" class="titlepage"><div><div><h5 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="node_connectivity-initial"> </a>Initial deployment</h5></div></div></div><p>Initially, the connection setup should revolve around keeping
+        the connectivity simple and straightforward in order to minimize
+        deployment complexity and time to deploy. The deployment shown in
+        <a class="xref" href="example_architecture.html#fig1-1" title="Figure 1.1. Basic node deployment">Figure 1.1, “Basic node deployment”</a> aims to have 1 × 10G connectivity available
+        to all compute nodes, while still leveraging bonding on appropriate
+        nodes for maximum performance.</p><div class="figure"><a id="fig1-1"> </a><p class="title"><strong>Figure 1.1. Basic node deployment</strong></p><div class="figure-contents"><div class="mediaobject" align="center"><img src="http://git.openstack.org/cgit/openstack/operations-guide/plain/doc/openstack-ops/figures/osog_0101.png" align="middle"/></div></div></div><br class="figure-break"/></div><div class="section"><div xmlns="" class="titlepage"><div><div><h5 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="node_connectivity-performance"> </a>Connectivity for maximum performance</h5></div></div></div><p>If the networking performance of the basic layout is not enough,
+        you can move to <a class="xref" href="example_architecture.html#fig1-2" title="Figure 1.2. Performance node deployment">Figure 1.2, “Performance node deployment”</a>, which provides 2 × 10G
+        network links to all instances in the environment as well as providing
+        more network bandwidth to the storage layer.<a id="d9e982" class="indexterm"/></p><div class="figure"><a id="fig1-2"> </a><p class="title"><strong>Figure 1.2. Performance node deployment</strong></p><div class="figure-contents"><div class="mediaobject" align="center"><img src="http://git.openstack.org/cgit/openstack/operations-guide/plain/doc/openstack-ops/figures/osog_0102.png" align="middle"/></div></div></div><br class="figure-break"/></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h4 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="node_diagrams"> </a>Node diagrams</h4></div></div></div><p>The following diagrams (<a class="xref" href="example_architecture.html#node_controller-diagram" title="Figure 1.3. Controller node">Figure 1.3, “Controller node”</a>
+      through <a class="xref" href="example_architecture.html#node_storage-diagram" title="Figure 1.6. Storage node">Figure 1.6, “Storage node”</a>) include logical
+      information about the different types of nodes, indicating what services
+      will be running on top of them and how they interact with each other.
+      The diagrams also illustrate how the availability and scalability of
+      services are achieved.</p><div class="figure"><a id="node_controller-diagram"> </a><p class="title"><strong>Figure 1.3. Controller node</strong></p><div class="figure-contents"><div class="mediaobject"><img src="http://git.openstack.org/cgit/openstack/operations-guide/plain/doc/openstack-ops/figures/osog_0103.png"/></div></div></div><br class="figure-break"/><div class="figure"><a id="node_compute-diagram"> </a><p class="title"><strong>Figure 1.4. Compute node</strong></p><div class="figure-contents"><div class="mediaobject" align="center"><img src="http://git.openstack.org/cgit/openstack/operations-guide/plain/doc/openstack-ops/figures/osog_0104.png" align="middle"/></div></div></div><br class="figure-break"/><div class="figure"><a id="node_network-diagram"> </a><p class="title"><strong>Figure 1.5. Network node</strong></p><div class="figure-contents"><div class="mediaobject"><img src="http://git.openstack.org/cgit/openstack/operations-guide/plain/doc/openstack-ops/figures/osog_0105.png"/></div></div></div><br class="figure-break"/><div class="figure"><a id="node_storage-diagram"> </a><p class="title"><strong>Figure 1.6. Storage node</strong></p><div class="figure-contents"><div class="mediaobject"><img src="http://git.openstack.org/cgit/openstack/operations-guide/plain/doc/openstack-ops/figures/osog_0106.png"/></div></div></div><br class="figure-break"/></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="software_config"> </a>Example Component Configuration</h3></div></div></div><p><a class="xref" href="example_architecture.html#thirdparty-table" title="Table 1.2. Third-party component configuration">Table 1.2, “Third-party component configuration”</a> and <a class="xref" href="example_architecture.html#openstack-config-table" title="Table 1.3. OpenStack component configuration">Table 1.3, “OpenStack component configuration”</a> include example configuration and
+    considerations for both third-party and OpenStack<a id="d9e1020" class="indexterm"/> components: </p><table rules="all" id="thirdparty-table"><caption>Table 1.2. Third-party component configuration</caption><col width="10%"/><col width="30%"/><col width="30%"/><col width="30%"/><thead><tr>
+            <th>Component</th>
+
+            <th>Tuning</th>
+
+            <th>Availability</th>
+
+            <th>Scalability</th>
+          </tr></thead><tbody><tr>
+            <td>MySQL</td>
+
+            <td><code class="literal">binlog-format = row</code></td>
+
+            <td>Master/master replication. However, both nodes are not used at
+            the same time. Replication keeps all nodes as close to being up to
+            date as possible (although the asynchronous nature of the
+            replication means a fully consistent state is not possible).
+            Connections to the database only happen through a Pacemaker
+            virtual IP, ensuring that most problems that occur with
+            master-master replication can be avoided.</td>
+
+            <td>Not heavily considered. Once load on the MySQL server
+            increases enough that scalability needs to be considered, multiple
+            masters or a master/slave setup can be used.</td>
+          </tr><tr>
+            <td>Qpid</td>
+
+            <td><code class="literal">max-connections=1000</code>
+            <code class="literal">worker-threads=20</code>
+            <code class="literal">connection-backlog=10</code>, sasl security enabled
+            with SASL-BASIC authentication</td>
+
+            <td>Qpid is added as a resource to the Pacemaker software that
+            runs on Controller nodes where Qpid is situated. This ensures only
+            one Qpid instance is running at one time, and the node with the
+            Pacemaker virtual IP will always be the node running Qpid.</td>
+
+            <td>Not heavily considered. However, Qpid can be changed to run on
+            all controller nodes for scalability and availability purposes,
+            and removed from Pacemaker.</td>
+          </tr><tr>
+            <td>HAProxy</td>
+
+            <td><code class="literal">maxconn 3000</code></td>
+
+            <td>HAProxy is a software layer-7 load balancer used to front door
+            all clustered OpenStack API components and do SSL termination.
+            HAProxy can be added as a resource to the Pacemaker software that
+            runs on the Controller nodes where HAProxy is situated. This
+            ensures that only one HAProxy instance is running at one time, and
+            the node with the Pacemaker virtual IP will always be the node
+            running HAProxy.</td>
+
+            <td>Not considered. HAProxy has small enough performance overheads
+            that a single instance should scale enough for this level of
+            workload. If extra scalability is needed,
+            <code class="literal">keepalived</code> or other Layer-4 load balancing can
+            be introduced to be placed in front of multiple copies of
+            HAProxy.</td>
+          </tr><tr>
+            <td>Memcached</td>
+
+            <td><code class="literal">MAXCONN="8192" CACHESIZE="30457"</code></td>
+
+            <td>Memcached is a fast in-memory key-value cache software that is
+            used by OpenStack components for caching data and increasing
+            performance. Memcached runs on all controller nodes, ensuring that
+            should one go down, another instance of Memcached is
+            available.</td>
+
+            <td>Not considered. A single instance of Memcached should be able
+            to scale to the desired workloads. If scalability is desired,
+            HAProxy can be placed in front of Memcached (in raw
+            <code class="literal">tcp</code> mode) to utilize multiple Memcached
+            instances for scalability. However, this might cause cache
+            consistency issues.</td>
+          </tr><tr>
+            <td>Pacemaker</td>
+
+            <td>Configured to use <span class="keep-together"><code class="literal">corosync</code> and</span>
+            <code class="literal">cman</code> as a cluster communication stack/quorum
+            manager, and as a two-node cluster.</td>
+
+            <td><p>Pacemaker is the clustering software used to ensure the
+            availability of services running on the controller and network
+            nodes: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Because Pacemaker is cluster software, the software
+                  itself handles its own availability, leveraging
+                  <code class="literal">corosync</code> and <code class="literal">cman</code>
+                  underneath.</p></li><li class="listitem"><p>If you use the GlusterFS native client, no virtual IP
+                  is needed, since the client knows all about nodes after
+                  initial connection and automatically routes around failures
+                  on the client side.</p></li><li class="listitem"><p>If you use the NFS or SMB adaptor, you will need a
+                  virtual IP on which to mount the GlusterFS volumes.</p></li></ul></div><p> </p></td>
+
+            <td>If more nodes need to be made cluster aware, Pacemaker can
+            scale to 64 nodes.</td>
+          </tr><tr>
+            <td>GlusterFS</td>
+
+            <td><code class="literal">glusterfs</code> performance profile "virt"
+            enabled on all volumes. Volumes are setup in two-node
+            replication.</td>
+
+            <td>Glusterfs is a clustered file system that is run on the
+            storage nodes to provide persistent scalable data storage in the
+            environment. Because all connections to gluster use the
+            <code class="literal">gluster</code> native mount points, the
+            <code class="literal">gluster</code> instances themselves provide
+            availability and failover functionality.</td>
+
+            <td>The scalability of GlusterFS storage can be achieved by adding
+            in more storage volumes.</td>
+          </tr></tbody></table><p> </p><table rules="all" id="openstack-config-table"><caption>Table 1.3. OpenStack component configuration</caption><col width="8%"/><col width="8%"/><col width="25%"/><col width="29%"/><col width="30%"/><thead><tr>
+            <th>Component</th>
+
+            <th>Node type</th>
+
+            <th>Tuning</th>
+
+            <th>Availability</th>
+
+            <th>Scalability</th>
+          </tr></thead><tbody><tr>
+            <td>Dashboard (horizon)</td>
+
+            <td>Controller</td>
+
+            <td>Configured to use Memcached as a session store,
+            <code class="literal">neutron</code> support is enabled,
+            <code class="literal">can_set_mount_point = False</code></td>
+
+            <td>The dashboard is run on all controller nodes, ensuring at least
+              one instance will be available in case of node failure. It also
+              sits behind HAProxy, which detects when the software fails and
+              routes requests around the failing instance.</td>
+
+            <td>The dashboard is run on all controller nodes, so scalability
+            can be achieved with additional controller nodes. HAProxy allows
+            scalability for the dashboard as more nodes are added.</td>
+          </tr><tr>
+            <td>Identity (keystone)</td>
+
+            <td>Controller</td>
+
+            <td>Configured to use Memcached for caching and PKI for
+            tokens.</td>
+
+            <td>Identity is run on all controller nodes, ensuring at least one
+              instance will be available in case of node failure. Identity also
+              sits behind HAProxy, which detects when the software fails and
+              routes requests around the failing instance.</td>
+
+            <td>Identity is run on all controller nodes, so scalability can be
+            achieved with additional controller nodes. HAProxy allows
+            scalability for Identity as more nodes are added.</td>
+          </tr><tr>
+            <td>Image service (glance)</td>
+
+            <td>Controller</td>
+
+            <td><code class="literal">/var/lib/glance/images</code> is a GlusterFS
+            native mount to a Gluster volume off the storage layer.</td>
+
+            <td>The Image service is run on all controller nodes, ensuring at
+              least one instance will be available in case of node failure. It
+              also sits behind HAProxy, which detects when the software fails
+              and routes requests around the failing instance.</td>
+
+            <td>The Image service is run on all controller nodes, so
+            scalability can be achieved with additional controller nodes.
+            HAProxy allows scalability for the Image service as more nodes are
+            added.</td>
+          </tr><tr>
+            <td>Compute (nova)</td>
+
+            <td>Controller, Compute</td>
+
+            <td><p>Configured to use Qpid, <span class="keep-together">
+                <code class="literal">qpid_heartbeat = </code>
+                <span class="keep-together"><code class="literal">10</code>,</span>
+              </span><span class="keep-together"> configured to
+            use</span> Memcached for caching, configured to use <span class="keep-together"><code class="literal">libvirt</code>,</span>
+            configured to use <span class="keep-together"><code class="literal">neutron</code>.</span></p>
+            <p>Configured <code class="literal">nova-consoleauth</code> to use
+            Memcached for session management (so that it can have multiple
+            copies and run in a load balancer).</p></td>
+
+            <td><p>The nova API, scheduler, objectstore, cert, consoleauth, conductor, and
+                vncproxy services are run on all controller nodes, ensuring at
+                least one instance will be available in case of node failure.
+                Compute is also behind HAProxy, which detects when the software
+                fails and routes requests around the failing instance.</p>
+              <p>Nova-compute and nova-conductor services, which run on the
+                compute nodes, are only needed to run services on that node, so
+                availability of those services is coupled tightly to the nodes
+                that are available. As long as a compute node is up, it will
+                have the needed services running on top of it.</p></td>
+
+            <td>The nova API, scheduler, objectstore, cert, consoleauth,
+            conductor, and vncproxy services are run on all controller nodes,
+            so scalability can be achieved with additional controller nodes.
+            HAProxy allows scalability for Compute as more nodes are added.
+            The scalability of services running on the compute nodes (compute,
+            conductor) is achieved linearly by adding in more compute
+            nodes.</td>
+          </tr><tr>
+            <td>Block Storage (cinder)</td>
+
+            <td>Controller</td>
+
+            <td>Configured to use Qpid, <span class="keep-together"><code class="literal">qpid_heartbeat = </code><span class="keep-together"><code class="literal">10</code>,</span></span><span class="keep-together"> configured to use a Gluster</span> volume
+            from the storage layer as the back end for Block Storage, using the
+            Gluster native client.</td>
+
+            <td>Block Storage API, scheduler, and volume services are run on all
+              controller nodes, ensuring at least one instance will be available
+              in case of node failure. Block Storage also sits behind HAProxy,
+              which detects if the software fails and routes requests around the
+              failing instance.</td>
+
+            <td>Block Storage API, scheduler and volume services are run on
+            all controller nodes, so scalability can be achieved with
+            additional controller nodes. HAProxy allows scalability for Block
+            Storage as more nodes are added.</td>
+          </tr><tr>
+            <td>OpenStack Networking (neutron)</td>
+
+            <td>Controller, Compute, Network</td>
+
+            <td>Configured to use QPID, <span class="keep-together"><code class="literal">qpid_heartbeat =
+            10</code></span>, kernel namespace support enabled,
+            <code class="literal">tenant_network_type = vlan</code>,
+            <code class="literal">allow_overlapping_ips = true</code>,
+            <code class="literal">tenant_network_type = vlan</code>,
+            <code class="literal">bridge_uplinks = br-ex:em2</code>,
+            <code class="literal">bridge_mappings = physnet1:br-ex</code></td>
+
+            <td><p>The OpenStack Networking service is run on all
+            controller nodes, ensuring at least one instance will be available
+            in case of node failure. It also sits behind HAProxy, which
+            detects if the software fails and routes requests around the
+            failing instance.</p> <p>OpenStack Networking's
+            <code class="literal">ovs-agent</code>,
+            <code class="literal">l3-agent</code>,
+            <code class="literal">dhcp-agent</code>, and
+            <code class="literal">metadata-agent</code> services run on the network
+            nodes, as <code class="literal">lsb</code> resources inside of Pacemaker.
+            This means that in the case of network node failure, services are
+            kept running on another node. Finally, the
+            <code class="literal">ovs-agent</code> service is also run on all compute
+            nodes, and in case of compute node failure, the other nodes will
+            continue to function using the copy of the service running on
+            them.</p></td>
+
+            <td>The OpenStack Networking server service is run on all
+            controller nodes, so scalability can be achieved with additional
+            controller nodes. HAProxy allows scalability for OpenStack
+            Networking as more nodes are added. Scalability of services
+            running on the network nodes is not currently supported by
+            OpenStack Networking, so they are not be considered. One copy of
+            the services should be sufficient to handle the workload.
+            Scalability of the <code class="literal">ovs-agent</code> running on compute
+            nodes is achieved by adding in more compute nodes as
+            necessary.</td>
+          </tr></tbody></table></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="example_archs_conclusion"> </a>Parting Thoughts on Architecture Examples</h2></div></div></div><p>With so many considerations and options available, our hope is to
+    provide a few clearly-marked and tested paths for your OpenStack
+    exploration. If you're looking for additional ideas, check out <a class="xref" href="use-cases.html" title="Appendix A. Use Cases">Appendix A, <em>Use Cases</em></a>, the <a class="link" href="http://docs.openstack.org/" target="_top">OpenStack Installation Guides</a>,
+    or the <a class="link" href="http://www.openstack.org/user-stories/" target="_top">OpenStack User Stories
+    page</a>.</p></div></div><script type="text/javascript" src="../common/main.js"><!----></script><div class="logabug" style="text-align: center"><a id="AskOOLink2" href="http://ask.openstack.org" target="_blank"><i class="icon-question"><!----></i>Questions? Discuss on ask.openstack.org</a><br/><a id="logABugLink2" href="" target="_blank"><i class="icon-bug"><!----></i>Found an error? Report a bug against this page</a></div><script language="JavaScript">
+	  var sourceFile = "source File: file:/home/max/projects/operations-guide/doc/openstack-ops/ch_arch_examples.xml"
+	  var xmlId = "xml:id: example_architecture"
+	  var lineFeed = "%0A";
+	  var docUrl = "URL: " + window.location;
+	  var bugTitle = "Chapter 1. Architecture Examples in OpenStack Operations Guide";
+	  var buildTime = "Built: 2015-10-19T02:19:09+02:00";
+	  var gitSha = "git SHA: dbaae13da977db5f75edb276d238702e5383faf1";
+	  var fieldComment = encodeURI(buildTime) +  lineFeed + encodeURI(gitSha) + lineFeed + encodeURI(docUrl) + lineFeed + encodeURI(sourceFile) + lineFeed + encodeURI(xmlId);
+	  logABug(bugTitle,fieldComment);
+	</script><hr/><div id="disqus_thread"><script type="text/javascript">
+	      if(window.location.protocol.substring(0,4) == 'http'){
+	        var disqus_shortname = 'openstack-ops';
+	      
+	        var disqus_identifier = 'openstack-operations-guideexample_architecture';
+	      
+	      }
+	    </script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><script type="text/javascript" src="../common/comments.js"><!----></script></div><hr/><div class="legal"><a href="index.html">Legal notices</a></div></div><div><div id="leftnavigation" style="padding-top:3px; background-color:white;"><div id="tabs"><ul><li><a href="#treeDiv" tabindex="1"><span class="contentsTab">Contents</span></a></li><li><a href="#searchDiv" tabindex="1"><span class="searchTab">Search</span></a></li></ul><div id="treeDiv"><img src="../common/images/loading.gif" alt="loading table of contents..." id="tocLoading" style="display:block;"/><div id="ulTreeDiv" style="display:none" class="thisisthat"><ul id="tree" class="filetree"><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html">Preface</a></span><ul><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#introduction-to-openstack">Introduction to OpenStack</a></span></li><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#preface_getting_started">Getting Started with OpenStack</a></span><ul><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#preface_using_openstack">Using OpenStack</a></span></li><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#preface_plug_and_play">Plug and Play OpenStack</a></span></li><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#preface_roll_your_own_openstack">Roll Your Own OpenStack</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#who-this-book-is-for">Who This Book Is For</a></span><ul><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#further_reading">Further Reading</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#how-this-book-is-organized">How This Book Is Organized</a></span></li><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#why-and-how-we-wrote-this-book">Why and How We Wrote This Book</a></span></li><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#how-to-contribute-to-ops-guide">How to Contribute to This Book</a></span></li><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#conventions_used_in_this_book">Conventions Used in This Book</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="architecture.html">Architecture</a></span><ul><li tabindex="2" id="webhelp-currentid"><span class="file"><a href="example_architecture.html">1. Architecture Examples</a></span><ul><li tabindex="2"><span class="file"><a href="example_architecture.html#example_architecture-nova">Example Architecture—Legacy Networking (nova)</a></span><ul><li tabindex="2"><span class="file"><a href="example_architecture.html#overview">Overview</a></span><ul><li tabindex="2"><span class="file"><a href="example_architecture.html#overview_components-nova">Components</a></span></li><li tabindex="2"><span class="file"><a href="example_architecture.html#rationale">Rationale</a></span></li><li tabindex="2"><span class="file"><a href="example_architecture.html#neutron">Why not use OpenStack Networking?</a></span></li><li tabindex="2"><span class="file"><a href="example_architecture.html#multi-host-networking">Why use multi-host networking?</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="example_architecture.html#detailed_desc">Detailed Description</a></span></li><li tabindex="2"><span class="file"><a href="example_architecture.html#optional_extensions">Optional Extensions</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="example_architecture.html#example_architecture-neutron">Example Architecture—OpenStack Networking</a></span><ul><li tabindex="2"><span class="file"><a href="example_architecture.html#overview-neutron">Overview</a></span><ul><li tabindex="2"><span class="file"><a href="example_architecture.html#overview_components_neutron">Components</a></span></li><li tabindex="2"><span class="file"><a href="example_architecture.html#rational-neutron">Rationale</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="example_architecture.html#detailed_description">Detailed Description</a></span><ul><li tabindex="2"><span class="file"><a href="example_architecture.html#node_types">Node types</a></span></li><li tabindex="2"><span class="file"><a href="example_architecture.html#networking_layout">Networking layout</a></span><ul><li tabindex="2"><span class="file"><a href="example_architecture.html#OS_network">OpenStack internal network</a></span></li><li tabindex="2"><span class="file"><a href="example_architecture.html#public_network">Public Network</a></span></li><li tabindex="2"><span class="file"><a href="example_architecture.html#vm_network">VM traffic network</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="example_architecture.html#node_connectivity">Node connectivity</a></span><ul><li tabindex="2"><span class="file"><a href="example_architecture.html#node_connectivity-initial">Initial deployment</a></span></li><li tabindex="2"><span class="file"><a href="example_architecture.html#node_connectivity-performance">Connectivity for maximum performance</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="example_architecture.html#node_diagrams">Node diagrams</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="example_architecture.html#software_config">Example Component Configuration</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="example_architecture.html#example_archs_conclusion">Parting Thoughts on Architecture Examples</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="section_arch_provision.html">2. Provisioning and Deployment</a></span><ul><li tabindex="2"><span class="file"><a href="section_arch_provision.html#automated_deploy">Automated Deployment</a></span><ul><li tabindex="2"><span class="file"><a href="section_arch_provision.html#disk_partition_raid">Disk Partitioning and RAID</a></span></li><li tabindex="2"><span class="file"><a href="section_arch_provision.html#network_config">Network Configuration</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="section_arch_provision.html#auto_config">Automated Configuration</a></span></li><li tabindex="2"><span class="file"><a href="section_arch_provision.html#remote_mgmt">Remote Management</a></span></li><li tabindex="2"><span class="file"><a href="section_arch_provision.html#provision-deploy-summary">Parting Thoughts for Provisioning and Deploying OpenStack</a></span></li><li tabindex="2"><span class="file"><a href="section_arch_provision.html#provision_conclusion">Conclusion</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html">3. Designing for Cloud Controllers and Cloud Management</a></span><ul><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#hardware_consid">Hardware Considerations</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#separate_services">Separation of Services</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#database">Database</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#message_queue">Message Queue</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#conductor">Conductor Services</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#api">Application Programming Interface (API)</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#extensions">Extensions</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#scheduling">Scheduling</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#images">Images</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#dashboard">Dashboard</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#authentication">Authentication and Authorization</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#network_consid">Network Considerations</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="compute_nodes.html">4. Compute Nodes</a></span><ul><li tabindex="2"><span class="file"><a href="compute_nodes.html#cpu_choice">Choosing a CPU</a></span></li><li tabindex="2"><span class="file"><a href="compute_nodes.html#hypervisor_choice">Choosing a Hypervisor</a></span></li><li tabindex="2"><span class="file"><a href="compute_nodes.html#instance_storage">Instance Storage Solutions</a></span><ul><li tabindex="2"><span class="file"><a href="compute_nodes.html#off_compute_node_storage">Off Compute Node Storage—Shared File System</a></span></li><li tabindex="2"><span class="file"><a href="compute_nodes.html#on_compute_node_storage">On Compute Node Storage—Shared File System</a></span></li><li tabindex="2"><span class="file"><a href="compute_nodes.html#on_compute_node_storage_nonshared">On Compute Node Storage—Nonshared File System</a></span></li><li tabindex="2"><span class="file"><a href="compute_nodes.html#live_migration">Issues with Live Migration</a></span></li><li tabindex="2"><span class="file"><a href="compute_nodes.html#file_systems">Choice of File System</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="compute_nodes.html#overcommit">Overcommitting</a></span></li><li tabindex="2"><span class="file"><a href="compute_nodes.html#logging">Logging</a></span></li><li tabindex="2"><span class="file"><a href="compute_nodes.html#networking">Networking</a></span></li><li tabindex="2"><span class="file"><a href="compute_nodes.html#conclusion">Conclusion</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="scaling.html">5. Scaling</a></span><ul><li tabindex="2"><span class="file"><a href="scaling.html#starting">The Starting Point</a></span></li><li tabindex="2"><span class="file"><a href="scaling.html#add_controller_nodes">Adding Cloud Controller Nodes</a></span></li><li tabindex="2"><span class="file"><a href="scaling.html#segregate_cloud">Segregating Your Cloud</a></span><ul><li tabindex="2"><span class="file"><a href="scaling.html#cells_regions">Cells and Regions</a></span></li><li tabindex="2"><span class="file"><a href="scaling.html#availability_zones">Availability Zones and Host Aggregates</a></span><ul><li tabindex="2"><span class="file"><a href="scaling.html#az_s3">Availability zone</a></span></li><li tabindex="2"><span class="file"><a href="scaling.html#ha_s3">Host aggregates zone</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="scaling.html#scalable_hardware">Scalable Hardware</a></span><ul><li tabindex="2"><span class="file"><a href="scaling.html#hardware_procure">Hardware Procurement</a></span></li><li tabindex="2"><span class="file"><a href="scaling.html#capacity_planning">Capacity Planning</a></span></li><li tabindex="2"><span class="file"><a href="scaling.html#burin_testing">Burn-in Testing</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="storage_decision.html">6. Storage Decisions</a></span><ul><li tabindex="2"><span class="file"><a href="storage_decision.html#ephemeral_storage">Ephemeral Storage</a></span></li><li tabindex="2"><span class="file"><a href="storage_decision.html#persistent_storage">Persistent Storage</a></span><ul><li tabindex="2"><span class="file"><a href="storage_decision.html#object_storage">Object Storage</a></span></li><li tabindex="2"><span class="file"><a href="storage_decision.html#block_storage">Block Storage</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="storage_decision.html#shared_file_system">Shared File System Storage</a></span></li><li tabindex="2"><span class="file"><a href="storage_decision.html#storage_concepts">OpenStack Storage Concepts</a></span></li><li tabindex="2"><span class="file"><a href="storage_decision.html#storage_backends">Choosing Storage Back Ends</a></span><ul><li tabindex="2"><span class="file"><a href="storage_decision.html#commodity_storage_backends">Commodity Storage Back-end Technologies</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="storage_decision.html#storagedecisions_conclusion">Conclusion</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="network_design.html">7. Network Design</a></span><ul><li tabindex="2"><span class="file"><a href="network_design.html#mgmt_network">Management Network</a></span></li><li tabindex="2"><span class="file"><a href="network_design.html#public_addressing">Public Addressing Options</a></span></li><li tabindex="2"><span class="file"><a href="network_design.html#ip_address_planning">IP Address Planning</a></span></li><li tabindex="2"><span class="file"><a href="network_design.html#network_topology">Network Topology</a></span><ul><li tabindex="2"><span class="file"><a href="network_design.html#vlans">VLAN Configuration Within OpenStack VMs</a></span></li><li tabindex="2"><span class="file"><a href="network_design.html#multi_nic">Multi-NIC Provisioning</a></span></li><li tabindex="2"><span class="file"><a href="network_design.html#multi_host_single_host_networks">Multi-Host and Single-Host Networking</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="network_design.html#services_for_networking">Services for Networking</a></span><ul><li tabindex="2"><span class="file"><a href="network_design.html#ntp">NTP</a></span></li><li tabindex="2"><span class="file"><a href="network_design.html#dns">DNS</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="network_design.html#ops-network-conclusion">Conclusion</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="operations.html">Operations</a></span><ul><li tabindex="2"><span class="file"><a href="lay_of_the_land.html">8. Lay of the Land</a></span><ul><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#dashboard_admin">Using the OpenStack Dashboard for Administration</a></span></li><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#cli_tools">Command-Line Tools</a></span><ul><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#install_tools">Installing the Tools</a></span></li><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#admin_cli">Administrative Command-Line Tools</a></span></li><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#get_creds">Getting Credentials</a></span></li><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#cli_tricks">Inspecting API Calls</a></span><ul><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#curl">Using cURL for further inspection</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#servers_services">Servers and Services</a></span></li><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#diagnose-compute">Diagnose Your Compute Nodes</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#network">Network Inspection</a></span></li><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#users_projects">Users and Projects</a></span></li><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#running_instances">Running Instances</a></span></li><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#ops-lay-of-land-summary">Summary</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="projects_users.html">9. Managing Projects and Users</a></span><ul><li tabindex="2"><span class="file"><a href="projects_users.html#projects_or_tenants">Projects or Tenants?</a></span></li><li tabindex="2"><span class="file"><a href="projects_users.html#managing_projects">Managing Projects</a></span><ul><li tabindex="2"><span class="file"><a href="projects_users.html#add_projects">Adding Projects</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="projects_users.html#quotas">Quotas</a></span><ul><li tabindex="2"><span class="file"><a href="projects_users.html#set_image_quotas">Set Image Quotas</a></span></li><li tabindex="2"><span class="file"><a href="projects_users.html#cli_set_compute_quotas">Set Compute Service Quotas</a></span><ul><li tabindex="2"><span class="file"><a href="projects_users.html#cli_set_compute_quotas_procedure">View and update compute quotas for a tenant (project)</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="projects_users.html#cli_set_object_storage_quotas">Set Object Storage Quotas</a></span></li><li tabindex="2"><span class="file"><a href="projects_users.html#cli_set_block_storage_quotas">Set Block Storage Quotas</a></span><ul><li tabindex="2"><span class="file"><a href="projects_users.html#cli_set_block_storage_quotas_procedure">View and update Block Storage quotas for a tenant
+        (project)</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="projects_users.html#user_mgmt">User Management</a></span></li><li tabindex="2"><span class="file"><a href="projects_users.html#create_new_users">Creating New Users</a></span></li><li tabindex="2"><span class="file"><a href="projects_users.html#associate_users_with_projects">Associating Users with Projects</a></span><ul><li tabindex="2"><span class="file"><a href="projects_users.html#customize_auth">Customizing Authorization</a></span></li><li tabindex="2"><span class="file"><a href="projects_users.html#problem_users">Users Who Disrupt Other Users</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="projects_users.html#projects_users_summary">Summary</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="user_facing_operations.html">10. User-Facing Operations</a></span><ul><li tabindex="2"><span class="file"><a href="user_facing_images.html">Images</a></span><ul><li tabindex="2"><span class="file"><a href="user_facing_images.html#add_images">Adding Images</a></span></li><li tabindex="2"><span class="file"><a href="user_facing_images.html#sharing_images">Sharing Images Between Projects</a></span></li><li tabindex="2"><span class="file"><a href="user_facing_images.html#delete_images">Deleting Images</a></span></li><li tabindex="2"><span class="file"><a href="user_facing_images.html#other_cli">Other CLI Options</a></span></li><li tabindex="2"><span class="file"><a href="user_facing_images.html#image_service_and_database">The Image service and the Database</a></span></li><li tabindex="2"><span class="file"><a href="user_facing_images.html#sample_image_database">Example Image service Database Queries</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="flavors.html">Flavors</a></span><ul><li tabindex="2"><span class="file"><a href="private-flavors.html">Private Flavors</a></span></li><li tabindex="2"><span class="file"><a href="flavors.html#d9e4195">How Do I Modify an Existing Flavor?</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="security_groups.html">Security Groups</a></span><ul><li tabindex="2"><span class="file"><a href="security_groups.html#general-security-group-config">General Security Groups Configuration</a></span></li><li tabindex="2"><span class="file"><a href="security_groups.html#end-user-config-sec-group">End-User Configuration of Security Groups</a></span><ul><li tabindex="2"><span class="file"><a href="security_groups.html#config-sec-group-by-nova-command">Setting with nova command</a></span></li><li tabindex="2"><span class="file"><a href="security_groups.html#config-sec-group-by-neutron-command">Setting with neutron command</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="user_facing_block_storage.html">Block Storage</a></span><ul><li tabindex="2"><span class="file"><a href="user_facing_block_storage.html#block_storage_creation_failures">Block Storage Creation Failures</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="user_facing_shared_file_systems.html">Shared File System Storage</a></span></li><li tabindex="2"><span class="file"><a href="instances.html">Instances</a></span><ul><li tabindex="2"><span class="file"><a href="instances.html#start_instances">Starting Instances</a></span></li><li tabindex="2"><span class="file"><a href="instances.html#instance_boot_failures">Instance Boot Failures</a></span></li><li tabindex="2"><span class="file"><a href="instances.html#instance_specific_data">Using Instance-Specific Data</a></span><ul><li tabindex="2"><span class="file"><a href="instances.html#instance_metadata">Instance metadata</a></span></li><li tabindex="2"><span class="file"><a href="instances.html#instance_user_data">Instance user data</a></span></li><li tabindex="2"><span class="file"><a href="instances.html#file_injection">File injection</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="associate_security_groups.html">Associating Security Groups</a></span></li><li tabindex="2"><span class="file"><a href="floating_ips.html">Floating IPs</a></span></li><li tabindex="2"><span class="file"><a href="attach_block_storage.html">Attaching Block Storage</a></span></li><li tabindex="2"><span class="file"><a href="snapshots.html">Taking Snapshots</a></span><ul><li tabindex="2"><span class="file"><a href="snapshots.html#live-snapshots">Live Snapshots</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="database_instances.html">Instances in the Database</a></span></li><li tabindex="2"><span class="file"><a href="user-facing-outro.html">Good Luck!</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="maintenance.html">11. Maintenance, Failures, and Debugging</a></span><ul><li tabindex="2"><span class="file"><a href="maintenance.html#cloud_controller_storage">Cloud Controller and Storage Proxy Failures and Maintenance</a></span><ul><li tabindex="2"><span class="file"><a href="maintenance.html#planned_maintenance">Planned Maintenance</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#reboot_cloud_controller">Rebooting a Cloud Controller or Storage Proxy</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#after_a_cc_reboot">After a Cloud Controller or Storage Proxy Reboots</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#cc_failure">Total Cloud Controller Failure</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="maintenance.html#compute_node_failures">Compute Node Failures and Maintenance</a></span><ul><li tabindex="2"><span class="file"><a href="maintenance.html#planned_maintenance_compute_node">Planned Maintenance</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#after_compute_node_reboot">After a Compute Node Reboots</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#maintenance_instances">Instances</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#inspect_and_recover_failed_instances">Inspecting and Recovering Data from Failed Instances</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#volumes">Volumes</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#totle_compute_node_failure">Total Compute Node Failure</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#var_lib_nova_instances">/var/lib/nova/instances</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="maintenance.html#storage_node_failures">Storage Node Failures and Maintenance</a></span><ul><li tabindex="2"><span class="file"><a href="maintenance.html#reboot_storage_node">Rebooting a Storage Node</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#shut_down_storage_node">Shutting Down a Storage Node</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#replace_swift_disk">Replacing a Swift Disk</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="maintenance.html#complete_failure">Handling a Complete Failure</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#config_mgmt">Configuration Management</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#hardware">Working with Hardware</a></span><ul><li tabindex="2"><span class="file"><a href="maintenance.html#add_new_node">Adding a Compute Node</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#add_new_object_node">Adding an Object Storage Node</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#replace_components">Replacing Components</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="maintenance.html#databases">Databases</a></span><ul><li tabindex="2"><span class="file"><a href="maintenance.html#database_connect">Database Connectivity</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#perf_and_opt">Performance and Optimizing</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="maintenance.html#hdmy">HDWMY</a></span><ul><li tabindex="2"><span class="file"><a href="maintenance.html#hourly">Hourly</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#daily">Daily</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#weekly">Weekly</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#monthly">Monthly</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#quarterly">Quarterly</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#semiannual">Semiannually</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="maintenance.html#broken_component">Determining Which Component Is Broken</a></span><ul><li tabindex="2"><span class="file"><a href="maintenance.html#tailing_logs">Tailing Logs</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#daemons_cli">Running Daemons on the CLI</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="maintenance.html#uninstalling">Uninstalling</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html">12. Network Troubleshooting</a></span><ul><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#check_interface_states">Using "ip a" to Check Interface States</a></span></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#nova_network_traffic_in_cloud">Visualizing nova-network Traffic in the Cloud</a></span></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#neutron_network_traffic_in_cloud">Visualizing OpenStack Networking Service Traffic in the
+    Cloud</a></span></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#failure_in_path">Finding a Failure in the Path</a></span></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#tcpdump">tcpdump</a></span></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#iptables">iptables</a></span></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#network_config_database">Network Configuration in the Database for nova-network</a></span><ul><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#dissasociate_floating_ip">Manually Disassociating a Floating IP</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#debug_dhcp_issues">Debugging DHCP Issues with nova-network</a></span></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#debugging_dns_issues">Debugging DNS Issues</a></span></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#trouble_shooting_ovs">Troubleshooting Open vSwitch</a></span></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#dealing_with_netns">Dealing with Network Namespaces</a></span></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#ops-network-troubleshooting-summary">Summary</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html">13. Logging and Monitoring</a></span><ul><li tabindex="2"><span class="file"><a href="logging_monitoring.html#where_are_logs">Where Are the Logs?</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#how_to_read_logs">Reading the Logs</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#tracing_instance_request">Tracing Instance Requests</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#add_custom_logging">Adding Custom Logging Statements</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#rabbitmq">RabbitMQ Web Management Interface or rabbitmqctl</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#manage_logs_centrally">Centrally Managing Logs</a></span><ul><li tabindex="2"><span class="file"><a href="logging_monitoring.html#rsyslog_client_config">rsyslog Client Configuration</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#rsyslog_server_config">rsyslog Server Configuration</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#monitoring">Monitoring</a></span><ul><li tabindex="2"><span class="file"><a href="logging_monitoring.html#process_monitoring">Process Monitoring</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#resource_alerting">Resource Alerting</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#stacktach">StackTach</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#metering_telemetry">OpenStack Telemetry</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#os_resources">OpenStack-Specific Resources</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#intelligent_alerting">Intelligent Alerting</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#trending">Trending</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#ops-log-monitor-summary">Summary</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="backup_and_recovery.html">14. Backup and Recovery</a></span><ul><li tabindex="2"><span class="file"><a href="backup_and_recovery.html#what_to_backup">What to Back Up</a></span></li><li tabindex="2"><span class="file"><a href="backup_and_recovery.html#database_backups">Database Backups</a></span></li><li tabindex="2"><span class="file"><a href="backup_and_recovery.html#file_system_backups">File System Backups</a></span><ul><li tabindex="2"><span class="file"><a href="backup_and_recovery.html#compute">Compute</a></span></li><li tabindex="2"><span class="file"><a href="backup_and_recovery.html#image_catalog_delivery">Image Catalog and Delivery</a></span></li><li tabindex="2"><span class="file"><a href="backup_and_recovery.html#identity">Identity</a></span></li><li tabindex="2"><span class="file"><a href="backup_and_recovery.html#ops_block_storage">Block Storage</a></span></li><li tabindex="2"><span class="file"><a href="backup_and_recovery.html#ops_object_storage">Object Storage</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="backup_and_recovery.html#recovering_backups">Recovering Backups</a></span></li><li tabindex="2"><span class="file"><a href="backup_and_recovery.html#ops-backup-recovery-summary">Summary</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="customize.html">15. Customization</a></span><ul><li tabindex="2"><span class="file"><a href="customize.html#devstack">Create an OpenStack Development Environment</a></span></li><li tabindex="2"><span class="file"><a href="customize.html#swift_middleware_example">Customizing Object Storage (Swift) Middleware</a></span></li><li tabindex="2"><span class="file"><a href="customize.html#nova_scheduler_example">Customizing the OpenStack Compute (nova) Scheduler</a></span></li><li tabindex="2"><span class="file"><a href="customize.html#ops_dashboard">Customizing the Dashboard (Horizon)</a></span></li><li tabindex="2"><span class="file"><a href="customize.html#customize_conclusion">Conclusion</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="upstream_openstack.html">16. Upstream OpenStack</a></span><ul><li tabindex="2"><span class="file"><a href="upstream_openstack.html#get_help">Getting Help</a></span></li><li tabindex="2"><span class="file"><a href="upstream_openstack.html#report_bugs">Reporting Bugs</a></span><ul><li tabindex="2"><span class="file"><a href="upstream_openstack.html#confirm_priority">Confirming and Prioritizing</a></span></li><li tabindex="2"><span class="file"><a href="upstream_openstack.html#bug_fixing">Bug Fixing</a></span></li><li tabindex="2"><span class="file"><a href="upstream_openstack.html#after_change_is_accepted">After the Change Is Accepted</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="upstream_openstack.html#openstack_community">Join the OpenStack Community</a></span></li><li tabindex="2"><span class="file"><a href="upstream_openstack.html#contribute_to_docs">How to Contribute to the Documentation</a></span></li><li tabindex="2"><span class="file"><a href="upstream_openstack.html#security_info">Security Information</a></span></li><li tabindex="2"><span class="file"><a href="upstream_openstack.html#additional_info">Finding Additional Information</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="advanced_configuration.html">17. Advanced Configuration</a></span><ul><li tabindex="2"><span class="file"><a href="advanced_configuration.html#driver_differences">Differences Between Various Drivers</a></span></li><li tabindex="2"><span class="file"><a href="advanced_configuration.html#periodic_tasks">Implementing Periodic Tasks</a></span></li><li tabindex="2"><span class="file"><a href="advanced_configuration.html#specific-advanced-config-topics">Specific Configuration Topics</a></span><ul><li tabindex="2"><span class="file"><a href="advanced_configuration.html#adv-config-security">Security Configuration for Compute, Networking, and
+      Storage</a></span></li><li tabindex="2"><span class="file"><a href="advanced_configuration.html#adv-config-ha">High Availability</a></span></li><li tabindex="2"><span class="file"><a href="advanced_configuration.html#adv-config-ipv6">Enabling IPv6 Support</a></span></li><li tabindex="2"><span class="file"><a href="advanced_configuration.html#specific-advanced-config-period-tasks">Periodic Task Frequency for Compute</a></span></li><li tabindex="2"><span class="file"><a href="advanced_configuration.html#adv-config-geography">Geographical Considerations for Object Storage</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="ch_ops_upgrades.html">18. Upgrades</a></span><ul><li tabindex="2"><span class="file"><a href="ops_upgrades-pre-testing.html">Pre-Upgrade Testing Environment</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades-prepare-roll-back.html">Preparing for a Rollback</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades-general-steps.html">Upgrades</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_upgrade_levels.html">Upgrade Levels</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-ubuntu.html">How to Perform an Upgrade from Grizzly to
+      Havana—Ubuntu</a></span><ul><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-ubuntu.html#upgrade_impact_users-ubuntu">Impact on Users</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-ubuntu.html#upgrade_considerations-ubuntu">Upgrade Considerations</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-ubuntu.html#upgrade_backup-ubuntu">Perform a Backup</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-ubuntu.html#upgrade_manage_repos-ubuntu">Manage Repositories</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-ubuntu.html#upgrade_update_configuration-ubuntu">Update Configuration Files</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-ubuntu.html#upgrade_packages_controller-ubuntu">Upgrade Packages on the Controller Node</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-ubuntu.html#upgrade_database_restart-ubuntu">Stop Services, Update Database Schemas, and Restart
+        Services on the Controller Node</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-ubuntu.html#upgrade_packages_compute-ubuntu">Upgrade Packages and Restart Services on the Compute
+        Nodes</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-ubuntu.html#upgrade_packages_storage-ubuntu">Upgrade Packages and Restart Services on the Block
+        Storage Nodes</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-rhel.html">How to Perform an Upgrade from Grizzly to Havana—Red Hat
+      Enterprise Linux and Derivatives</a></span><ul><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-rhel.html#upgrade_impact_users-rhel">Impact on Users</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-rhel.html#upgrade_considerations-rhel">Upgrade Considerations</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-rhel.html#upgrade_backup-rhel">Perform a Backup</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-rhel.html#upgrade_manage_repos-rhel">Manage Repositories</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-rhel.html#upgrade_update_configuration-rhel">Update Configuration Files</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-rhel.html#upgrade_packages_controller-rhel">Upgrade Packages on the Controller Node</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-rhel.html#upgrade_database_restart-rhel">Stop Services, Update Database Schemas, and Restart
+        Services on the Controller Node</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-rhel.html#upgrade_packages_compute-rhel">Upgrade Packages and Restart Services on the Compute
+        Nodes</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-rhel.html#upgrade_packages_storage-rhel">Upgrade Packages and Restart Services on the Block
+        Storage Nodes</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-ubuntu.html">How to Perform an Upgrade from Havana to
+      Icehouse—Ubuntu</a></span><ul><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-ubuntu.html#upgrade_icehouse-ubuntu-impact">Impact on Users</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-ubuntu.html#upgrade_icehouse-ubuntu-considerations">Upgrade Considerations</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-ubuntu.html#upgrade_icehouse-ubuntu-backup">Perform a Backup</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-ubuntu.html#upgrade_icehouse-ubuntu-manage-repos">Manage Repositories</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-ubuntu.html#upgrade_icehouse-ubuntu-controller-node">Upgrade the Controller Node</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-ubuntu.html#upgrade_icehouse-ubuntu-services">Upgrade Each Service</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-ubuntu.html#upgrade_icehouse-ubuntu-network-node">Upgrade the Network Node</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-ubuntu.html#upgrade_icehouse-ubuntu-compute-nodes">Upgrade the Compute Nodes</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-ubuntu.html#upgrade_icehouse-ubuntu-storage-nodes">Upgrade the Storage Nodes</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-rhel.html">How to Perform an Upgrade from Havana to Icehouse—Red Hat
+      Enterprise Linux and Derivatives</a></span><ul><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-rhel.html#upgrade_icehouse-rhel-impact">Impact on Users</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-rhel.html#upgrade_icehouse-rhel-considerations">Upgrade Considerations</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-rhel.html#upgrade_icehouse-rhel-backup">Perform a Backup</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-rhel.html#upgrade_icehouse-rhel-manage-repos">Manage Repositories</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-rhel.html#upgrade_icehouse-rhel-controller-node">Upgrade the Controller Node</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-rhel.html#upgrade_icehouse-rhel-services">Upgrade Each Service</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-rhel.html#upgrade_icehouse-rhel-network-node">Upgrade the Network Node</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-rhel.html#upgrade_icehouse-rhel-compute-nodes">Upgrade the Compute Nodes</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-rhel.html#upgrade_icehouse-rhel-storage-nodes">Upgrade the Storage Nodes</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html">How to Perform an Upgrade from Icehouse to Juno</a></span><ul><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-considerations">Before you begin</a></span></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-backup">Perform a backup</a></span></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-repos">Manage repositories</a></span></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-controller">Controller nodes</a></span><ul><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-controller-packages">Upgrade packages to Juno</a></span></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-controller-services">Update services</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-network">Network nodes</a></span><ul><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-network-packages">Upgrade packages to Juno</a></span></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-network-services">Update services</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-compute">Compute nodes</a></span><ul><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-compute-packages">Upgrade packages to Juno</a></span></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-compute-services">Update services</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-storage">Storage nodes</a></span><ul><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-storage-packages">Upgrade packages to Juno</a></span></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-storage-services">Update services</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="ops_upgrades-final-steps.html">Cleaning Up and Final Configuration File Updates</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades-roll-back.html">Rolling Back a Failed Upgrade</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="use-cases.html">A. Use Cases</a></span><ul><li tabindex="2"><span class="file"><a href="nectar.html">NeCTAR</a></span><ul><li tabindex="2"><span class="file"><a href="nectar_deploy.html">Deployment</a></span></li><li tabindex="2"><span class="file"><a href="nectar_resources.html">Resources</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="mit_csail.html">MIT CSAIL</a></span><ul><li tabindex="2"><span class="file"><a href="mit_csail_deploy.html">Deployment</a></span></li><li tabindex="2"><span class="file"><a href="CSAIL_resources.html">Resources</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="dair.html">DAIR</a></span><ul><li tabindex="2"><span class="file"><a href="dair_deploy.html">Deployment</a></span></li><li tabindex="2"><span class="file"><a href="dair_resources.html">Resources</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="cern.html">CERN</a></span><ul><li tabindex="2"><span class="file"><a href="cern_deploy.html">Deployment</a></span></li><li tabindex="2"><span class="file"><a href="cern_resources.html">Resources</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="app_crypt.html">B. Tales From the Cryp^H^H^H^H Cloud</a></span><ul><li tabindex="2"><span class="file"><a href="double_vlan.html">Double VLAN</a></span></li><li tabindex="2"><span class="file"><a href="issue.html">"The Issue"</a></span></li><li tabindex="2"><span class="file"><a href="disappear_images.html">Disappearing Images</a></span></li><li tabindex="2"><span class="file"><a href="valentines.html">The Valentine's Day Compute Node Massacre</a></span></li><li tabindex="2"><span class="file"><a href="rabbithole.html">Down the Rabbit Hole</a></span></li><li tabindex="2"><span class="file"><a href="haunted.html">Havana Haunted by the Dead</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="working-with-roadmaps.html">C. Working with Roadmaps</a></span><ul><li tabindex="2"><span class="file"><a href="roadmap-information-available.html">Information Available to You</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-influencing.html">Influencing the Roadmap</a></span></li><li tabindex="2"><span class="file"><a href="aspects-to-watch.html">Aspects to Watch</a></span><ul><li tabindex="2"><span class="file"><a href="roadmap-driver-improvements.html">Driver Quality Improvements</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-easier-upgrades.html">Easier Upgrades</a></span></li><li tabindex="2"><span class="file"><a href="nova-network-deprecation.html">Deprecation of Nova Network</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="roadmap-DVR.html">Distributed Virtual Router</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-ML2.html">Replacement of Open vSwitch Plug-in with Modular Layer 2</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-new-api.html">New API Versions</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-triple-o.html">OpenStack on OpenStack (TripleO)</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-savanna.html">Data processing service for OpenStack (sahara)</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-baremetal.html">Bare metal Deployment (ironic)</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-trove.html">Database as a Service (trove)</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-zaqar.html">Message Service (zaqar)</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-designate.html">DNS service (designate)</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-scheduling.html">Scheduler Improvements</a></span><ul><li tabindex="2"><span class="file"><a href="roadmap-volumes.html">Block Storage Improvements</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-python-sdk.html">Toward a Python SDK</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="recommended-reading.html">D. Resources</a></span><ul><li tabindex="2"><span class="file"><a href="recommended-reading.html#openstack-resources">OpenStack</a></span></li><li tabindex="2"><span class="file"><a href="recommended-reading.html#cloud-general-resources">Cloud (General)</a></span></li><li tabindex="2"><span class="file"><a href="recommended-reading.html#python-resources">Python</a></span></li><li tabindex="2"><span class="file"><a href="recommended-reading.html#networking-resources">Networking</a></span></li><li tabindex="2"><span class="file"><a href="recommended-reading.html#system-admin-resources">Systems Administration</a></span></li><li tabindex="2"><span class="file"><a href="recommended-reading.html#virtualization-resources">Virtualization</a></span></li><li tabindex="2"><span class="file"><a href="recommended-reading.html#config-management-resources">Configuration Management</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="openstack_glossary.html">Glossary</a></span></li><li tabindex="2"><span class="file"><a href="ix01.html">Index</a></span></li></ul></div></div><div id="searchDiv"><div id="search"><form onsubmit="Verifie(ditaSearch_Form);return false" name="ditaSearch_Form" class="searchForm"><fieldset class="searchFieldSet"><legend>Search</legend><center><input id="textToSearch" name="textToSearch" type="text" class="searchText"/> &nbsp; <input onclick="Verifie(ditaSearch_Form)" type="button" class="searchButton" value="Go" id="doSearch"/></center></fieldset></form></div><div id="searchResults"><center/></div><p class="searchHighlight"><a href="#" onclick="toggleHighlight()">Search Highlighter (On/Off)</a></p></div></div></div></div></body></html>

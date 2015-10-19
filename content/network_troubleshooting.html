@@ -1,0 +1,680 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:exsl="http://exslt.org/common" xmlns:ng="http://docbook.org/docbook-ng" xmlns:fb="http://ogp.me/ns/fb#"><head>
+<link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"/>
+<title>Chapter 12. Network Troubleshooting - OpenStack Operations Guide</title><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><meta name="mavenGroupId" content="org.openstack.docs"/><meta name="mavenArtifactId" content="openstack-ops-manual"/><meta name="mavenVersionId" content="1.0.0"/><link rel="home" href="index.html" title="OpenStack Operations Guide"/><link rel="up" href="operations.html" title="Operations"/><link rel="prev" href="maintenance.html" title="Chapter 11. Maintenance, Failures, and Debugging"/><link rel="next" href="logging_monitoring.html" title="Chapter 13. Logging and Monitoring"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="git-sha" content="dbaae13da977db5f75edb276d238702e5383faf1"/><meta name="buildTime" content="2015-10-19T02:19:20+02:00"/><script type="text/javascript">
+            //The id for tree cookie
+            var treeCookieId = "treeview-openstack-operations-guide";
+            var language = "en";
+            var w = new Object();
+            //Localization
+            txt_filesfound = 'Results';
+            txt_enter_at_least_1_char = "You must enter at least one character.";
+            txt_browser_not_supported = "Please enable JavaScript.";
+            txt_please_wait = "Please wait. Search in progress...";
+            txt_results_for = "Results for: ";
+        </script><style type="text/css">
+            input {
+            margin-bottom: 5px;
+            margin-top: 2px;
+            }
+
+            .folder {
+            display: block;
+            height: 22px;
+            padding-left: 20px;
+            background: transparent url(../common/jquery/treeview/images/folder.gif) 0 0px no-repeat;
+            }
+            
+        </style><link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"/><link rel="stylesheet" type="text/css" href="../common/css/positioning.css"/><link rel="stylesheet" type="text/css" href="../common/css/custom.css"/><link rel="canonical" href="http://docs.openstack.org/openstack-ops/content//network_troubleshooting.html"/><!--[if IE]>
+	<link rel="stylesheet" type="text/css" href="../common/css/ie.css"/>
+	<![endif]--><link rel="stylesheet" type="text/css" href="../common/jquery/theme-redmond/jquery-ui-1.8.2.custom.css"/><link rel="stylesheet" type="text/css" href="../common/jquery/treeview/jquery.treeview.css"/><script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"><!----></script><script type="text/javascript" src="../common/jquery/jquery-ui-1.8.2.custom.min.js"><!----></script><script type="text/javascript" src="../common/jquery/jquery.cookie.js"><!----></script><script type="text/javascript" src="../common/jquery/treeview/jquery.treeview.min.js"><!----></script><link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/qtip2/2.2.0/jquery.qtip.min.css"/><script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.0/jquery.qtip.min.js"><!--jQuery plugin for glossary popups. --></script><script type="text/javascript" src="search/htmlFileList.js"><!----></script><script type="text/javascript" src="search/htmlFileInfoList.js"><!----></script><script type="text/javascript" src="search/nwSearchFnt.js"><!----></script><script type="text/javascript" src="search/stemmers/en_stemmer.js"><!--//make this scalable to other languages as well.--></script><script type="text/javascript" src="search/index-1.js"><!----></script><script type="text/javascript" src="search/index-2.js"><!----></script><script type="text/javascript" src="search/index-3.js"><!----></script><script type="text/javascript">
+	    var _gaq = _gaq || [];
+	    _gaq.push(['_setAccount', 'UA-17511903-1']);
+	    
+	    _gaq.push(['_setDomainName', '.openstack.org']);	        
+	        </script><script type="text/javascript" src="../common/ga.js"><!----></script></head><body><div id="header"><a onclick="_gaq.push(['_trackEvent', 'Header', 'logo', 'click', 1]);" target="_blank" href="http://www.openstack.org"><img src="../common/images/openstack-logo.png" alt="OpenStack Documentation" width="157" height="47"/></a><h1>Chapter 12. Network Troubleshooting</h1><div id="navheader" align="right"><!----><table class="navLinks"><tr><td><a id="showHideButton" onclick="showHideToc(); _gaq.push(['_trackEvent', 'Header', 'show/hide', 'click', 1]);" class="pointLeft" title="Hide TOC tree">Sidebar
+                            </a></td><td><a accesskey="p" class="navLinkPrevious" onclick="_gaq.push(['_trackEvent', 'Header', 'prevLink', 'click', 1]);" tabindex="5" href="maintenance.html">Prev</a>
+				      |
+                                        <a accesskey="u" class="navLinkUp" onclick="_gaq.push(['_trackEvent', 'Header', 'upLink', 'click', 1]);" tabindex="5" href="operations.html">Up</a>
+				  |
+                                    <a accesskey="n" class="navLinkNext" onclick="_gaq.push(['_trackEvent', 'Header', 'nextLink', 'click', 1]);" tabindex="5" href="logging_monitoring.html">Next</a></td></tr></table></div></div><div id="toolbar" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all"><div id="toolbar-left"><p class="breadcrumbs"><a href="http://docs.openstack.org/">OpenStack Manuals</a><a href="index.html">OpenStack Operations Guide</a></p><a onclick="_gaq.push(['_trackEvent', 'Header', 'pdfDownload', 'click', 1]);" alt="Download a pdf of this document" class="pdficon" href="../openstack-ops-manual.pdf"><img src="../common/images/pdf.png"/></a><div id="gplusone"><a id="AskOOLink1" href="http://ask.openstack.org" target="_blank" title="Questions? Discuss on ask.openstack.org"><i class="icon-question"><!----></i></a>  
+        <a id="logABugLink1" href="" target="_blank" title="Found an error? Report a bug against this page"><i class="icon-bug"><!----></i></a></div></div></div><div id="content"><div class="chapter"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="network_troubleshooting"> </a>Chapter 12. Network Troubleshooting</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="network_troubleshooting.html#check_interface_states">Using "ip a" to Check Interface States</a></span></dt><dt><span class="section"><a href="network_troubleshooting.html#nova_network_traffic_in_cloud">Visualizing nova-network Traffic in the Cloud</a></span></dt><dt><span class="section"><a href="network_troubleshooting.html#neutron_network_traffic_in_cloud">Visualizing OpenStack Networking Service Traffic in the
+    Cloud</a></span></dt><dt><span class="section"><a href="network_troubleshooting.html#failure_in_path">Finding a Failure in the Path</a></span></dt><dt><span class="section"><a href="network_troubleshooting.html#tcpdump">tcpdump</a></span></dt><dt><span class="section"><a href="network_troubleshooting.html#iptables">iptables</a></span></dt><dt><span class="section"><a href="network_troubleshooting.html#network_config_database">Network Configuration in the Database for nova-network</a></span></dt><dt><span class="section"><a href="network_troubleshooting.html#debug_dhcp_issues">Debugging DHCP Issues with nova-network</a></span></dt><dt><span class="section"><a href="network_troubleshooting.html#debugging_dns_issues">Debugging DNS Issues</a></span></dt><dt><span class="section"><a href="network_troubleshooting.html#trouble_shooting_ovs">Troubleshooting Open vSwitch</a></span></dt><dt><span class="section"><a href="network_troubleshooting.html#dealing_with_netns">Dealing with Network Namespaces</a></span></dt><dt><span class="section"><a href="network_troubleshooting.html#ops-network-troubleshooting-summary">Summary</a></span></dt></dl></div><p>Network troubleshooting can unfortunately be a very difficult and
+  confusing procedure. A network issue can cause a problem at several points
+  in the cloud. Using a logical troubleshooting procedure can help mitigate
+  the confusion and more quickly isolate where exactly the network issue is.
+  This chapter aims to give you the information you need to identify any
+  issues for either <code class="literal">nova-network</code> or OpenStack Networking
+  (neutron) with Linux Bridge or Open vSwitch.<a id="d9e5425" class="indexterm"/><a id="d9e5428" class="indexterm"/><a id="d9e5431" class="indexterm"/></p><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="check_interface_states"> </a>Using "ip a" to Check Interface States</h2></div></div></div><p>On compute nodes and nodes running <code class="literal">nova-network</code>,
+    use the following command to see information about interfaces, including
+    information about IPs, VLANs, and whether your interfaces are
+    up:<a id="d9e5438" class="indexterm"/><a id="d9e5440" class="indexterm"/><a id="d9e5442" class="indexterm"/></p><pre class="screen"># ip a</pre><p>If you're encountering any sort of networking difficulty, one good
+    initial sanity check is to make sure that your interfaces are up. For
+    example:</p><pre class="screen">$ ip a | grep state
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 16436 qdisc noqueue state UNKNOWN
+2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP
+   qlen 1000
+3: eth1: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast
+   master br100 state UP qlen 1000
+4: virbr0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc noqueue state DOWN
+5: br100: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP
+</pre><p>You can safely ignore the state of <code class="literal">virbr0</code>, which
+    is a default bridge created by libvirt and not used by OpenStack.</p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="nova_network_traffic_in_cloud"> </a>Visualizing nova-network Traffic in the Cloud</h2></div></div></div><p>If you are logged in to an instance and ping an external host—for
+    example, Google—the ping packet takes the route shown in <a class="xref" href="network_troubleshooting.html#traffic-12-1" title="Figure 12.1. Traffic route for ping packet">Figure 12.1, “Traffic route for ping packet”</a>.<a id="d9e5454" class="indexterm"/><a id="d9e5456" class="indexterm"/></p><div class="figure"><a id="traffic-12-1"> </a><p class="title"><strong>Figure 12.1. Traffic route for ping packet</strong></p><div class="figure-contents"><div class="mediaobject"><img src="http://git.openstack.org/cgit/openstack/operations-guide/plain/doc/openstack-ops/figures/osog_1201.png"/></div></div></div><br class="figure-break"/><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>The instance generates a packet and places it on the virtual
+        Network Interface Card (NIC) inside the instance, such as
+        <code class="literal">eth0</code>.</p></li><li class="listitem"><p>The packet transfers to the virtual NIC of the compute host,
+        such as, <code class="literal">vnet1</code>. You can find out what vnet NIC is
+        being used by looking at the
+        <code class="filename">/etc/libvirt/qemu/instance-xxxxxxxx.xml</code>
+        file.</p></li><li class="listitem"><p>From the vnet NIC, the packet transfers to a bridge on the
+        compute node, such as <code class="code">br100</code>.</p><p>If you run FlatDHCPManager, one bridge is on the compute node.
+        If you run VlanManager, one bridge exists for each VLAN.</p><p>To see which bridge the packet will use, run the command:
+        </p><pre class="screen">$ brctl show</pre><p>Look for the vnet NIC. You can also reference
+        <code class="filename">nova.conf</code> and look for the
+        <code class="code">flat_interface_bridge</code> option.</p></li><li class="listitem"><p>The packet transfers to the main NIC of the compute node. You
+        can also see this NIC in the <code class="literal">brctl</code> output, or you
+        can find it by referencing the <code class="literal">flat_interface</code>
+        option in <code class="filename">nova.conf</code>.</p></li><li class="listitem"><p>After the packet is on this NIC, it transfers to the compute
+        node's default gateway. The packet is now most likely out of your
+        control at this point. The diagram depicts an external gateway.
+        However, in the default configuration with multi-host, the compute
+        host is the gateway.</p></li></ol></div><p>Reverse the direction to see the path of a ping reply. From this
+    path, you can see that a single packet travels across four different NICs.
+    If a problem occurs with any of these NICs, a network issue occurs.</p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="neutron_network_traffic_in_cloud"> </a>Visualizing OpenStack Networking Service Traffic in the
+    Cloud</h2></div></div></div><p>OpenStack Networking has many more degrees of
+    freedom than <code class="literal">nova-network</code> does because of its pluggable
+    back end. It can be configured with open source or vendor proprietary
+    plug-ins that control software defined networking (SDN) hardware or
+    plug-ins that use Linux native facilities on your hosts, such as Open
+    vSwitch or Linux Bridge.<a id="Topen" class="indexterm"/></p><p>The networking chapter of the OpenStack <a class="link" href="http://docs.openstack.org/admin-guide-cloud/networking.html" title="Cloud Administrator Guide" target="_top">Cloud Administrator Guide</a>
+    shows a variety of networking scenarios and their connection paths. The
+    purpose of this section is to give you the tools to troubleshoot the
+    various components involved however they are plumbed together in your
+    environment.</p><p>For this example, we will use the Open vSwitch (OVS) back end. Other
+    back-end plug-ins will have very different flow paths. OVS is the most
+    popularly deployed network driver, according to the October 2013 OpenStack
+    User Survey, with 50 percent more sites using it than the second place
+    Linux Bridge driver. We'll describe each step in turn, with <a class="xref" href="network_troubleshooting.html#neutron-packet-ping" title="Figure 12.2. Neutron network paths">Figure 12.2, “Neutron network paths”</a> for reference.</p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>The instance generates a packet and places it on the virtual NIC
+        inside the instance, such as eth0.</p></li><li class="listitem"><p>The packet transfers to a Test Access Point (TAP) device on the
+        compute host, such as tap690466bc-92. You can find out what TAP is
+        being used by looking at the
+        <code class="filename">/etc/libvirt/qemu/instance-xxxxxxxx.xml</code>
+        file.</p><p>The TAP device name is constructed using the first 11 characters
+        of the port ID (10 hex digits plus an included '-'), so another means
+        of finding the device name is to use the <code class="literal">neutron</code>
+        command. This returns a pipe-delimited list, the first item of which
+        is the port ID. For example, to get the port ID associated with IP
+        address 10.0.0.10, do this:</p><pre class="screen"># neutron port-list | grep 10.0.0.10 | cut -d \| -f 2
+ ff387e54-9e54-442b-94a3-aa4481764f1d</pre><p>Taking the first 11 characters, we can construct a device name
+        of tapff387e54-9e from this output.</p></li></ol></div><div class="figure"><a id="neutron-packet-ping"> </a><p class="title"><strong>Figure 12.2. Neutron network paths</strong></p><div class="figure-contents"><div class="mediaobject"><img src="http://git.openstack.org/cgit/openstack/operations-guide/plain/doc/openstack-ops/figures/osog_1202.png"/></div></div></div><br class="figure-break"/><div class="orderedlist"><ol class="orderedlist" start="3" type="1"><li class="listitem"><p>The TAP device is connected to the integration bridge,
+        <code class="code">br-int</code>. This bridge connects all the instance TAP devices
+        and any other bridges on the system. In this example, we have
+        <code class="code">int-br-eth1</code> and <code class="code">patch-tun</code>.
+        <code class="code">int-br-eth1</code> is one half of a veth pair connecting to the
+        bridge <code class="code">br-eth1</code>, which handles VLAN networks trunked over
+        the physical Ethernet device <code class="code">eth1</code>. <code class="code">patch-tun</code>
+        is an Open vSwitch internal port that connects to the
+        <code class="code">br-tun</code> bridge for GRE networks.</p><p>The TAP devices and veth devices are normal Linux network
+        devices and may be inspected with the usual tools, such as
+        <code class="literal">ip</code> and <code class="literal">tcpdump</code>. Open vSwitch
+        internal devices, such as <code class="code">patch-tun</code>, are only visible
+        within the Open vSwitch environment. If you try to run
+        <code class="literal">tcpdump -i patch-tun</code>, it will raise an error,
+        saying that the device does not exist.</p><p>It is possible to watch packets on internal interfaces, but it
+        does take a little bit of networking gymnastics. First you need to
+        create a dummy network device that normal Linux tools can see. Then
+        you need to add it to the bridge containing the internal interface you
+        want to snoop on. Finally, you need to tell Open vSwitch to mirror all
+        traffic to or from the internal port onto this dummy port. After all
+        this, you can then run <code class="literal">tcpdump</code> on the dummy
+        interface and see the traffic on the internal port.</p><div class="procedure"><a id="d9e5533"> </a><p class="title"><strong>To capture packets from the <code class="code">patch-tun</code> internal
+          interface on integration bridge, <code class="code">br-int</code>:</strong></p><ol class="procedure" type="1"><li class="step"><p>Create and bring up a dummy interface,
+            <code class="code">snooper0</code>:</p><pre class="screen"># ip link add name snooper0 type dummy</pre><pre class="screen"># ip link set dev snooper0 up
+</pre></li><li class="step"><p>Add device <code class="code">snooper0</code> to bridge
+            <code class="code">br-int</code>:</p><pre class="screen"># ovs-vsctl add-port br-int snooper0
+</pre></li><li class="step"><p>Create mirror of <code class="code">patch-tun</code> to
+            <code class="code">snooper0</code> (returns UUID of mirror port):</p><pre class="screen"># ovs-vsctl -- set Bridge br-int mirrors=@m  -- --id=@snooper0 \
+get Port snooper0  -- --id=@patch-tun get Port patch-tun \
+-- --id=@m create Mirror name=mymirror select-dst-port=@patch-tun \
+select-src-port=@patch-tun output-port=@snooper0 select_all=1</pre></li><li class="step"><p>Profit. You can now see traffic on <code class="code">patch-tun</code> by
+            running <code class="literal">tcpdump -i snooper0</code>.</p></li><li class="step"><p>Clean up by clearing all mirrors on <code class="code">br-int</code> and
+            deleting the dummy interface:</p><pre class="screen"># ovs-vsctl clear Bridge br-int mirrors
+</pre><pre class="screen"># ovs-vsctl del-port br-int snooper0
+</pre><pre class="screen"># ip link delete dev snooper0
+</pre></li></ol></div><p>On the integration bridge, networks are distinguished using
+        internal VLANs regardless of how the networking service defines them.
+        This allows instances on the same host to communicate directly without
+        transiting the rest of the virtual, or physical, network. These
+        internal VLAN IDs are based on the order they are created on the node
+        and may vary between nodes. These IDs are in no way related to the
+        segmentation IDs used in the network definition and on the physical
+        wire.</p><p>VLAN tags are translated between the external tag defined in the
+        network settings, and internal tags in several places. On the
+        <code class="code">br-int</code>, incoming packets from the
+        <code class="code">int-br-eth1</code> are translated from external tags to internal
+        tags. Other translations also happen on the other bridges and will be
+        discussed in those sections.</p><div class="procedure"><a id="d9e5566"> </a><p class="title"><strong>To discover which internal VLAN tag is in use for a given
+          external VLAN by using the <code class="literal">ovs-ofctl</code>
+          command:</strong></p><ol class="procedure" type="1"><li class="step"><p>Find the external VLAN tag of the network you're interested
+            in. This is the <code class="code">provider:segmentation_id</code> as returned
+            by the networking service:</p><pre class="screen"># neutron net-show --fields provider:segmentation_id &lt;network name&gt;
++---------------------------+--------------------------------------+
+| Field                     | Value                                |
++---------------------------+--------------------------------------+
+| provider:network_type     | vlan                                 |
+| provider:segmentation_id  | 2113                                 |
++---------------------------+--------------------------------------+
+</pre></li><li class="step"><p>Grep for the <code class="code">provider:segmentation_id</code>, 2113 in
+            this case, in the output of <code class="literal">ovs-ofctl dump-flows
+            br-int</code>:</p><pre class="screen"># ovs-ofctl dump-flows br-int|grep vlan=2113
+cookie=0x0, duration=173615.481s, table=0, n_packets=7676140,
+n_bytes=444818637, idle_age=0, hard_age=65534, priority=3,
+in_port=1,dl_vlan=2113 actions=mod_vlan_vid:7,NORMAL
+</pre><p>Here you can see packets received on port ID 1 with the VLAN
+            tag 2113 are modified to have the internal VLAN tag 7. Digging a
+            little deeper, you can confirm that port 1 is in fact
+            <code class="code">int-br-eth1</code>:</p><pre class="screen"># ovs-ofctl show br-int
+OFPT_FEATURES_REPLY (xid=0x2): dpid:000022bc45e1914b
+n_tables:254, n_buffers:256
+capabilities: FLOW_STATS TABLE_STATS PORT_STATS QUEUE_STATS
+ARP_MATCH_IP
+actions: OUTPUT SET_VLAN_VID SET_VLAN_PCP STRIP_VLAN SET_DL_SRC
+SET_DL_DST SET_NW_SRC SET_NW_DST SET_NW_TOS SET_TP_SRC
+SET_TP_DST ENQUEUE
+ 1(int-br-eth1): addr:c2:72:74:7f:86:08
+     config:     0
+     state:      0
+     current:    10GB-FD COPPER
+     speed: 10000 Mbps now, 0 Mbps max
+ 2(patch-tun): addr:fa:24:73:75:ad:cd
+     config:     0
+     state:      0
+     speed: 0 Mbps now, 0 Mbps max
+ 3(tap9be586e6-79): addr:fe:16:3e:e6:98:56
+     config:     0
+     state:      0
+     current:    10MB-FD COPPER
+     speed: 10 Mbps now, 0 Mbps max
+ LOCAL(br-int): addr:22:bc:45:e1:91:4b
+     config:     0
+     state:      0
+     speed: 0 Mbps now, 0 Mbps max
+OFPT_GET_CONFIG_REPLY (xid=0x4): frags=normal miss_send_len=0
+</pre></li></ol></div></li><li class="listitem"><p>The next step depends on whether the virtual network is
+        configured to use 802.1q VLAN tags or GRE:</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem"><p>VLAN-based networks exit the integration bridge via veth
+            interface <code class="code">int-br-eth1</code> and arrive on the bridge
+            <code class="code">br-eth1</code> on the other member of the veth pair
+            <code class="code">phy-br-eth1</code>. Packets on this interface arrive with
+            internal VLAN tags and are translated to external tags in the
+            reverse of the process described above:</p><pre class="screen"># ovs-ofctl dump-flows br-eth1|grep 2113
+cookie=0x0, duration=184168.225s, table=0, n_packets=0, n_bytes=0,
+idle_age=65534, hard_age=65534, priority=4,in_port=1,dl_vlan=7
+actions=mod_vlan_vid:2113,NORMAL</pre><p>Packets, now tagged with the external VLAN tag, then exit
+            onto the physical network via <code class="code">eth1</code>. The Layer2 switch
+            this interface is connected to must be configured to accept
+            traffic with the VLAN ID used. The next hop for this packet must
+            also be on the same layer-2 network.</p></li><li class="listitem"><p>GRE-based networks are passed with <code class="code">patch-tun</code> to
+            the tunnel bridge <code class="code">br-tun</code> on interface
+            <code class="code">patch-int</code>. This bridge also contains one port for
+            each GRE tunnel peer, so one for each compute node and network
+            node in your network. The ports are named sequentially from
+            <code class="code">gre-1</code> onward.</p><p>Matching <code class="code">gre-&lt;n&gt;</code> interfaces to tunnel
+            endpoints is possible by looking at the Open vSwitch state:</p><pre class="screen"># ovs-vsctl show |grep -A 3 -e Port\ \"gre-
+        Port "gre-1"
+            Interface "gre-1"
+                type: gre
+                options: {in_key=flow, local_ip="10.10.128.21",
+                out_key=flow, remote_ip="10.10.128.16"}
+</pre><p>In this case, <code class="code">gre-1</code> is a tunnel from IP
+            10.10.128.21, which should match a local interface on this node,
+            to IP 10.10.128.16 on the remote side.</p><p>These tunnels use the regular routing tables on the host to
+            route the resulting GRE packet, so there is no requirement that
+            GRE endpoints are all on the same layer-2 network, unlike VLAN
+            encapsulation.</p><p>All interfaces on the <code class="code">br-tun</code> are internal to
+            Open vSwitch. To monitor traffic on them, you need to set up a
+            mirror port as described above for <code class="code">patch-tun</code> in the
+            <code class="code">br-int</code> bridge.</p><p>All translation of GRE tunnels to and from internal VLANs
+            happens on this bridge.</p></li></ol></div><div class="procedure"><a id="d9e5609"> </a><p class="title"><strong>To discover which internal VLAN tag is in use for a GRE
+          tunnel by using the <code class="literal">ovs-ofctl</code> command:</strong></p><ol class="procedure" type="1"><li class="step"><p>Find the <code class="code">provider:segmentation_id</code> of the
+            network you're interested in. This is the same field used for the
+            VLAN ID in VLAN-based networks:</p><pre class="screen"># neutron net-show --fields provider:segmentation_id &lt;network name&gt;
++--------------------------+-------+
+| Field                    | Value |
++--------------------------+-------+
+| provider:network_type    | gre   |
+| provider:segmentation_id | 3     |
++--------------------------+-------+
+</pre></li><li class="step"><p>Grep for 0x&lt;<code class="code">provider:segmentation_id</code>&gt;,
+            0x3 in this case, in the output of <code class="literal">ovs-ofctl dump-flows
+            br-tun</code>:</p><pre class="screen"># ovs-ofctl dump-flows br-tun|grep 0x3
+cookie=0x0, duration=380575.724s, table=2, n_packets=1800,
+n_bytes=286104, priority=1,tun_id=0x3
+actions=mod_vlan_vid:1,resubmit(,10)
+ cookie=0x0, duration=715.529s, table=20, n_packets=5,
+n_bytes=830, hard_timeout=300,priority=1,
+vlan_tci=0x0001/0x0fff,dl_dst=fa:16:3e:a6:48:24
+actions=load:0-&gt;NXM_OF_VLAN_TCI[],
+load:0x3-&gt;NXM_NX_TUN_ID[],output:53
+ cookie=0x0, duration=193729.242s, table=21, n_packets=58761,
+n_bytes=2618498, dl_vlan=1 actions=strip_vlan,set_tunnel:0x3,
+output:4,output:58,output:56,output:11,output:12,output:47,
+output:13,output:48,output:49,output:44,output:43,output:45,
+output:46,output:30,output:31,output:29,output:28,output:26,
+output:27,output:24,output:25,output:32,output:19,output:21,
+output:59,output:60,output:57,output:6,output:5,output:20,
+output:18,output:17,output:16,output:15,output:14,output:7,
+output:9,output:8,output:53,output:10,output:3,output:2,
+output:38,output:37,output:39,output:40,output:34,output:23,
+output:36,output:35,output:22,output:42,output:41,output:54,
+output:52,output:51,output:50,output:55,output:33
+</pre><p>Here, you see three flows related to this GRE tunnel. The
+            first is the translation from inbound packets with this tunnel ID
+            to internal VLAN ID 1. The second shows a unicast flow to output
+            port 53 for packets destined for MAC address fa:16:3e:a6:48:24.
+            The third shows the translation from the internal VLAN
+            representation to the GRE tunnel ID flooded to all output ports.
+            For further details of the flow descriptions, see the man page for
+            <code class="literal">ovs-ofctl</code>. As in the previous VLAN example,
+            numeric port IDs can be matched with their named representations
+            by examining the output of <code class="literal">ovs-ofctl show
+            br-tun</code>.</p></li></ol></div></li><li class="listitem"><p>The packet is then received on the network node. Note that any
+          traffic to the l3-agent or dhcp-agent will be visible only within
+          their network namespace. Watching any interfaces outside those
+          namespaces, even those that carry the network traffic, will only show
+          broadcast packets like Address Resolution Protocols (ARPs), but
+          unicast traffic to the router or DHCP address will not be seen. See
+            <a class="link" href="http://docs.openstack.org/openstack-ops/content/network_troubleshooting.html#dealing_with_netns" target="_top">Dealing with Network Namespaces</a> for detail on how to run
+          commands within these namespaces.</p><p>Alternatively, it is possible to configure VLAN-based networks to
+          use external routers rather than the l3-agent shown here, so long as
+          the external router is on the same VLAN:</p><div class="orderedlist"><ol class="orderedlist" type="a"><li class="listitem"><p>VLAN-based networks are received as tagged packets on a
+              physical network interface, <code class="code">eth1</code> in this example.
+              Just as on the compute node, this interface is a member of the
+                <code class="code">br-eth1</code> bridge.</p></li><li class="listitem"><p>GRE-based networks will be passed to the tunnel bridge
+                <code class="code">br-tun</code>, which behaves just like the GRE interfaces
+              on the compute node.</p></li></ol></div></li><li class="listitem"><p>Next, the packets from either input go through the integration
+        bridge, again just as on the compute node.</p></li><li class="listitem"><p>The packet then makes it to the l3-agent. This is actually
+        another TAP device within the router's network namespace. Router
+        namespaces are named in the form
+        <code class="code">qrouter-&lt;router-uuid&gt;</code>. Running <code class="literal">ip
+        a</code> within the namespace will show the TAP device name,
+        qr-e6256f7d-31 in this example:</p><pre class="screen"># ip netns exec qrouter-e521f9d0-a1bd-4ff4-bc81-78a60dd88fe5 ip a|grep state
+10: qr-e6256f7d-31: &lt;BROADCAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue
+    state UNKNOWN
+11: qg-35916e1f-36: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500
+    qdisc pfifo_fast state UNKNOWN qlen 500
+28: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 16436 qdisc noqueue state UNKNOWN
+</pre></li><li class="listitem"><p>The <code class="code">qg-&lt;n&gt;</code> interface in the l3-agent router
+        namespace sends the packet on to its next hop through device
+        <code class="code">eth2</code> on the external bridge <code class="code">br-ex</code>. This
+        bridge is constructed similarly to <code class="code">br-eth1</code> and may be
+        inspected in the same way.</p></li><li class="listitem"><p>This external bridge also includes a physical network interface,
+        <code class="code">eth2</code> in this example, which finally lands the packet on
+        the external network destined for an external router or
+        destination.</p></li><li class="listitem"><p>DHCP agents running on OpenStack networks run in namespaces
+        similar to the l3-agents. DHCP namespaces are named
+        <code class="code">qdhcp-&lt;uuid&gt;</code> and have a TAP device on the
+        integration bridge. Debugging of DHCP issues usually involves working
+        inside this network namespace.<a id="d9e5655" class="indexterm"/></p></li></ol></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="failure_in_path"> </a>Finding a Failure in the Path</h2></div></div></div><p>Use ping to quickly find where a failure exists in the network path.
+    In an instance, first see whether you can ping an external host, such as
+    google.com. If you can, then there shouldn't be a network problem at
+    all.</p><p>If you can't, try pinging the IP address of the compute node where
+    the instance is hosted. If you can ping this IP, then the problem is
+    somewhere between the compute node and that compute node's gateway.</p><p>If you can't ping the IP address of the compute node, the problem is
+    between the instance and the compute node. This includes the bridge
+    connecting the compute node's main NIC with the vnet NIC of the
+    instance.</p><p>One last test is to launch a second instance and see whether the two
+    instances can ping each other. If they can, the issue might be related to
+    the firewall on the compute node.<a id="d9e5662" class="indexterm"/><a id="d9e5664" class="indexterm"/></p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="tcpdump"> </a>tcpdump</h2></div></div></div><p>One great, although very in-depth, way of troubleshooting network
+    issues is to use <code class="literal">tcpdump</code>. We recommended using
+    <code class="literal">tcpdump</code> at several points along the network path to
+    correlate where a problem might be. If you prefer working with a GUI,
+    either live or by using a <code class="literal">tcpdump</code> capture, do also
+    check out <a class="link" href="http://www.wireshark.org/" title="Wireshark" target="_top">Wireshark</a>.<a id="d9e5674" class="indexterm"/></p><p>For example, run the following command:</p><pre class="screen">tcpdump -i any -n -v \ 'icmp[icmptype] = icmp-echoreply or icmp[icmptype] =
+icmp-echo'</pre><p>Run this on the command line of the following areas:</p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>An external server outside of the cloud</p></li><li class="listitem"><p>A compute node</p></li><li class="listitem"><p>An instance running on that compute node</p></li></ol></div><p>In this example, these locations have the following IP
+    addresses:</p><pre class="screen">Instance
+                          10.0.2.24
+                          203.0.113.30
+                          Compute Node
+                          10.0.0.42
+                          203.0.113.34
+                          External Server
+                          1.2.3.4</pre><p>Next, open a new shell to the instance and then ping the external
+    host where <code class="literal">tcpdump</code> is running. If the network path to
+    the external server and back is fully functional, you see something like
+    the following:</p><p>On the external server:</p><pre class="screen">12:51:42.020227 IP (tos 0x0, ttl 61, id 0, offset 0, flags [DF],
+proto ICMP (1), length 84)
+    203.0.113.30 &gt; 1.2.3.4: ICMP echo request, id 24895, seq 1, length 64
+12:51:42.020255 IP (tos 0x0, ttl 64, id 8137, offset 0, flags [none],
+proto ICMP (1), length 84)
+    1.2.3.4 &gt; 203.0.113.30: ICMP echo reply, id 24895, seq 1,
+    length 64</pre><p>On the compute node:</p><pre class="screen">12:51:42.019519 IP (tos 0x0, ttl 64, id 0, offset 0, flags [DF],
+proto ICMP (1), length 84)
+    10.0.2.24 &gt; 1.2.3.4: ICMP echo request, id 24895, seq 1, length 64
+12:51:42.019519 IP (tos 0x0, ttl 64, id 0, offset 0, flags [DF],
+proto ICMP (1), length 84)
+    10.0.2.24 &gt; 1.2.3.4: ICMP echo request, id 24895, seq 1, length 64
+12:51:42.019545 IP (tos 0x0, ttl 63, id 0, offset 0, flags [DF],
+proto ICMP (1), length 84)
+    203.0.113.30 &gt; 1.2.3.4: ICMP echo request, id 24895, seq 1, length 64
+12:51:42.019780 IP (tos 0x0, ttl 62, id 8137, offset 0, flags [none],
+proto ICMP (1), length 84)
+    1.2.3.4 &gt; 203.0.113.30: ICMP echo reply, id 24895, seq 1, length 64
+12:51:42.019801 IP (tos 0x0, ttl 61, id 8137, offset 0, flags [none],
+proto ICMP (1), length 84)
+    1.2.3.4 &gt; 10.0.2.24: ICMP echo reply, id 24895, seq 1, length 64
+12:51:42.019807 IP (tos 0x0, ttl 61, id 8137, offset 0, flags [none],
+proto ICMP (1), length 84)
+    1.2.3.4 &gt; 10.0.2.24: ICMP echo reply, id 24895, seq 1, length 64</pre><p>On the instance:</p><pre class="screen">12:51:42.020974 IP (tos 0x0, ttl 61, id 8137, offset 0, flags [none],
+proto ICMP (1), length 84)
+ 1.2.3.4 &gt; 10.0.2.24: ICMP echo reply, id 24895, seq 1, length 64</pre><p>Here, the external server received the ping request and sent a ping
+    reply. On the compute node, you can see that both the ping and ping reply
+    successfully passed through. You might also see duplicate packets on the
+    compute node, as seen above, because <code class="literal">tcpdump</code> captured
+    the packet on both the bridge and outgoing interface.</p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="iptables"> </a>iptables</h2></div></div></div><p>Through <code class="literal">nova-network</code>
+    or <code class="literal">neutron</code>, OpenStack Compute automatically manages
+    iptables, including forwarding packets to and from instances on a compute
+    node, forwarding floating IP traffic, and managing security group rules.
+    In addition to managing the rules, comments (if supported) will be
+    inserted in the rules to help indicate the purpose
+    of the rule.  <a id="d9e5703" class="indexterm"/><a id="d9e5705" class="indexterm"/></p><p>The following comments are added to the rule set as
+    appropriate:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Perform source NAT on outgoing traffic.</p></li><li class="listitem"><p>Default drop rule for unmatched traffic.</p></li><li class="listitem"><p>Direct traffic from the VM interface to the security group
+        chain.</p></li><li class="listitem"><p>Jump to the VM specific chain.</p></li><li class="listitem"><p>Direct incoming traffic from VM to the security group
+        chain.</p></li><li class="listitem"><p>Allow traffic from defined IP/MAC pairs.</p></li><li class="listitem"><p>Drop traffic without an IP/MAC allow rule.</p></li><li class="listitem"><p>Allow DHCP client traffic.</p></li><li class="listitem"><p>Prevent DHCP Spoofing by VM.</p></li><li class="listitem"><p>Send unmatched traffic to the fallback chain.</p></li><li class="listitem"><p>Drop packets that are not associated with a state.</p></li><li class="listitem"><p>Direct packets associated with a known session to the
+        RETURN chain.</p></li><li class="listitem"><p>Allow IPv6 ICMP traffic to allow RA packets.</p></li></ul></div><p>Run the following command to view the current iptables
+    configuration:</p><pre class="screen"># iptables-save</pre><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../common/images/admon/note.png"/></td><th align="left">Note</th></tr><tr><td align="left" valign="top"><p>If you modify the configuration, it reverts the next time you
+      restart <code class="literal">nova-network</code> or
+      <code class="literal">neutron-server</code>. You must use OpenStack to
+      manage iptables.</p></td></tr></table></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="network_config_database"> </a>Network Configuration in the Database for nova-network</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="network_troubleshooting.html#dissasociate_floating_ip">Manually Disassociating a Floating IP</a></span></dt></dl></div><p>With <code class="literal">nova-network</code>, the nova database table
+    contains a few tables with networking information:<a id="d9e5746" class="indexterm"/><a id="d9e5749" class="indexterm"/></p><div class="variablelist"><dl><dt><span class="term"><code class="literal">fixed_ips</code></span></dt><dd><p>Contains each possible IP address for the subnet(s) added to
+          Compute. This table is related to the <code class="literal">instances</code>
+          table by way of the <code class="literal">fixed_ips.instance_uuid</code>
+          column.</p></dd><dt><span class="term"><code class="literal">floating_ips</code></span></dt><dd><p>Contains each floating IP address that was added to Compute.
+          This table is related to the <code class="literal">fixed_ips</code> table by
+          way of the <code class="literal">floating_ips.fixed_ip_id</code>
+          column.</p></dd><dt><span class="term"><code class="literal">instances</code></span></dt><dd><p>Not entirely network specific, but it contains information
+          about the instance that is utilizing the <code class="literal">fixed_ip</code>
+          and optional <code class="literal">floating_ip</code>.</p></dd></dl></div><p>From these tables, you can see that a floating IP is technically
+    never directly related to an instance; it must always go through a fixed
+    IP.</p><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="dissasociate_floating_ip"> </a>Manually Disassociating a Floating IP</h3></div></div></div><p>Sometimes an instance is terminated but the floating IP was not
+      correctly de-associated from that instance. Because the database is in
+      an inconsistent state, the usual tools to disassociate the IP no longer
+      work. To fix this, you must manually update the database.<a id="d9e5778" class="indexterm"/><a id="d9e5781" class="indexterm"/></p><p>First, find the UUID of the instance in question:</p><pre class="screen">mysql&gt; select uuid from instances where hostname = 'hostname';</pre><p>Next, find the fixed IP entry for that UUID:</p><pre class="screen">mysql&gt; select * from fixed_ips where instance_uuid = '&lt;uuid&gt;';</pre><p>You can now get the related floating IP entry:</p><pre class="screen">mysql&gt; select * from floating_ips where fixed_ip_id = '&lt;fixed_ip_id&gt;';</pre><p>And finally, you can disassociate the floating IP:</p><pre class="screen">mysql&gt; update floating_ips set fixed_ip_id = NULL, host = NULL where
+       fixed_ip_id = '&lt;fixed_ip_id&gt;';</pre><p>You can optionally also deallocate the IP from the user's
+      pool:</p><pre class="screen">mysql&gt; update floating_ips set project_id = NULL where
+       fixed_ip_id = '&lt;fixed_ip_id&gt;';</pre></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="debug_dhcp_issues"> </a>Debugging DHCP Issues with nova-network</h2></div></div></div><p>One common networking problem is that an instance boots successfully
+    but is not reachable because it failed to obtain an IP address from
+    dnsmasq, which is the DHCP server that is launched by the
+    <code class="literal">nova-network</code> service.<a id="d9e5797" class="indexterm"/><a id="d9e5800" class="indexterm"/></p><p>The simplest way to identify that this is the problem with your
+    instance is to look at the console output of your instance. If DHCP
+    failed, you can retrieve the console log by doing:</p><pre class="screen">$ nova console-log &lt;instance name or uuid&gt;</pre><p>If your instance failed to obtain an IP through DHCP, some messages
+    should appear in the console. For example, for the Cirros image, you see
+    output that looks like the following:</p><pre class="screen">udhcpc (v1.17.2) started
+Sending discover...
+Sending discover...
+Sending discover...
+No lease, forking to background
+starting DHCP forEthernet interface eth0 [ [1;32mOK[0;39m ]
+cloud-setup: checking http://169.254.169.254/2009-04-04/meta-data/instance-id
+wget: can't connect to remote host (169.254.169.254): Network is
+unreachable</pre><p>After you establish that the instance booted properly, the task is
+    to figure out where the failure is.</p><p>A DHCP problem might be caused by a misbehaving dnsmasq process.
+    First, debug by checking logs and then restart the dnsmasq processes only
+    for that project (tenant). In VLAN mode, there is a dnsmasq process for
+    each tenant. Once you have restarted targeted dnsmasq processes, the
+    simplest way to rule out dnsmasq causes is to kill all of the dnsmasq
+    processes on the machine and restart <code class="literal">nova-network</code>. As a
+    last resort, do this as root:</p><pre class="screen"># killall dnsmasq
+# restart nova-network</pre><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../common/images/admon/note.png"/></td><th align="left">Note</th></tr><tr><td align="left" valign="top"><p>Use <code class="literal">openstack-nova-network</code> on
+      RHEL/CentOS/Fedora but <code class="literal">nova-network</code> on
+      Ubuntu/Debian.</p></td></tr></table></div><p>Several minutes after <code class="literal">nova-network</code> is restarted,
+    you should see new dnsmasq processes running:</p><pre class="screen"># ps aux | grep dnsmasq</pre><pre class="screen">nobody 3735 0.0 0.0 27540 1044 ? S 15:40 0:00 /usr/sbin/dnsmasq --strict-order
+    --bind-interfaces --conf-file=
+    --domain=novalocal --pid-file=/var/lib/nova/networks/nova-br100.pid
+    --listen-address=192.168.100.1 --except-interface=lo
+    --dhcp-range=set:'novanetwork',192.168.100.2,static,120s
+    --dhcp-lease-max=256
+    --dhcp-hostsfile=/var/lib/nova/networks/nova-br100.conf
+    --dhcp-script=/usr/bin/nova-dhcpbridge --leasefile-ro
+root 3736 0.0 0.0 27512 444 ? S 15:40 0:00 /usr/sbin/dnsmasq --strict-order
+     --bind-interfaces --conf-file=
+     --domain=novalocal --pid-file=/var/lib/nova/networks/nova-br100.pid
+     --listen-address=192.168.100.1 --except-interface=lo
+     --dhcp-range=set:'novanetwork',192.168.100.2,static,120s
+     --dhcp-lease-max=256
+     --dhcp-hostsfile=/var/lib/nova/networks/nova-br100.conf
+     --dhcp-script=/usr/bin/nova-dhcpbridge --leasefile-ro</pre><p>If your instances are still not able to obtain IP addresses, the
+    next thing to check is whether dnsmasq is seeing the DHCP requests from
+    the instance. On the machine that is running the dnsmasq process, which is
+    the compute host if running in multi-host mode, look at
+    <code class="literal">/var/log/syslog</code> to see the dnsmasq output. If dnsmasq
+    is seeing the request properly and handing out an IP, the output looks
+    like this:</p><pre class="screen">Feb 27 22:01:36 mynode dnsmasq-dhcp[2438]: DHCPDISCOVER(br100) fa:16:3e:56:0b:6f
+Feb 27 22:01:36 mynode dnsmasq-dhcp[2438]: DHCPOFFER(br100) 192.168.100.3
+                                           fa:16:3e:56:0b:6f
+Feb 27 22:01:36 mynode dnsmasq-dhcp[2438]: DHCPREQUEST(br100) 192.168.100.3
+                                           fa:16:3e:56:0b:6f
+Feb 27 22:01:36 mynode dnsmasq-dhcp[2438]: DHCPACK(br100) 192.168.100.3
+fa:16:3e:56:0b:6f test</pre><p>If you do not see the <code class="literal">DHCPDISCOVER</code>, a problem
+    exists with the packet getting from the instance to the machine running
+    dnsmasq. If you see all of the preceding output and your instances are
+    still not able to obtain IP addresses, then the packet is able to get from
+    the instance to the host running dnsmasq, but it is not able to make the
+    return trip.</p><p>You might also see a message such as this:</p><pre class="screen">Feb 27 22:01:36 mynode dnsmasq-dhcp[25435]: DHCPDISCOVER(br100)
+            fa:16:3e:78:44:84 no address available</pre><p>This may be a dnsmasq and/or <code class="literal">nova-network</code> related
+    issue. (For the preceding example, the problem happened to be that dnsmasq
+    did not have any more IP addresses to give away because there were no more
+    fixed IPs available in the OpenStack Compute database.)</p><p>If there's a suspicious-looking dnsmasq log message, take a look at
+    the command-line arguments to the dnsmasq processes to see if they look
+    correct:</p><pre class="screen">$ ps aux | grep dnsmasq</pre><p>The output looks something like the following:</p><pre class="screen">108 1695 0.0 0.0 25972 1000 ? S Feb26 0:00 /usr/sbin/dnsmasq
+-u libvirt-dnsmasq
+--strict-order --bind-interfaces
+ --pid-file=/var/run/libvirt/network/default.pid --conf-file=
+ --except-interface lo --listen-address 192.168.122.1
+ --dhcp-range 192.168.122.2,192.168.122.254
+ --dhcp-leasefile=/var/lib/libvirt/dnsmasq/default.leases
+ --dhcp-lease-max=253 --dhcp-no-override
+nobody 2438 0.0 0.0 27540 1096 ? S Feb26 0:00 /usr/sbin/dnsmasq --strict-order
+--bind-interfaces --conf-file=
+ --domain=novalocal --pid-file=/var/lib/nova/networks/nova-br100.pid
+ --listen-address=192.168.100.1
+ --except-interface=lo
+ --dhcp-range=set:'novanetwork',192.168.100.2,static,120s
+ --dhcp-lease-max=256
+ --dhcp-hostsfile=/var/lib/nova/networks/nova-br100.conf
+ --dhcp-script=/usr/bin/nova-dhcpbridge --leasefile-ro
+  root 2439 0.0 0.0 27512 472 ? S Feb26 0:00 /usr/sbin/dnsmasq --strict-order
+--bind-interfaces --conf-file=
+ --domain=novalocal --pid-file=/var/lib/nova/networks/nova-br100.pid
+ --listen-address=192.168.100.1
+ --except-interface=lo
+ --dhcp-range=set:'novanetwork',192.168.100.2,static,120s
+ --dhcp-lease-max=256
+ --dhcp-hostsfile=/var/lib/nova/networks/nova-br100.conf
+ --dhcp-script=/usr/bin/nova-dhcpbridge --leasefile-ro</pre><p>The output shows three different dnsmasq processes. The dnsmasq
+    process that has the DHCP subnet range of 192.168.122.0 belongs to libvirt
+    and can be ignored. The other two dnsmasq processes belong to
+    <code class="literal">nova-network</code>. The two processes are actually
+    related—one is simply the parent process of the other. The arguments of
+    the dnsmasq processes should correspond to the details you configured
+    <code class="literal">nova-network</code> with.</p><p>If the problem does not seem to be related to dnsmasq itself, at
+    this point use <code class="code">tcpdump</code> on the interfaces to determine where
+    the packets are getting lost.</p><p>DHCP traffic uses UDP. The client sends from port 68 to port 67 on
+    the server. Try to boot a new instance and then systematically listen on
+    the NICs until you identify the one that isn't seeing the traffic. To use
+    <code class="code">tcpdump</code> to listen to ports 67 and 68 on br100, you would
+    do:</p><pre class="screen"># tcpdump -i br100 -n port 67 or port 68</pre><p>You should be doing sanity checks on the interfaces using command
+    such as <code class="code">ip a</code> and <code class="code">brctl show</code> to ensure that the
+    interfaces are actually up and configured the way that you think that they
+    are.</p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="debugging_dns_issues"> </a>Debugging DNS Issues</h2></div></div></div><p>If you are able to use SSH to log into an instance, but it takes a
+    very long time (on the order of a minute) to get a prompt, then you might
+    have a DNS issue. The reason a DNS issue can cause this problem is that
+    the SSH server does a reverse DNS lookup on the IP address that you are
+    connecting from. If DNS lookup isn't working on your instances, then you
+    must wait for the DNS reverse lookup timeout to occur for the SSH login
+    process to complete.<a id="d9e5846" class="indexterm"/><a id="d9e5849" class="indexterm"/></p><p>When debugging DNS issues, start by making sure that the host where
+    the dnsmasq process for that instance runs is able to correctly resolve.
+    If the host cannot resolve, then the instances won't be able to
+    either.</p><p>A quick way to check whether DNS is working is to resolve a hostname
+    inside your instance by using the <code class="code">host</code> command. If DNS is
+    working, you should see:</p><pre class="screen">$ host openstack.org
+openstack.org has address 174.143.194.225
+openstack.org mail is handled by 10 mx1.emailsrvr.com.
+openstack.org mail is handled by 20 mx2.emailsrvr.com.</pre><p>If you're running the Cirros image, it doesn't have the "host"
+    program installed, in which case you can use ping to try to access a
+    machine by hostname to see whether it resolves. If DNS is working, the
+    first line of ping would be:</p><pre class="screen">$ ping openstack.org
+PING openstack.org (174.143.194.225): 56 data bytes</pre><p>If the instance fails to resolve the hostname, you have a DNS
+    problem. For example:</p><pre class="screen">$ ping openstack.org
+ping: bad address 'openstack.org'</pre><p>In an OpenStack cloud, the dnsmasq process acts as the DNS server
+    for the instances in addition to acting as the DHCP server. A misbehaving
+    dnsmasq process may be the source of DNS-related issues inside the
+    instance. As mentioned in the previous section, the simplest way to rule
+    out a misbehaving dnsmasq process is to kill all the dnsmasq processes on
+    the machine and restart <code class="literal">nova-network</code>. However, be aware
+    that this command affects everyone running instances on this node,
+    including tenants that have not seen the issue. As a last resort, as
+    root:</p><pre class="screen"># killall dnsmasq
+# restart nova-network</pre><p>After the dnsmasq processes start again, check whether DNS is
+    working.</p><p>If restarting the dnsmasq process doesn't fix the issue, you might
+    need to use <code class="code">tcpdump</code> to look at the packets to trace where the
+    failure is. The DNS server listens on UDP port 53. You should see the DNS
+    request on the bridge (such as, br100) of your compute node. Let's say you
+    start listening with <code class="code">tcpdump</code> on the compute node:</p><pre class="screen"># tcpdump -i br100 -n -v udp port 53
+tcpdump: listening on br100, link-type EN10MB (Ethernet), capture size 65535
+bytes</pre><p>Then, if you use SSH to log into your instance and try <code class="code">ping
+    openstack.org</code>, you should see something like:</p><pre class="screen">16:36:18.807518 IP (tos 0x0, ttl 64, id 56057, offset 0, flags [DF],
+proto UDP (17), length 59)
+ 192.168.100.4.54244 &gt; 192.168.100.1.53: 2+ A? openstack.org. (31)
+16:36:18.808285 IP (tos 0x0, ttl 64, id 0, offset 0, flags [DF],
+proto UDP (17), length 75)
+ 192.168.100.1.53 &gt; 192.168.100.4.54244: 2 1/0/0 openstack.org. A
+ 174.143.194.225 (47)</pre></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="trouble_shooting_ovs"> </a>Troubleshooting Open vSwitch</h2></div></div></div><p>Open vSwitch, as used in the previous OpenStack Networking
+    examples is a full-featured multilayer virtual switch licensed under the
+    open source Apache 2.0 license. Full documentation can be found at <a class="link" href="http://openvswitch.org/" target="_top">the project's website</a>. In
+    practice, given the preceding configuration, the most common issues are
+    being sure that the required bridges (<code class="code">br-int</code>,
+    <code class="code">br-tun</code>, and <code class="code">br-ex</code>) exist and have the proper
+    ports connected to them.<a id="d9e5878" class="indexterm"/><a id="d9e5881" class="indexterm"/></p><p>The Open vSwitch driver should and usually does manage this
+    automatically, but it is useful to know how to do this by hand with the
+    <code class="literal">ovs-vsctl</code> command. This command has many more
+    subcommands than we will use here; see the man page or use
+    <code class="literal">ovs-vsctl --help</code> for the full listing.</p><p>To list the bridges on a system, use <code class="literal">ovs-vsctl
+    list-br</code>. This example shows a compute node that has an internal
+    bridge and a tunnel bridge. VLAN networks are trunked through the
+    <code class="code">eth1</code> network interface:</p><pre class="screen"># ovs-vsctl list-br
+br-int
+br-tun
+eth1-br
+      </pre><p>Working from the physical interface inwards, we can see the chain of
+    ports and bridges. First, the bridge <code class="code">eth1-br</code>, which contains
+    the physical network interface <code class="literal">eth1</code> and the virtual
+    interface <code class="code">phy-eth1-br</code>:</p><pre class="screen"># ovs-vsctl list-ports eth1-br
+eth1
+phy-eth1-br
+      </pre><p>Next, the internal bridge, <code class="code">br-int</code>, contains
+    <code class="code">int-eth1-br</code>, which pairs with <code class="code">phy-eth1-br</code> to
+    connect to the physical network shown in the previous bridge,
+    <code class="code">patch-tun</code>, which is used to connect to the GRE tunnel bridge
+    and the TAP devices that connect to the instances currently running on the
+    system:</p><pre class="screen"># ovs-vsctl list-ports br-int
+int-eth1-br
+patch-tun
+tap2d782834-d1
+tap690466bc-92
+tap8a864970-2d
+      </pre><p>The tunnel bridge, <code class="code">br-tun</code>, contains the
+    <code class="code">patch-int</code> interface and <code class="code">gre-&lt;N&gt;</code> interfaces
+    for each peer it connects to via GRE, one for each compute and network
+    node in your cluster:</p><pre class="screen"># ovs-vsctl list-ports br-tun
+patch-int
+gre-1
+.
+.
+.
+gre-&lt;N&gt;
+      </pre><p>If any of these links is missing or incorrect, it suggests a
+    configuration error. Bridges can be added with <code class="literal">ovs-vsctl
+    add-br</code>, and ports can be added to bridges with
+    <code class="literal">ovs-vsctl add-port</code>. While running these by hand can be
+    useful debugging, it is imperative that manual changes that you intend to
+    keep be reflected back into your configuration files.</p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="dealing_with_netns"> </a>Dealing with Network Namespaces</h2></div></div></div><p>Linux network namespaces are a kernel feature the networking service
+    uses to support multiple isolated layer-2 networks with overlapping IP
+    address ranges. The support may be disabled, but it is on by default. If
+    it is enabled in your environment, your network nodes will run their
+    dhcp-agents and l3-agents in isolated namespaces. Network interfaces and
+    traffic on those interfaces will not be visible in the default
+    namespace.<a id="d9e5913" class="indexterm"/><a id="d9e5915" class="indexterm"/><a id="d9e5917" class="indexterm"/></p><p>To see whether you are using namespaces, run <code class="literal">ip
+    netns</code>:</p><pre class="screen"># ip netns
+qdhcp-e521f9d0-a1bd-4ff4-bc81-78a60dd88fe5
+qdhcp-a4d00c60-f005-400e-a24c-1bf8b8308f98
+qdhcp-fe178706-9942-4600-9224-b2ae7c61db71
+qdhcp-0a1d0a27-cffa-4de3-92c5-9d3fd3f2e74d
+qrouter-8a4ce760-ab55-4f2f-8ec5-a2e858ce0d39
+      </pre><p>L3-agent router namespaces are named
+    <code class="literal">qrouter-<em class="replaceable"><code>&lt;router_uuid&gt;</code></em></code>,
+    and dhcp-agent name spaces are named
+    <code class="literal">qdhcp-</code><code class="literal"><em class="replaceable"><code>&lt;net_uuid&gt;</code></em></code>.
+    This output shows a network node with four networks running dhcp-agents,
+    one of which is also running an l3-agent router. It's important to know
+    which network you need to be working in. A list of existing networks and
+    their UUIDs can be obtained by running <code class="literal">neutron
+    net-list</code> with administrative credentials.</p><p>Once you've determined which namespace you need to work in, you can
+    use any of the debugging tools mention earlier by prefixing the command
+    with <code class="literal">ip netns exec &lt;namespace&gt;</code>. For example, to
+    see what network interfaces exist in the first qdhcp namespace returned
+    above, do this:</p><pre class="screen"># ip netns exec qdhcp-e521f9d0-a1bd-4ff4-bc81-78a60dd88fe5 ip a
+10: tape6256f7d-31: &lt;BROADCAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UNKNOWN
+    link/ether fa:16:3e:aa:f7:a1 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.1.100/24 brd 10.0.1.255 scope global tape6256f7d-31
+    inet 169.254.169.254/16 brd 169.254.255.255 scope global tape6256f7d-31
+    inet6 fe80::f816:3eff:feaa:f7a1/64 scope link
+       valid_lft forever preferred_lft forever
+28: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 16436 qdisc noqueue state UNKNOWN
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+      </pre><p>From this you see that the DHCP server on that network is using the
+    tape6256f7d-31 device and has an IP address of 10.0.1.100. Seeing the
+    address 169.254.169.254, you can also see that the dhcp-agent is running a
+    metadata-proxy service. Any of the commands mentioned previously in this
+    chapter can be run in the same way. It is also possible to run a shell,
+    such as <code class="literal">bash</code>, and have an interactive session within
+    the namespace. In the latter case, exiting the shell returns you to the
+    top-level default namespace.</p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="ops-network-troubleshooting-summary"> </a>Summary</h2></div></div></div><p>The authors have spent too much time looking at packet dumps in
+    order to distill this information for you. We trust that, following the
+    methods outlined in this chapter, you will have an easier time! Aside from
+    working with the tools and steps above, don't forget that sometimes an
+    extra pair of eyes goes a long way to assist.</p></div></div><script type="text/javascript" src="../common/main.js"><!----></script><div class="logabug" style="text-align: center"><a id="AskOOLink2" href="http://ask.openstack.org" target="_blank"><i class="icon-question"><!----></i>Questions? Discuss on ask.openstack.org</a><br/><a id="logABugLink2" href="" target="_blank"><i class="icon-bug"><!----></i>Found an error? Report a bug against this page</a></div><script language="JavaScript">
+	  var sourceFile = "source File: file:/home/max/projects/operations-guide/doc/openstack-ops/ch_ops_network_troubleshooting.xml"
+	  var xmlId = "xml:id: network_troubleshooting"
+	  var lineFeed = "%0A";
+	  var docUrl = "URL: " + window.location;
+	  var bugTitle = "Chapter 12. Network Troubleshooting in OpenStack Operations Guide";
+	  var buildTime = "Built: 2015-10-19T02:19:20+02:00";
+	  var gitSha = "git SHA: dbaae13da977db5f75edb276d238702e5383faf1";
+	  var fieldComment = encodeURI(buildTime) +  lineFeed + encodeURI(gitSha) + lineFeed + encodeURI(docUrl) + lineFeed + encodeURI(sourceFile) + lineFeed + encodeURI(xmlId);
+	  logABug(bugTitle,fieldComment);
+	</script><hr/><div id="disqus_thread"><script type="text/javascript">
+	      if(window.location.protocol.substring(0,4) == 'http'){
+	        var disqus_shortname = 'openstack-ops';
+	      
+	        var disqus_identifier = 'openstack-operations-guidenetwork_troubleshooting';
+	      
+	      }
+	    </script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><script type="text/javascript" src="../common/comments.js"><!----></script></div><hr/><div class="legal"><a href="index.html">Legal notices</a></div></div><div><div id="leftnavigation" style="padding-top:3px; background-color:white;"><div id="tabs"><ul><li><a href="#treeDiv" tabindex="1"><span class="contentsTab">Contents</span></a></li><li><a href="#searchDiv" tabindex="1"><span class="searchTab">Search</span></a></li></ul><div id="treeDiv"><img src="../common/images/loading.gif" alt="loading table of contents..." id="tocLoading" style="display:block;"/><div id="ulTreeDiv" style="display:none" class="thisisthat"><ul id="tree" class="filetree"><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html">Preface</a></span><ul><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#introduction-to-openstack">Introduction to OpenStack</a></span></li><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#preface_getting_started">Getting Started with OpenStack</a></span><ul><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#preface_using_openstack">Using OpenStack</a></span></li><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#preface_plug_and_play">Plug and Play OpenStack</a></span></li><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#preface_roll_your_own_openstack">Roll Your Own OpenStack</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#who-this-book-is-for">Who This Book Is For</a></span><ul><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#further_reading">Further Reading</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#how-this-book-is-organized">How This Book Is Organized</a></span></li><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#why-and-how-we-wrote-this-book">Why and How We Wrote This Book</a></span></li><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#how-to-contribute-to-ops-guide">How to Contribute to This Book</a></span></li><li tabindex="2"><span class="file"><a href="openstack-ops_preface.html#conventions_used_in_this_book">Conventions Used in This Book</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="architecture.html">Architecture</a></span><ul><li tabindex="2"><span class="file"><a href="example_architecture.html">1. Architecture Examples</a></span><ul><li tabindex="2"><span class="file"><a href="example_architecture.html#example_architecture-nova">Example Architecture—Legacy Networking (nova)</a></span><ul><li tabindex="2"><span class="file"><a href="example_architecture.html#overview">Overview</a></span><ul><li tabindex="2"><span class="file"><a href="example_architecture.html#overview_components-nova">Components</a></span></li><li tabindex="2"><span class="file"><a href="example_architecture.html#rationale">Rationale</a></span></li><li tabindex="2"><span class="file"><a href="example_architecture.html#neutron">Why not use OpenStack Networking?</a></span></li><li tabindex="2"><span class="file"><a href="example_architecture.html#multi-host-networking">Why use multi-host networking?</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="example_architecture.html#detailed_desc">Detailed Description</a></span></li><li tabindex="2"><span class="file"><a href="example_architecture.html#optional_extensions">Optional Extensions</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="example_architecture.html#example_architecture-neutron">Example Architecture—OpenStack Networking</a></span><ul><li tabindex="2"><span class="file"><a href="example_architecture.html#overview-neutron">Overview</a></span><ul><li tabindex="2"><span class="file"><a href="example_architecture.html#overview_components_neutron">Components</a></span></li><li tabindex="2"><span class="file"><a href="example_architecture.html#rational-neutron">Rationale</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="example_architecture.html#detailed_description">Detailed Description</a></span><ul><li tabindex="2"><span class="file"><a href="example_architecture.html#node_types">Node types</a></span></li><li tabindex="2"><span class="file"><a href="example_architecture.html#networking_layout">Networking layout</a></span><ul><li tabindex="2"><span class="file"><a href="example_architecture.html#OS_network">OpenStack internal network</a></span></li><li tabindex="2"><span class="file"><a href="example_architecture.html#public_network">Public Network</a></span></li><li tabindex="2"><span class="file"><a href="example_architecture.html#vm_network">VM traffic network</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="example_architecture.html#node_connectivity">Node connectivity</a></span><ul><li tabindex="2"><span class="file"><a href="example_architecture.html#node_connectivity-initial">Initial deployment</a></span></li><li tabindex="2"><span class="file"><a href="example_architecture.html#node_connectivity-performance">Connectivity for maximum performance</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="example_architecture.html#node_diagrams">Node diagrams</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="example_architecture.html#software_config">Example Component Configuration</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="example_architecture.html#example_archs_conclusion">Parting Thoughts on Architecture Examples</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="section_arch_provision.html">2. Provisioning and Deployment</a></span><ul><li tabindex="2"><span class="file"><a href="section_arch_provision.html#automated_deploy">Automated Deployment</a></span><ul><li tabindex="2"><span class="file"><a href="section_arch_provision.html#disk_partition_raid">Disk Partitioning and RAID</a></span></li><li tabindex="2"><span class="file"><a href="section_arch_provision.html#network_config">Network Configuration</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="section_arch_provision.html#auto_config">Automated Configuration</a></span></li><li tabindex="2"><span class="file"><a href="section_arch_provision.html#remote_mgmt">Remote Management</a></span></li><li tabindex="2"><span class="file"><a href="section_arch_provision.html#provision-deploy-summary">Parting Thoughts for Provisioning and Deploying OpenStack</a></span></li><li tabindex="2"><span class="file"><a href="section_arch_provision.html#provision_conclusion">Conclusion</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html">3. Designing for Cloud Controllers and Cloud Management</a></span><ul><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#hardware_consid">Hardware Considerations</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#separate_services">Separation of Services</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#database">Database</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#message_queue">Message Queue</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#conductor">Conductor Services</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#api">Application Programming Interface (API)</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#extensions">Extensions</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#scheduling">Scheduling</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#images">Images</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#dashboard">Dashboard</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#authentication">Authentication and Authorization</a></span></li><li tabindex="2"><span class="file"><a href="cloud_controller_design.html#network_consid">Network Considerations</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="compute_nodes.html">4. Compute Nodes</a></span><ul><li tabindex="2"><span class="file"><a href="compute_nodes.html#cpu_choice">Choosing a CPU</a></span></li><li tabindex="2"><span class="file"><a href="compute_nodes.html#hypervisor_choice">Choosing a Hypervisor</a></span></li><li tabindex="2"><span class="file"><a href="compute_nodes.html#instance_storage">Instance Storage Solutions</a></span><ul><li tabindex="2"><span class="file"><a href="compute_nodes.html#off_compute_node_storage">Off Compute Node Storage—Shared File System</a></span></li><li tabindex="2"><span class="file"><a href="compute_nodes.html#on_compute_node_storage">On Compute Node Storage—Shared File System</a></span></li><li tabindex="2"><span class="file"><a href="compute_nodes.html#on_compute_node_storage_nonshared">On Compute Node Storage—Nonshared File System</a></span></li><li tabindex="2"><span class="file"><a href="compute_nodes.html#live_migration">Issues with Live Migration</a></span></li><li tabindex="2"><span class="file"><a href="compute_nodes.html#file_systems">Choice of File System</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="compute_nodes.html#overcommit">Overcommitting</a></span></li><li tabindex="2"><span class="file"><a href="compute_nodes.html#logging">Logging</a></span></li><li tabindex="2"><span class="file"><a href="compute_nodes.html#networking">Networking</a></span></li><li tabindex="2"><span class="file"><a href="compute_nodes.html#conclusion">Conclusion</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="scaling.html">5. Scaling</a></span><ul><li tabindex="2"><span class="file"><a href="scaling.html#starting">The Starting Point</a></span></li><li tabindex="2"><span class="file"><a href="scaling.html#add_controller_nodes">Adding Cloud Controller Nodes</a></span></li><li tabindex="2"><span class="file"><a href="scaling.html#segregate_cloud">Segregating Your Cloud</a></span><ul><li tabindex="2"><span class="file"><a href="scaling.html#cells_regions">Cells and Regions</a></span></li><li tabindex="2"><span class="file"><a href="scaling.html#availability_zones">Availability Zones and Host Aggregates</a></span><ul><li tabindex="2"><span class="file"><a href="scaling.html#az_s3">Availability zone</a></span></li><li tabindex="2"><span class="file"><a href="scaling.html#ha_s3">Host aggregates zone</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="scaling.html#scalable_hardware">Scalable Hardware</a></span><ul><li tabindex="2"><span class="file"><a href="scaling.html#hardware_procure">Hardware Procurement</a></span></li><li tabindex="2"><span class="file"><a href="scaling.html#capacity_planning">Capacity Planning</a></span></li><li tabindex="2"><span class="file"><a href="scaling.html#burin_testing">Burn-in Testing</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="storage_decision.html">6. Storage Decisions</a></span><ul><li tabindex="2"><span class="file"><a href="storage_decision.html#ephemeral_storage">Ephemeral Storage</a></span></li><li tabindex="2"><span class="file"><a href="storage_decision.html#persistent_storage">Persistent Storage</a></span><ul><li tabindex="2"><span class="file"><a href="storage_decision.html#object_storage">Object Storage</a></span></li><li tabindex="2"><span class="file"><a href="storage_decision.html#block_storage">Block Storage</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="storage_decision.html#shared_file_system">Shared File System Storage</a></span></li><li tabindex="2"><span class="file"><a href="storage_decision.html#storage_concepts">OpenStack Storage Concepts</a></span></li><li tabindex="2"><span class="file"><a href="storage_decision.html#storage_backends">Choosing Storage Back Ends</a></span><ul><li tabindex="2"><span class="file"><a href="storage_decision.html#commodity_storage_backends">Commodity Storage Back-end Technologies</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="storage_decision.html#storagedecisions_conclusion">Conclusion</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="network_design.html">7. Network Design</a></span><ul><li tabindex="2"><span class="file"><a href="network_design.html#mgmt_network">Management Network</a></span></li><li tabindex="2"><span class="file"><a href="network_design.html#public_addressing">Public Addressing Options</a></span></li><li tabindex="2"><span class="file"><a href="network_design.html#ip_address_planning">IP Address Planning</a></span></li><li tabindex="2"><span class="file"><a href="network_design.html#network_topology">Network Topology</a></span><ul><li tabindex="2"><span class="file"><a href="network_design.html#vlans">VLAN Configuration Within OpenStack VMs</a></span></li><li tabindex="2"><span class="file"><a href="network_design.html#multi_nic">Multi-NIC Provisioning</a></span></li><li tabindex="2"><span class="file"><a href="network_design.html#multi_host_single_host_networks">Multi-Host and Single-Host Networking</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="network_design.html#services_for_networking">Services for Networking</a></span><ul><li tabindex="2"><span class="file"><a href="network_design.html#ntp">NTP</a></span></li><li tabindex="2"><span class="file"><a href="network_design.html#dns">DNS</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="network_design.html#ops-network-conclusion">Conclusion</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="operations.html">Operations</a></span><ul><li tabindex="2"><span class="file"><a href="lay_of_the_land.html">8. Lay of the Land</a></span><ul><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#dashboard_admin">Using the OpenStack Dashboard for Administration</a></span></li><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#cli_tools">Command-Line Tools</a></span><ul><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#install_tools">Installing the Tools</a></span></li><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#admin_cli">Administrative Command-Line Tools</a></span></li><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#get_creds">Getting Credentials</a></span></li><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#cli_tricks">Inspecting API Calls</a></span><ul><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#curl">Using cURL for further inspection</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#servers_services">Servers and Services</a></span></li><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#diagnose-compute">Diagnose Your Compute Nodes</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#network">Network Inspection</a></span></li><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#users_projects">Users and Projects</a></span></li><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#running_instances">Running Instances</a></span></li><li tabindex="2"><span class="file"><a href="lay_of_the_land.html#ops-lay-of-land-summary">Summary</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="projects_users.html">9. Managing Projects and Users</a></span><ul><li tabindex="2"><span class="file"><a href="projects_users.html#projects_or_tenants">Projects or Tenants?</a></span></li><li tabindex="2"><span class="file"><a href="projects_users.html#managing_projects">Managing Projects</a></span><ul><li tabindex="2"><span class="file"><a href="projects_users.html#add_projects">Adding Projects</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="projects_users.html#quotas">Quotas</a></span><ul><li tabindex="2"><span class="file"><a href="projects_users.html#set_image_quotas">Set Image Quotas</a></span></li><li tabindex="2"><span class="file"><a href="projects_users.html#cli_set_compute_quotas">Set Compute Service Quotas</a></span><ul><li tabindex="2"><span class="file"><a href="projects_users.html#cli_set_compute_quotas_procedure">View and update compute quotas for a tenant (project)</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="projects_users.html#cli_set_object_storage_quotas">Set Object Storage Quotas</a></span></li><li tabindex="2"><span class="file"><a href="projects_users.html#cli_set_block_storage_quotas">Set Block Storage Quotas</a></span><ul><li tabindex="2"><span class="file"><a href="projects_users.html#cli_set_block_storage_quotas_procedure">View and update Block Storage quotas for a tenant
+        (project)</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="projects_users.html#user_mgmt">User Management</a></span></li><li tabindex="2"><span class="file"><a href="projects_users.html#create_new_users">Creating New Users</a></span></li><li tabindex="2"><span class="file"><a href="projects_users.html#associate_users_with_projects">Associating Users with Projects</a></span><ul><li tabindex="2"><span class="file"><a href="projects_users.html#customize_auth">Customizing Authorization</a></span></li><li tabindex="2"><span class="file"><a href="projects_users.html#problem_users">Users Who Disrupt Other Users</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="projects_users.html#projects_users_summary">Summary</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="user_facing_operations.html">10. User-Facing Operations</a></span><ul><li tabindex="2"><span class="file"><a href="user_facing_images.html">Images</a></span><ul><li tabindex="2"><span class="file"><a href="user_facing_images.html#add_images">Adding Images</a></span></li><li tabindex="2"><span class="file"><a href="user_facing_images.html#sharing_images">Sharing Images Between Projects</a></span></li><li tabindex="2"><span class="file"><a href="user_facing_images.html#delete_images">Deleting Images</a></span></li><li tabindex="2"><span class="file"><a href="user_facing_images.html#other_cli">Other CLI Options</a></span></li><li tabindex="2"><span class="file"><a href="user_facing_images.html#image_service_and_database">The Image service and the Database</a></span></li><li tabindex="2"><span class="file"><a href="user_facing_images.html#sample_image_database">Example Image service Database Queries</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="flavors.html">Flavors</a></span><ul><li tabindex="2"><span class="file"><a href="private-flavors.html">Private Flavors</a></span></li><li tabindex="2"><span class="file"><a href="flavors.html#d9e4195">How Do I Modify an Existing Flavor?</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="security_groups.html">Security Groups</a></span><ul><li tabindex="2"><span class="file"><a href="security_groups.html#general-security-group-config">General Security Groups Configuration</a></span></li><li tabindex="2"><span class="file"><a href="security_groups.html#end-user-config-sec-group">End-User Configuration of Security Groups</a></span><ul><li tabindex="2"><span class="file"><a href="security_groups.html#config-sec-group-by-nova-command">Setting with nova command</a></span></li><li tabindex="2"><span class="file"><a href="security_groups.html#config-sec-group-by-neutron-command">Setting with neutron command</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="user_facing_block_storage.html">Block Storage</a></span><ul><li tabindex="2"><span class="file"><a href="user_facing_block_storage.html#block_storage_creation_failures">Block Storage Creation Failures</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="user_facing_shared_file_systems.html">Shared File System Storage</a></span></li><li tabindex="2"><span class="file"><a href="instances.html">Instances</a></span><ul><li tabindex="2"><span class="file"><a href="instances.html#start_instances">Starting Instances</a></span></li><li tabindex="2"><span class="file"><a href="instances.html#instance_boot_failures">Instance Boot Failures</a></span></li><li tabindex="2"><span class="file"><a href="instances.html#instance_specific_data">Using Instance-Specific Data</a></span><ul><li tabindex="2"><span class="file"><a href="instances.html#instance_metadata">Instance metadata</a></span></li><li tabindex="2"><span class="file"><a href="instances.html#instance_user_data">Instance user data</a></span></li><li tabindex="2"><span class="file"><a href="instances.html#file_injection">File injection</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="associate_security_groups.html">Associating Security Groups</a></span></li><li tabindex="2"><span class="file"><a href="floating_ips.html">Floating IPs</a></span></li><li tabindex="2"><span class="file"><a href="attach_block_storage.html">Attaching Block Storage</a></span></li><li tabindex="2"><span class="file"><a href="snapshots.html">Taking Snapshots</a></span><ul><li tabindex="2"><span class="file"><a href="snapshots.html#live-snapshots">Live Snapshots</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="database_instances.html">Instances in the Database</a></span></li><li tabindex="2"><span class="file"><a href="user-facing-outro.html">Good Luck!</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="maintenance.html">11. Maintenance, Failures, and Debugging</a></span><ul><li tabindex="2"><span class="file"><a href="maintenance.html#cloud_controller_storage">Cloud Controller and Storage Proxy Failures and Maintenance</a></span><ul><li tabindex="2"><span class="file"><a href="maintenance.html#planned_maintenance">Planned Maintenance</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#reboot_cloud_controller">Rebooting a Cloud Controller or Storage Proxy</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#after_a_cc_reboot">After a Cloud Controller or Storage Proxy Reboots</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#cc_failure">Total Cloud Controller Failure</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="maintenance.html#compute_node_failures">Compute Node Failures and Maintenance</a></span><ul><li tabindex="2"><span class="file"><a href="maintenance.html#planned_maintenance_compute_node">Planned Maintenance</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#after_compute_node_reboot">After a Compute Node Reboots</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#maintenance_instances">Instances</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#inspect_and_recover_failed_instances">Inspecting and Recovering Data from Failed Instances</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#volumes">Volumes</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#totle_compute_node_failure">Total Compute Node Failure</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#var_lib_nova_instances">/var/lib/nova/instances</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="maintenance.html#storage_node_failures">Storage Node Failures and Maintenance</a></span><ul><li tabindex="2"><span class="file"><a href="maintenance.html#reboot_storage_node">Rebooting a Storage Node</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#shut_down_storage_node">Shutting Down a Storage Node</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#replace_swift_disk">Replacing a Swift Disk</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="maintenance.html#complete_failure">Handling a Complete Failure</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#config_mgmt">Configuration Management</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#hardware">Working with Hardware</a></span><ul><li tabindex="2"><span class="file"><a href="maintenance.html#add_new_node">Adding a Compute Node</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#add_new_object_node">Adding an Object Storage Node</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#replace_components">Replacing Components</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="maintenance.html#databases">Databases</a></span><ul><li tabindex="2"><span class="file"><a href="maintenance.html#database_connect">Database Connectivity</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#perf_and_opt">Performance and Optimizing</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="maintenance.html#hdmy">HDWMY</a></span><ul><li tabindex="2"><span class="file"><a href="maintenance.html#hourly">Hourly</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#daily">Daily</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#weekly">Weekly</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#monthly">Monthly</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#quarterly">Quarterly</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#semiannual">Semiannually</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="maintenance.html#broken_component">Determining Which Component Is Broken</a></span><ul><li tabindex="2"><span class="file"><a href="maintenance.html#tailing_logs">Tailing Logs</a></span></li><li tabindex="2"><span class="file"><a href="maintenance.html#daemons_cli">Running Daemons on the CLI</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="maintenance.html#uninstalling">Uninstalling</a></span></li></ul></li><li tabindex="2" id="webhelp-currentid"><span class="file"><a href="network_troubleshooting.html">12. Network Troubleshooting</a></span><ul><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#check_interface_states">Using "ip a" to Check Interface States</a></span></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#nova_network_traffic_in_cloud">Visualizing nova-network Traffic in the Cloud</a></span></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#neutron_network_traffic_in_cloud">Visualizing OpenStack Networking Service Traffic in the
+    Cloud</a></span></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#failure_in_path">Finding a Failure in the Path</a></span></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#tcpdump">tcpdump</a></span></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#iptables">iptables</a></span></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#network_config_database">Network Configuration in the Database for nova-network</a></span><ul><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#dissasociate_floating_ip">Manually Disassociating a Floating IP</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#debug_dhcp_issues">Debugging DHCP Issues with nova-network</a></span></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#debugging_dns_issues">Debugging DNS Issues</a></span></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#trouble_shooting_ovs">Troubleshooting Open vSwitch</a></span></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#dealing_with_netns">Dealing with Network Namespaces</a></span></li><li tabindex="2"><span class="file"><a href="network_troubleshooting.html#ops-network-troubleshooting-summary">Summary</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html">13. Logging and Monitoring</a></span><ul><li tabindex="2"><span class="file"><a href="logging_monitoring.html#where_are_logs">Where Are the Logs?</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#how_to_read_logs">Reading the Logs</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#tracing_instance_request">Tracing Instance Requests</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#add_custom_logging">Adding Custom Logging Statements</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#rabbitmq">RabbitMQ Web Management Interface or rabbitmqctl</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#manage_logs_centrally">Centrally Managing Logs</a></span><ul><li tabindex="2"><span class="file"><a href="logging_monitoring.html#rsyslog_client_config">rsyslog Client Configuration</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#rsyslog_server_config">rsyslog Server Configuration</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#monitoring">Monitoring</a></span><ul><li tabindex="2"><span class="file"><a href="logging_monitoring.html#process_monitoring">Process Monitoring</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#resource_alerting">Resource Alerting</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#stacktach">StackTach</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#metering_telemetry">OpenStack Telemetry</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#os_resources">OpenStack-Specific Resources</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#intelligent_alerting">Intelligent Alerting</a></span></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#trending">Trending</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="logging_monitoring.html#ops-log-monitor-summary">Summary</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="backup_and_recovery.html">14. Backup and Recovery</a></span><ul><li tabindex="2"><span class="file"><a href="backup_and_recovery.html#what_to_backup">What to Back Up</a></span></li><li tabindex="2"><span class="file"><a href="backup_and_recovery.html#database_backups">Database Backups</a></span></li><li tabindex="2"><span class="file"><a href="backup_and_recovery.html#file_system_backups">File System Backups</a></span><ul><li tabindex="2"><span class="file"><a href="backup_and_recovery.html#compute">Compute</a></span></li><li tabindex="2"><span class="file"><a href="backup_and_recovery.html#image_catalog_delivery">Image Catalog and Delivery</a></span></li><li tabindex="2"><span class="file"><a href="backup_and_recovery.html#identity">Identity</a></span></li><li tabindex="2"><span class="file"><a href="backup_and_recovery.html#ops_block_storage">Block Storage</a></span></li><li tabindex="2"><span class="file"><a href="backup_and_recovery.html#ops_object_storage">Object Storage</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="backup_and_recovery.html#recovering_backups">Recovering Backups</a></span></li><li tabindex="2"><span class="file"><a href="backup_and_recovery.html#ops-backup-recovery-summary">Summary</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="customize.html">15. Customization</a></span><ul><li tabindex="2"><span class="file"><a href="customize.html#devstack">Create an OpenStack Development Environment</a></span></li><li tabindex="2"><span class="file"><a href="customize.html#swift_middleware_example">Customizing Object Storage (Swift) Middleware</a></span></li><li tabindex="2"><span class="file"><a href="customize.html#nova_scheduler_example">Customizing the OpenStack Compute (nova) Scheduler</a></span></li><li tabindex="2"><span class="file"><a href="customize.html#ops_dashboard">Customizing the Dashboard (Horizon)</a></span></li><li tabindex="2"><span class="file"><a href="customize.html#customize_conclusion">Conclusion</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="upstream_openstack.html">16. Upstream OpenStack</a></span><ul><li tabindex="2"><span class="file"><a href="upstream_openstack.html#get_help">Getting Help</a></span></li><li tabindex="2"><span class="file"><a href="upstream_openstack.html#report_bugs">Reporting Bugs</a></span><ul><li tabindex="2"><span class="file"><a href="upstream_openstack.html#confirm_priority">Confirming and Prioritizing</a></span></li><li tabindex="2"><span class="file"><a href="upstream_openstack.html#bug_fixing">Bug Fixing</a></span></li><li tabindex="2"><span class="file"><a href="upstream_openstack.html#after_change_is_accepted">After the Change Is Accepted</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="upstream_openstack.html#openstack_community">Join the OpenStack Community</a></span></li><li tabindex="2"><span class="file"><a href="upstream_openstack.html#contribute_to_docs">How to Contribute to the Documentation</a></span></li><li tabindex="2"><span class="file"><a href="upstream_openstack.html#security_info">Security Information</a></span></li><li tabindex="2"><span class="file"><a href="upstream_openstack.html#additional_info">Finding Additional Information</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="advanced_configuration.html">17. Advanced Configuration</a></span><ul><li tabindex="2"><span class="file"><a href="advanced_configuration.html#driver_differences">Differences Between Various Drivers</a></span></li><li tabindex="2"><span class="file"><a href="advanced_configuration.html#periodic_tasks">Implementing Periodic Tasks</a></span></li><li tabindex="2"><span class="file"><a href="advanced_configuration.html#specific-advanced-config-topics">Specific Configuration Topics</a></span><ul><li tabindex="2"><span class="file"><a href="advanced_configuration.html#adv-config-security">Security Configuration for Compute, Networking, and
+      Storage</a></span></li><li tabindex="2"><span class="file"><a href="advanced_configuration.html#adv-config-ha">High Availability</a></span></li><li tabindex="2"><span class="file"><a href="advanced_configuration.html#adv-config-ipv6">Enabling IPv6 Support</a></span></li><li tabindex="2"><span class="file"><a href="advanced_configuration.html#specific-advanced-config-period-tasks">Periodic Task Frequency for Compute</a></span></li><li tabindex="2"><span class="file"><a href="advanced_configuration.html#adv-config-geography">Geographical Considerations for Object Storage</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="ch_ops_upgrades.html">18. Upgrades</a></span><ul><li tabindex="2"><span class="file"><a href="ops_upgrades-pre-testing.html">Pre-Upgrade Testing Environment</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades-prepare-roll-back.html">Preparing for a Rollback</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades-general-steps.html">Upgrades</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_upgrade_levels.html">Upgrade Levels</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-ubuntu.html">How to Perform an Upgrade from Grizzly to
+      Havana—Ubuntu</a></span><ul><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-ubuntu.html#upgrade_impact_users-ubuntu">Impact on Users</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-ubuntu.html#upgrade_considerations-ubuntu">Upgrade Considerations</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-ubuntu.html#upgrade_backup-ubuntu">Perform a Backup</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-ubuntu.html#upgrade_manage_repos-ubuntu">Manage Repositories</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-ubuntu.html#upgrade_update_configuration-ubuntu">Update Configuration Files</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-ubuntu.html#upgrade_packages_controller-ubuntu">Upgrade Packages on the Controller Node</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-ubuntu.html#upgrade_database_restart-ubuntu">Stop Services, Update Database Schemas, and Restart
+        Services on the Controller Node</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-ubuntu.html#upgrade_packages_compute-ubuntu">Upgrade Packages and Restart Services on the Compute
+        Nodes</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-ubuntu.html#upgrade_packages_storage-ubuntu">Upgrade Packages and Restart Services on the Block
+        Storage Nodes</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-rhel.html">How to Perform an Upgrade from Grizzly to Havana—Red Hat
+      Enterprise Linux and Derivatives</a></span><ul><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-rhel.html#upgrade_impact_users-rhel">Impact on Users</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-rhel.html#upgrade_considerations-rhel">Upgrade Considerations</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-rhel.html#upgrade_backup-rhel">Perform a Backup</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-rhel.html#upgrade_manage_repos-rhel">Manage Repositories</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-rhel.html#upgrade_update_configuration-rhel">Update Configuration Files</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-rhel.html#upgrade_packages_controller-rhel">Upgrade Packages on the Controller Node</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-rhel.html#upgrade_database_restart-rhel">Stop Services, Update Database Schemas, and Restart
+        Services on the Controller Node</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-rhel.html#upgrade_packages_compute-rhel">Upgrade Packages and Restart Services on the Compute
+        Nodes</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades_grizzly_havana-rhel.html#upgrade_packages_storage-rhel">Upgrade Packages and Restart Services on the Block
+        Storage Nodes</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-ubuntu.html">How to Perform an Upgrade from Havana to
+      Icehouse—Ubuntu</a></span><ul><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-ubuntu.html#upgrade_icehouse-ubuntu-impact">Impact on Users</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-ubuntu.html#upgrade_icehouse-ubuntu-considerations">Upgrade Considerations</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-ubuntu.html#upgrade_icehouse-ubuntu-backup">Perform a Backup</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-ubuntu.html#upgrade_icehouse-ubuntu-manage-repos">Manage Repositories</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-ubuntu.html#upgrade_icehouse-ubuntu-controller-node">Upgrade the Controller Node</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-ubuntu.html#upgrade_icehouse-ubuntu-services">Upgrade Each Service</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-ubuntu.html#upgrade_icehouse-ubuntu-network-node">Upgrade the Network Node</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-ubuntu.html#upgrade_icehouse-ubuntu-compute-nodes">Upgrade the Compute Nodes</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-ubuntu.html#upgrade_icehouse-ubuntu-storage-nodes">Upgrade the Storage Nodes</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-rhel.html">How to Perform an Upgrade from Havana to Icehouse—Red Hat
+      Enterprise Linux and Derivatives</a></span><ul><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-rhel.html#upgrade_icehouse-rhel-impact">Impact on Users</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-rhel.html#upgrade_icehouse-rhel-considerations">Upgrade Considerations</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-rhel.html#upgrade_icehouse-rhel-backup">Perform a Backup</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-rhel.html#upgrade_icehouse-rhel-manage-repos">Manage Repositories</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-rhel.html#upgrade_icehouse-rhel-controller-node">Upgrade the Controller Node</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-rhel.html#upgrade_icehouse-rhel-services">Upgrade Each Service</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-rhel.html#upgrade_icehouse-rhel-network-node">Upgrade the Network Node</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-rhel.html#upgrade_icehouse-rhel-compute-nodes">Upgrade the Compute Nodes</a></span></li><li tabindex="2"><span class="file"><a href="upgrades_havana-icehouse-rhel.html#upgrade_icehouse-rhel-storage-nodes">Upgrade the Storage Nodes</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html">How to Perform an Upgrade from Icehouse to Juno</a></span><ul><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-considerations">Before you begin</a></span></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-backup">Perform a backup</a></span></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-repos">Manage repositories</a></span></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-controller">Controller nodes</a></span><ul><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-controller-packages">Upgrade packages to Juno</a></span></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-controller-services">Update services</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-network">Network nodes</a></span><ul><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-network-packages">Upgrade packages to Juno</a></span></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-network-services">Update services</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-compute">Compute nodes</a></span><ul><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-compute-packages">Upgrade packages to Juno</a></span></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-compute-services">Update services</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-storage">Storage nodes</a></span><ul><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-storage-packages">Upgrade packages to Juno</a></span></li><li tabindex="2"><span class="file"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-storage-services">Update services</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="ops_upgrades-final-steps.html">Cleaning Up and Final Configuration File Updates</a></span></li><li tabindex="2"><span class="file"><a href="ops_upgrades-roll-back.html">Rolling Back a Failed Upgrade</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="use-cases.html">A. Use Cases</a></span><ul><li tabindex="2"><span class="file"><a href="nectar.html">NeCTAR</a></span><ul><li tabindex="2"><span class="file"><a href="nectar_deploy.html">Deployment</a></span></li><li tabindex="2"><span class="file"><a href="nectar_resources.html">Resources</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="mit_csail.html">MIT CSAIL</a></span><ul><li tabindex="2"><span class="file"><a href="mit_csail_deploy.html">Deployment</a></span></li><li tabindex="2"><span class="file"><a href="CSAIL_resources.html">Resources</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="dair.html">DAIR</a></span><ul><li tabindex="2"><span class="file"><a href="dair_deploy.html">Deployment</a></span></li><li tabindex="2"><span class="file"><a href="dair_resources.html">Resources</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="cern.html">CERN</a></span><ul><li tabindex="2"><span class="file"><a href="cern_deploy.html">Deployment</a></span></li><li tabindex="2"><span class="file"><a href="cern_resources.html">Resources</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="app_crypt.html">B. Tales From the Cryp^H^H^H^H Cloud</a></span><ul><li tabindex="2"><span class="file"><a href="double_vlan.html">Double VLAN</a></span></li><li tabindex="2"><span class="file"><a href="issue.html">"The Issue"</a></span></li><li tabindex="2"><span class="file"><a href="disappear_images.html">Disappearing Images</a></span></li><li tabindex="2"><span class="file"><a href="valentines.html">The Valentine's Day Compute Node Massacre</a></span></li><li tabindex="2"><span class="file"><a href="rabbithole.html">Down the Rabbit Hole</a></span></li><li tabindex="2"><span class="file"><a href="haunted.html">Havana Haunted by the Dead</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="working-with-roadmaps.html">C. Working with Roadmaps</a></span><ul><li tabindex="2"><span class="file"><a href="roadmap-information-available.html">Information Available to You</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-influencing.html">Influencing the Roadmap</a></span></li><li tabindex="2"><span class="file"><a href="aspects-to-watch.html">Aspects to Watch</a></span><ul><li tabindex="2"><span class="file"><a href="roadmap-driver-improvements.html">Driver Quality Improvements</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-easier-upgrades.html">Easier Upgrades</a></span></li><li tabindex="2"><span class="file"><a href="nova-network-deprecation.html">Deprecation of Nova Network</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="roadmap-DVR.html">Distributed Virtual Router</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-ML2.html">Replacement of Open vSwitch Plug-in with Modular Layer 2</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-new-api.html">New API Versions</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-triple-o.html">OpenStack on OpenStack (TripleO)</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-savanna.html">Data processing service for OpenStack (sahara)</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-baremetal.html">Bare metal Deployment (ironic)</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-trove.html">Database as a Service (trove)</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-zaqar.html">Message Service (zaqar)</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-designate.html">DNS service (designate)</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-scheduling.html">Scheduler Improvements</a></span><ul><li tabindex="2"><span class="file"><a href="roadmap-volumes.html">Block Storage Improvements</a></span></li><li tabindex="2"><span class="file"><a href="roadmap-python-sdk.html">Toward a Python SDK</a></span></li></ul></li></ul></li><li tabindex="2"><span class="file"><a href="recommended-reading.html">D. Resources</a></span><ul><li tabindex="2"><span class="file"><a href="recommended-reading.html#openstack-resources">OpenStack</a></span></li><li tabindex="2"><span class="file"><a href="recommended-reading.html#cloud-general-resources">Cloud (General)</a></span></li><li tabindex="2"><span class="file"><a href="recommended-reading.html#python-resources">Python</a></span></li><li tabindex="2"><span class="file"><a href="recommended-reading.html#networking-resources">Networking</a></span></li><li tabindex="2"><span class="file"><a href="recommended-reading.html#system-admin-resources">Systems Administration</a></span></li><li tabindex="2"><span class="file"><a href="recommended-reading.html#virtualization-resources">Virtualization</a></span></li><li tabindex="2"><span class="file"><a href="recommended-reading.html#config-management-resources">Configuration Management</a></span></li></ul></li><li tabindex="2"><span class="file"><a href="openstack_glossary.html">Glossary</a></span></li><li tabindex="2"><span class="file"><a href="ix01.html">Index</a></span></li></ul></div></div><div id="searchDiv"><div id="search"><form onsubmit="Verifie(ditaSearch_Form);return false" name="ditaSearch_Form" class="searchForm"><fieldset class="searchFieldSet"><legend>Search</legend><center><input id="textToSearch" name="textToSearch" type="text" class="searchText"/> &nbsp; <input onclick="Verifie(ditaSearch_Form)" type="button" class="searchButton" value="Go" id="doSearch"/></center></fieldset></form></div><div id="searchResults"><center/></div><p class="searchHighlight"><a href="#" onclick="toggleHighlight()">Search Highlighter (On/Off)</a></p></div></div></div></div></body></html>
