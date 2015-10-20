@@ -6,7 +6,7 @@
                SyntaxHighlighter.config.space = ' ';
                SyntaxHighlighter.all();
     </script>
-<title>How to Perform an Upgrade from Grizzly to Havana—Red Hat Enterprise Linux and Derivatives - OpenStack Operations Guide</title><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><meta name="mavenGroupId" content="org.openstack.docs"/><meta name="mavenArtifactId" content="openstack-ops-manual"/><meta name="mavenVersionId" content="1.0.0"/><link rel="home" href="index.html" title="OpenStack Operations Guide"/><link rel="up" href="ch_ops_upgrades.html" title="Chapter 18. Upgrades"/><link rel="prev" href="ops_upgrades_grizzly_havana-ubuntu.html" title="How to Perform an Upgrade from Grizzly to Havana—Ubuntu"/><link rel="next" href="upgrades_havana-icehouse-ubuntu.html" title="How to Perform an Upgrade from Havana to Icehouse—Ubuntu"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="git-sha" content="c736dbf695b9b6d705875e6f24f6f8ec044c4e31"/><meta name="buildTime" content="2015-10-20T18:33:35+02:00"/><script type="text/javascript">
+<title>How to Perform an Upgrade from Grizzly to Havana—Red Hat Enterprise Linux and Derivatives - OpenStack Operations Guide</title><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><meta name="mavenGroupId" content="org.openstack.docs"/><meta name="mavenArtifactId" content="openstack-ops-manual"/><meta name="mavenVersionId" content="1.0.0"/><link rel="home" href="index.html" title="OpenStack Operations Guide"/><link rel="up" href="ch_ops_upgrades.html" title="Chapter 18. Upgrades"/><link rel="prev" href="ops_upgrades_grizzly_havana-ubuntu.html" title="How to Perform an Upgrade from Grizzly to Havana—Ubuntu"/><link rel="next" href="upgrades_havana-icehouse-ubuntu.html" title="How to Perform an Upgrade from Havana to Icehouse—Ubuntu"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="git-sha" content="c736dbf695b9b6d705875e6f24f6f8ec044c4e31"/><meta name="buildTime" content="2015-10-20T23:42:24+02:00"/><script type="text/javascript">
             //The id for tree cookie
             var treeCookieId = "treeview-openstack-operations-guide";
             var language = "en";
@@ -203,14 +203,14 @@ flavor = keystone</pre>
 # service openstack-nova-metadata-api restart</pre></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="upgrade_packages_storage-rhel"> </a>Upgrade Packages and Restart Services on the Block
         Storage Nodes</h3></div></div></div><p>Upgrade packages on the storage nodes to Havana:</p><pre class="screen"># yum upgrade</pre><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../common/images/admon/note.png"/></td><th align="left">Note</th></tr><tr><td align="left" valign="top"><p>Make sure you have removed the repository for Grizzly
           packages and added the repository for Havana
-            packages.<a id="d9e7968" class="indexterm"/></p></td></tr></table></div><p>Install the OpenStack SELinux package on the storage
+            packages.<a id="d9e7977" class="indexterm"/></p></td></tr></table></div><p>Install the OpenStack SELinux package on the storage
         nodes:</p><pre class="screen"># yum install openstack-selinux</pre><p>Restart Block Storage services:</p><pre class="screen"># service openstack-cinder-volume restart</pre></div></div><script type="text/javascript" src="../common/main.js"><!----></script><div class="logabug" style="text-align: center"><a id="AskOOLink2" href="http://ask.openstack.org" target="_blank"><i class="icon-question"><!----></i>Questions? Discuss on ask.openstack.org</a><br/><a id="logABugLink2" href="" target="_blank"><i class="icon-bug"><!----></i>Found an error? Report a bug against this page</a></div><script language="JavaScript">
 	  var sourceFile = "source File: file:/home/max/projects/operations-guide/doc/openstack-ops/ch_ops_upgrades.xml"
 	  var xmlId = "xml:id: ops_upgrades_grizzly_havana-rhel"
 	  var lineFeed = "%0A";
 	  var docUrl = "URL: " + window.location;
 	  var bugTitle = "How to Perform an Upgrade from Grizzly to Havana—Red Hat Enterprise Linux and Derivatives in OpenStack Operations Guide";
-	  var buildTime = "Built: 2015-10-20T18:33:35+02:00";
+	  var buildTime = "Built: 2015-10-20T23:42:24+02:00";
 	  var gitSha = "git SHA: c736dbf695b9b6d705875e6f24f6f8ec044c4e31";
 	  var fieldComment = encodeURI(buildTime) +  lineFeed + encodeURI(gitSha) + lineFeed + encodeURI(docUrl) + lineFeed + encodeURI(sourceFile) + lineFeed + encodeURI(xmlId);
 	  logABug(bugTitle,fieldComment);

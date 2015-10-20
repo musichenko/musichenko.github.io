@@ -3,7 +3,7 @@
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:exsl="http://exslt.org/common" xmlns:ng="http://docbook.org/docbook-ng" xmlns:fb="http://ogp.me/ns/fb#"><head>
 <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"/>
-<title>Chapter 17. Advanced Configuration - OpenStack Operations Guide</title><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><meta name="mavenGroupId" content="org.openstack.docs"/><meta name="mavenArtifactId" content="openstack-ops-manual"/><meta name="mavenVersionId" content="1.0.0"/><link rel="home" href="index.html" title="OpenStack Operations Guide"/><link rel="up" href="operations.html" title="Operations"/><link rel="prev" href="upstream_openstack.html" title="Chapter 16. Upstream OpenStack"/><link rel="next" href="ch_ops_upgrades.html" title="Chapter 18. Upgrades"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="git-sha" content="c736dbf695b9b6d705875e6f24f6f8ec044c4e31"/><meta name="buildTime" content="2015-10-20T18:33:33+02:00"/><script type="text/javascript">
+<title>Chapter 17. Advanced Configuration - OpenStack Operations Guide</title><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><meta name="mavenGroupId" content="org.openstack.docs"/><meta name="mavenArtifactId" content="openstack-ops-manual"/><meta name="mavenVersionId" content="1.0.0"/><link rel="home" href="index.html" title="OpenStack Operations Guide"/><link rel="up" href="operations.html" title="Operations"/><link rel="prev" href="upstream_openstack.html" title="Chapter 16. Upstream OpenStack"/><link rel="next" href="ch_ops_upgrades.html" title="Chapter 18. Upgrades"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="git-sha" content="c736dbf695b9b6d705875e6f24f6f8ec044c4e31"/><meta name="buildTime" content="2015-10-20T23:42:23+02:00"/><script type="text/javascript">
             //The id for tree cookie
             var treeCookieId = "treeview-openstack-operations-guide";
             var language = "en";
@@ -45,7 +45,7 @@
   this, the developers add configuration options to their code that allow the
   behavior of the various components to be tweaked depending on your needs.
   Unfortunately, it is not possible to cover all possible deployments with the
-  default configuration values.<a id="d9e7438" class="indexterm"/><a id="d9e7441" class="indexterm"/></p><p>At the time of writing, OpenStack has more than 3,000 configuration
+  default configuration values.<a id="d9e7447" class="indexterm"/><a id="d9e7450" class="indexterm"/></p><p>At the time of writing, OpenStack has more than 3,000 configuration
   options. You can see them documented at <a class="link" href="http://docs.openstack.org/kilo/config-reference/content/config_overview.html" target="_top">the OpenStack configuration reference
   guide</a>. This chapter cannot hope to document all of these, but we do
   try to introduce the important concepts so that you know where to go digging
@@ -54,7 +54,7 @@
     OpenStack Compute (nova), there are various hypervisor drivers
     implemented—libvirt, xenserver, hyper-v, and vmware, for example. Not all
     of these hypervisor drivers have the same features, and each has different
-    tuning requirements.<a id="d9e7449" class="indexterm"/><a id="d9e7452" class="indexterm"/></p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../common/images/admon/note.png"/></td><th align="left">Note</th></tr><tr><td align="left" valign="top"><p>The currently implemented hypervisors are listed on <a class="link" href="http://docs.openstack.org/kilo/config-reference/content/section_compute-hypervisors.html" target="_top">the OpenStack documentation
+    tuning requirements.<a id="d9e7458" class="indexterm"/><a id="d9e7461" class="indexterm"/></p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../common/images/admon/note.png"/></td><th align="left">Note</th></tr><tr><td align="left" valign="top"><p>The currently implemented hypervisors are listed on <a class="link" href="http://docs.openstack.org/kilo/config-reference/content/section_compute-hypervisors.html" target="_top">the OpenStack documentation
       website</a>. You can see a matrix of the various features in
       OpenStack Compute (nova) hypervisor drivers on the OpenStack wiki at
         <a class="link" href="http://docs.openstack.org/developer/nova/support-matrix.html" target="_top">the Hypervisor support matrix
@@ -65,11 +65,11 @@
     periodic tasks. Periodic tasks are much like cron jobs on traditional Unix
     systems, but they are run inside an OpenStack process. For example, when
     OpenStack Compute (nova) needs to work out what images it can remove from
-    its local cache, it runs a periodic task to do this.<a id="d9e7463" class="indexterm"/><a id="d9e7465" class="indexterm"/></p><p>Periodic tasks are important to understand because of limitations in
+    its local cache, it runs a periodic task to do this.<a id="d9e7472" class="indexterm"/><a id="d9e7474" class="indexterm"/></p><p>Periodic tasks are important to understand because of limitations in
     the threading model that OpenStack uses. OpenStack uses cooperative
     threading in Python, which means that if something long and complicated is
     running, it will block other tasks inside that process from running unless
-    it voluntarily yields execution to another cooperative thread.<a id="d9e7469" class="indexterm"/></p><p>A tangible example of this is the <code class="literal">nova-compute</code>
+    it voluntarily yields execution to another cooperative thread.<a id="d9e7478" class="indexterm"/></p><p>A tangible example of this is the <code class="literal">nova-compute</code>
     process. In order to manage the image cache with libvirt,
     <code class="literal">nova-compute</code> has a periodic process that scans the
     contents of the image cache. Part of this scan is calculating a checksum
@@ -98,16 +98,16 @@
       Security Guide</a></em></span> provides a deep dive into securing an
       OpenStack cloud, including SSL/TLS, key management, PKI and certificate
       management, data transport and privacy concerns, and
-      compliance.<a id="d9e7521" class="indexterm"/><a id="d9e7524" class="indexterm"/></p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="adv-config-ha"> </a>High Availability</h3></div></div></div><p>The <span class="emphasis"><em><a class="link" href="http://docs.openstack.org/high-availability-guide/content/" target="_top">OpenStack High Availability
+      compliance.<a id="d9e7530" class="indexterm"/><a id="d9e7533" class="indexterm"/></p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="adv-config-ha"> </a>High Availability</h3></div></div></div><p>The <span class="emphasis"><em><a class="link" href="http://docs.openstack.org/high-availability-guide/content/" target="_top">OpenStack High Availability
       Guide</a></em></span> offers suggestions for elimination of a single
       point of failure that could cause system downtime. While it is not a
       completely prescriptive document, it offers methods and techniques for
-      avoiding downtime and data loss.<a id="d9e7532" class="indexterm"/><a id="d9e7534" class="indexterm"/></p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="adv-config-ipv6"> </a>Enabling IPv6 Support</h3></div></div></div><p>The Havana release with OpenStack Networking (neutron) does not
+      avoiding downtime and data loss.<a id="d9e7541" class="indexterm"/><a id="d9e7543" class="indexterm"/></p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="adv-config-ipv6"> </a>Enabling IPv6 Support</h3></div></div></div><p>The Havana release with OpenStack Networking (neutron) does not
       offer complete support of IPv6. Better support has been delivered in the
       Kilo release, and will continue to improve in Liberty.
       You can follow along the progress being made by
       watching the <a class="link" href="https://wiki.openstack.org/wiki/Meetings/Neutron-IPv6-Subteam" target="_top">neutron IPv6
-      Subteam at work</a>.<a id="d9e7541" class="indexterm"/><a id="d9e7544" class="indexterm"/><a id="d9e7546" class="indexterm"/></p><p>By modifying your configuration setup, you can set up IPv6 when
+      Subteam at work</a>.<a id="d9e7550" class="indexterm"/><a id="d9e7553" class="indexterm"/><a id="d9e7555" class="indexterm"/></p><p>By modifying your configuration setup, you can set up IPv6 when
       using <code class="literal">nova-network</code> for networking, and a tested setup
       is documented for FlatDHCP and a multi-host configuration. The key is to
       make <code class="literal">nova-network</code> think a <code class="literal">radvd</code>
@@ -121,7 +121,7 @@
       we now time the frequency of periodic tasks from the start of the work
       the task does. So, our 30 minute periodic task will run every hour, with
       a 30 minute wait between the end of the first run and the start of the
-      next.<a id="d9e7557" class="indexterm"/></p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="adv-config-geography"> </a>Geographical Considerations for Object Storage</h3></div></div></div><p>Enhanced support for global clustering of object storage servers
+      next.<a id="d9e7566" class="indexterm"/></p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="adv-config-geography"> </a>Geographical Considerations for Object Storage</h3></div></div></div><p>Enhanced support for global clustering of object storage servers
       continues to be added since the Grizzly (1.8.0) release, when regions
       were introduced. You would implement these global clusters to ensure
       replication across geographic areas in case of a natural disaster and
@@ -131,13 +131,13 @@
       additional request and response load between zones as you add more zones
       and build a ring that handles more zones. Refer to <a class="link" href="http://docs.openstack.org/developer/swift/admin_guide.html#geographically-distributed-clusters" target="_top">Geographically Distributed
       Clusters</a> in the documentation for additional
-      information.<a id="d9e7564" class="indexterm"/><a id="d9e7567" class="indexterm"/><a id="d9e7570" class="indexterm"/></p></div></div></div><script type="text/javascript" src="../common/main.js"><!----></script><div class="logabug" style="text-align: center"><a id="AskOOLink2" href="http://ask.openstack.org" target="_blank"><i class="icon-question"><!----></i>Questions? Discuss on ask.openstack.org</a><br/><a id="logABugLink2" href="" target="_blank"><i class="icon-bug"><!----></i>Found an error? Report a bug against this page</a></div><script language="JavaScript">
+      information.<a id="d9e7573" class="indexterm"/><a id="d9e7576" class="indexterm"/><a id="d9e7579" class="indexterm"/></p></div></div></div><script type="text/javascript" src="../common/main.js"><!----></script><div class="logabug" style="text-align: center"><a id="AskOOLink2" href="http://ask.openstack.org" target="_blank"><i class="icon-question"><!----></i>Questions? Discuss on ask.openstack.org</a><br/><a id="logABugLink2" href="" target="_blank"><i class="icon-bug"><!----></i>Found an error? Report a bug against this page</a></div><script language="JavaScript">
 	  var sourceFile = "source File: file:/home/max/projects/operations-guide/doc/openstack-ops/ch_ops_advanced_configuration.xml"
 	  var xmlId = "xml:id: advanced_configuration"
 	  var lineFeed = "%0A";
 	  var docUrl = "URL: " + window.location;
 	  var bugTitle = "Chapter 17. Advanced Configuration in OpenStack Operations Guide";
-	  var buildTime = "Built: 2015-10-20T18:33:33+02:00";
+	  var buildTime = "Built: 2015-10-20T23:42:23+02:00";
 	  var gitSha = "git SHA: c736dbf695b9b6d705875e6f24f6f8ec044c4e31";
 	  var fieldComment = encodeURI(buildTime) +  lineFeed + encodeURI(gitSha) + lineFeed + encodeURI(docUrl) + lineFeed + encodeURI(sourceFile) + lineFeed + encodeURI(xmlId);
 	  logABug(bugTitle,fieldComment);

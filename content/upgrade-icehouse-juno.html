@@ -6,7 +6,7 @@
                SyntaxHighlighter.config.space = ' ';
                SyntaxHighlighter.all();
     </script>
-<title>How to Perform an Upgrade from Icehouse to Juno - OpenStack Operations Guide</title><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><meta name="mavenGroupId" content="org.openstack.docs"/><meta name="mavenArtifactId" content="openstack-ops-manual"/><meta name="mavenVersionId" content="1.0.0"/><link rel="home" href="index.html" title="OpenStack Operations Guide"/><link rel="up" href="ch_ops_upgrades.html" title="Chapter 18. Upgrades"/><link rel="prev" href="upgrades_havana-icehouse-rhel.html" title="How to Perform an Upgrade from Havana to Icehouse—Red Hat Enterprise Linux and Derivatives"/><link rel="next" href="ops_upgrades-final-steps.html" title="Cleaning Up and Final Configuration File Updates"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="git-sha" content="c736dbf695b9b6d705875e6f24f6f8ec044c4e31"/><meta name="buildTime" content="2015-10-20T18:33:35+02:00"/><script type="text/javascript">
+<title>How to Perform an Upgrade from Icehouse to Juno - OpenStack Operations Guide</title><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><meta name="mavenGroupId" content="org.openstack.docs"/><meta name="mavenArtifactId" content="openstack-ops-manual"/><meta name="mavenVersionId" content="1.0.0"/><link rel="home" href="index.html" title="OpenStack Operations Guide"/><link rel="up" href="ch_ops_upgrades.html" title="Chapter 18. Upgrades"/><link rel="prev" href="upgrades_havana-icehouse-rhel.html" title="How to Perform an Upgrade from Havana to Icehouse—Red Hat Enterprise Linux and Derivatives"/><link rel="next" href="ops_upgrades-final-steps.html" title="Cleaning Up and Final Configuration File Updates"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="git-sha" content="c736dbf695b9b6d705875e6f24f6f8ec044c4e31"/><meta name="buildTime" content="2015-10-20T23:42:25+02:00"/><script type="text/javascript">
             //The id for tree cookie
             var treeCookieId = "treeview-openstack-operations-guide";
             var language = "en";
@@ -90,7 +90,7 @@ Current revision for mysql+pymysql://neutron:XXXXX@controller/neutron: 5ac1c354a
           configuration files, stop the service, synchronize the
           database schema, and start the service. Some services require
           different steps. We recommend verifying operation of each
-          service before proceeding to the next service.</p><div class="procedure"><a id="d9e8638"> </a><p class="title"><strong>All services</strong></p><p>These configuration changes apply to all services.</p><ol class="procedure" type="1"><li class="step"><p>In any file containing the
+          service before proceeding to the next service.</p><div class="procedure"><a id="d9e8647"> </a><p class="title"><strong>All services</strong></p><p>These configuration changes apply to all services.</p><ol class="procedure" type="1"><li class="step"><p>In any file containing the
               <code class="literal">[keystone_authtoken]</code> section, modify Identity
               service access to use the <code class="option">identity_uri</code>
               option:</p>
@@ -103,23 +103,23 @@ identity_uri = http://<em class="replaceable"><code>controller</code></em>:35357
               <code class="literal">identity_uri</code> option replaces them.</p></li><li class="step"><p>In any file containing the <code class="option">auth_uri</code> option,
               modify it to explicitly use version 2.0:</p>
 <pre class="programlisting brush: bash; ">auth_uri = http://<em class="replaceable"><code>controller</code></em>:5000/v2.0</pre>
-</li></ol></div><div class="procedure"><a id="d9e8657"> </a><p class="title"><strong>Identity service</strong></p><ol class="procedure" type="1"><li class="step"><p>Edit the <code class="filename">/etc/keystone/keystone.conf</code>
+</li></ol></div><div class="procedure"><a id="d9e8666"> </a><p class="title"><strong>Identity service</strong></p><ol class="procedure" type="1"><li class="step"><p>Edit the <code class="filename">/etc/keystone/keystone.conf</code>
               file:</p><ol type="a" class="substeps"><li class="step"><p>In the <code class="literal">[token]</code> section, configure the
                   UUID token provider and SQL driver:</p>
 <pre class="programlisting brush: bash; ">[token]
 ...
 provider = keystone.token.providers.uuid.Provider
 driver = keystone.token.persistence.backends.sql.Token</pre>
-</li></ol></li><li class="step"><p>Stop the service.</p></li><li class="step"><p>Clear expired tokens:</p><pre class="screen"># su -s /bin/sh -c "keystone-manage token_flush" keystone</pre></li><li class="step"><p>Synchronize the database schema:</p><pre class="screen"># su -s /bin/sh -c "keystone-manage db_sync" keystone</pre></li><li class="step"><p>Start the service.</p></li></ol></div><div class="procedure"><a id="d9e8677"> </a><p class="title"><strong>Image service</strong></p><ol class="procedure" type="1"><li class="step"><p>Edit the <code class="filename">/etc/glance/glance-api.conf</code>
+</li></ol></li><li class="step"><p>Stop the service.</p></li><li class="step"><p>Clear expired tokens:</p><pre class="screen"># su -s /bin/sh -c "keystone-manage token_flush" keystone</pre></li><li class="step"><p>Synchronize the database schema:</p><pre class="screen"># su -s /bin/sh -c "keystone-manage db_sync" keystone</pre></li><li class="step"><p>Start the service.</p></li></ol></div><div class="procedure"><a id="d9e8686"> </a><p class="title"><strong>Image service</strong></p><ol class="procedure" type="1"><li class="step"><p>Edit the <code class="filename">/etc/glance/glance-api.conf</code>
               file:</p><ol type="a" class="substeps"><li class="step"><p>Move the following options from the
                   <code class="literal">[DEFAULT]</code> section to the
-                  <code class="literal">[glance_store]</code> section:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p><code class="option">default_store</code></p></li><li class="listitem"><p><code class="option">filesystem_store_datadir</code></p></li></ul></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../common/images/admon/note.png"/></td><th align="left">Note</th></tr><tr><td align="left" valign="top"><p>These options must contain values.</p></td></tr></table></div></li></ol></li><li class="step"><p>Stop the services.</p></li><li class="step"><p>Synchronize the database schema:</p><pre class="screen"># su -s /bin/sh -c "glance-manage db_sync" glance</pre></li><li class="step"><p>Start the services.</p></li></ol></div><div class="procedure"><a id="d9e8703"> </a><p class="title"><strong>Compute service</strong></p><ol class="procedure" type="1"><li class="step"><p>Edit the <code class="filename">/etc/nova/nova.conf</code>
+                  <code class="literal">[glance_store]</code> section:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p><code class="option">default_store</code></p></li><li class="listitem"><p><code class="option">filesystem_store_datadir</code></p></li></ul></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../common/images/admon/note.png"/></td><th align="left">Note</th></tr><tr><td align="left" valign="top"><p>These options must contain values.</p></td></tr></table></div></li></ol></li><li class="step"><p>Stop the services.</p></li><li class="step"><p>Synchronize the database schema:</p><pre class="screen"># su -s /bin/sh -c "glance-manage db_sync" glance</pre></li><li class="step"><p>Start the services.</p></li></ol></div><div class="procedure"><a id="d9e8712"> </a><p class="title"><strong>Compute service</strong></p><ol class="procedure" type="1"><li class="step"><p>Edit the <code class="filename">/etc/nova/nova.conf</code>
               file:</p><ol type="a" class="substeps"><li class="step"><p>In the <code class="literal">[DEFAULT]</code> section, rename
                  the <code class="option">glance_host</code> option to
                  <code class="option">host</code> and move it to the
                  <code class="literal">[glance]</code> section.</p></li><li class="step"><p>In the <code class="literal">[DEFAULT]</code> section, rename
                   the following options and move them to the
-                  <code class="literal">[neutron]</code> section:</p><table rules="all" id="d9e8719"><thead><tr>
+                  <code class="literal">[neutron]</code> section:</p><table rules="all" id="d9e8728"><thead><tr>
                       <th>Old options</th>
                       <th>New options</th>
                     </tr></thead><tbody><tr>
@@ -146,7 +146,7 @@ driver = keystone.token.persistence.backends.sql.Token</pre>
                     </tr><tr>
                       <td><code class="option">neutron_metadata_proxy_shared_secret</code></td>
                       <td><code class="option">metadata_proxy_shared_secret</code></td>
-                    </tr></tbody></table></li></ol></li><li class="step"><p>Stop the services.</p></li><li class="step"><p>Synchronize the database schema:</p><pre class="screen"># su -s /bin/sh -c "nova-manage db sync" nova</pre></li><li class="step"><p>Start the services.</p></li></ol></div><div class="procedure"><a id="d9e8772"> </a><p class="title"><strong>Networking service</strong></p><ol class="procedure" type="1"><li class="step"><p>Edit the <code class="filename">/etc/neutron/neutron.conf</code>
+                    </tr></tbody></table></li></ol></li><li class="step"><p>Stop the services.</p></li><li class="step"><p>Synchronize the database schema:</p><pre class="screen"># su -s /bin/sh -c "nova-manage db sync" nova</pre></li><li class="step"><p>Start the services.</p></li></ol></div><div class="procedure"><a id="d9e8781"> </a><p class="title"><strong>Networking service</strong></p><ol class="procedure" type="1"><li class="step"><p>Edit the <code class="filename">/etc/neutron/neutron.conf</code>
               file:</p><ol type="a" class="substeps"><li class="step"><p>In the <code class="literal">[DEFAULT]</code> section, change
                   the value of the <code class="option">rpc_backend</code> option:</p><p>
                   <code class="literal">neutron.openstack.common.rpc.impl_kombu</code>
@@ -164,17 +164,17 @@ driver = keystone.token.persistence.backends.sql.Token</pre>
 ...
 nova_region_name = regionOne</pre>
 </li></ol></li><li class="step"><p>Stop the services.</p></li><li class="step"><p>Synchronize the database schema:</p><pre class="screen"># su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf \
-  --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade juno" neutron</pre></li><li class="step"><p>Start the services.</p></li></ol></div><div class="procedure"><a id="d9e8811"> </a><p class="title"><strong>Dashboard</strong></p><p>In typical environments, updating the dashboard only requires
-            restarting the services.</p><ul class="procedure"><li class="step"><p>Restart the services.</p></li></ul></div><div class="procedure"><a id="d9e8816"> </a><p class="title"><strong>Block Storage service</strong></p><ol class="procedure" type="1"><li class="step"><p>Edit the <code class="filename">/etc/cinder/cinder.conf</code>
+  --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade juno" neutron</pre></li><li class="step"><p>Start the services.</p></li></ol></div><div class="procedure"><a id="d9e8820"> </a><p class="title"><strong>Dashboard</strong></p><p>In typical environments, updating the dashboard only requires
+            restarting the services.</p><ul class="procedure"><li class="step"><p>Restart the services.</p></li></ul></div><div class="procedure"><a id="d9e8825"> </a><p class="title"><strong>Block Storage service</strong></p><ol class="procedure" type="1"><li class="step"><p>Edit the <code class="filename">/etc/cinder/cinder.conf</code>
               file:</p><ol type="a" class="substeps"><li class="step"><p>In the <code class="literal">[DEFAULT]</code> section, add
                   the following option:</p>
 <pre class="programlisting brush: bash; ">my_ip = <em class="replaceable"><code>controller</code></em></pre>
-</li></ol></li><li class="step"><p>Stop the services.</p></li><li class="step"><p>Synchronize the database schema:</p><pre class="screen"># su -s /bin/sh -c "cinder-manage db sync" cinder</pre></li><li class="step"><p>Start the services.</p></li></ol></div><div class="procedure"><a id="d9e8834"> </a><p class="title"><strong>Orchestration service</strong></p><ol class="procedure" type="1"><li class="step"><p>Create the <code class="literal">heat_stack_owner</code> role if it
+</li></ol></li><li class="step"><p>Stop the services.</p></li><li class="step"><p>Synchronize the database schema:</p><pre class="screen"># su -s /bin/sh -c "cinder-manage db sync" cinder</pre></li><li class="step"><p>Start the services.</p></li></ol></div><div class="procedure"><a id="d9e8843"> </a><p class="title"><strong>Orchestration service</strong></p><ol class="procedure" type="1"><li class="step"><p>Create the <code class="literal">heat_stack_owner</code> role if it
               does not exist:</p><pre class="screen"># keystone role-create --name heat_stack_owner</pre></li><li class="step"><p>Edit the <code class="filename">/etc/heat/heat.conf</code>
               file:</p><ol type="a" class="substeps"><li class="step"><p>In the <code class="literal">[DEFAULT]</code> section, change
                   the value of the <code class="option">rpc_backend</code> option:</p><p>
                   <code class="literal">heat.openstack.common.rpc.impl_kombu</code>
-                  becomes <code class="literal">rabbit</code></p></li></ol></li><li class="step"><p>Stop the services.</p></li><li class="step"><p>Synchronize the database schema:</p><pre class="screen"># su -s /bin/sh -c "heat-manage db_sync" heat</pre></li><li class="step"><p>Start the services.</p></li></ol></div><div class="procedure"><a id="d9e8858"> </a><p class="title"><strong>Telemetry service</strong></p><p>In typical environments, updating the Telemetry service
+                  becomes <code class="literal">rabbit</code></p></li></ol></li><li class="step"><p>Stop the services.</p></li><li class="step"><p>Synchronize the database schema:</p><pre class="screen"># su -s /bin/sh -c "heat-manage db_sync" heat</pre></li><li class="step"><p>Start the services.</p></li></ol></div><div class="procedure"><a id="d9e8867"> </a><p class="title"><strong>Telemetry service</strong></p><p>In typical environments, updating the Telemetry service
             only requires restarting the services.</p><ul class="procedure"><li class="step"><p>Restart the services.</p></li></ul></div></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="upgrade-icehouse-juno-network"> </a>Network nodes</h3></div></div></div><div class="toc"><dl><dt><span class="section"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-network-packages">Upgrade packages to Juno</a></span></dt><dt><span class="section"><a href="upgrade-icehouse-juno.html#upgrade-icehouse-juno-network-services">Update services</a></span></dt></dl></div><div class="section"><div xmlns="" class="titlepage"><div><div><h4 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="upgrade-icehouse-juno-network-packages"> </a>Upgrade packages to Juno</h4></div></div></div><p>Explicitly install the <code class="literal">ipset</code> package
           if your distribution does not install it as a
           dependency.</p><p>Depending on your specific configuration, upgrading all
@@ -189,7 +189,7 @@ nova_region_name = regionOne</pre>
           configuration files, stop the service, synchronize the
           database schema, and start the service. Some services require
           different steps. We recommend verifying operation of each
-          service before proceeding to the next service.</p><div class="procedure"><a id="d9e8874"> </a><p class="title"><strong>All services</strong></p><p>These configuration changes apply to all services.</p><ol class="procedure" type="1"><li class="step"><p>In any file containing the
+          service before proceeding to the next service.</p><div class="procedure"><a id="d9e8883"> </a><p class="title"><strong>All services</strong></p><p>These configuration changes apply to all services.</p><ol class="procedure" type="1"><li class="step"><p>In any file containing the
               <code class="literal">[keystone_authtoken]</code> section, modify Identity
               service access to use the <code class="option">identity_uri</code>
               option:</p>
@@ -202,7 +202,7 @@ identity_uri = http://<em class="replaceable"><code>controller</code></em>:35357
               <code class="literal">identity_uri</code> option replaces them.</p></li><li class="step"><p>In any file containing the <code class="option">auth_uri</code> option,
               modify it to explicitly use version 2.0:</p>
 <pre class="programlisting brush: bash; ">auth_uri = http://<em class="replaceable"><code>controller</code></em>:5000/v2.0</pre>
-</li></ol></div><div class="procedure"><a id="d9e8893"> </a><p class="title"><strong>Networking service</strong></p><ol class="procedure" type="1"><li class="step"><p>Edit the <code class="filename">/etc/neutron/neutron.conf</code>
+</li></ol></div><div class="procedure"><a id="d9e8902"> </a><p class="title"><strong>Networking service</strong></p><ol class="procedure" type="1"><li class="step"><p>Edit the <code class="filename">/etc/neutron/neutron.conf</code>
               file:</p><ol type="a" class="substeps"><li class="step"><p>In the <code class="literal">[DEFAULT]</code> section, change
                   the value of the <code class="option">rpc_backend</code> option:</p><p>
                   <code class="literal">neutron.openstack.common.rpc.impl_kombu</code>
@@ -236,7 +236,7 @@ nova_region_name = regionOne</pre>
           configuration files, stop the service, synchronize the
           database schema, and start the service. Some services require
           different steps. We recommend verifying operation of each
-          service before proceeding to the next service.</p><div class="procedure"><a id="d9e8942"> </a><p class="title"><strong>All services</strong></p><p>These configuration changes apply to all services.</p><ol class="procedure" type="1"><li class="step"><p>In any file containing the
+          service before proceeding to the next service.</p><div class="procedure"><a id="d9e8951"> </a><p class="title"><strong>All services</strong></p><p>These configuration changes apply to all services.</p><ol class="procedure" type="1"><li class="step"><p>In any file containing the
               <code class="literal">[keystone_authtoken]</code> section, modify Identity
               service access to use the <code class="option">identity_uri</code>
               option:</p>
@@ -249,13 +249,13 @@ identity_uri = http://<em class="replaceable"><code>controller</code></em>:35357
               <code class="literal">identity_uri</code> option replaces them.</p></li><li class="step"><p>In any file containing the <code class="option">auth_uri</code> option,
               modify it to explicitly use version 2.0:</p>
 <pre class="programlisting brush: bash; ">auth_uri = http://<em class="replaceable"><code>controller</code></em>:5000/v2.0</pre>
-</li></ol></div><div class="procedure"><a id="d9e8961"> </a><p class="title"><strong>Compute service</strong></p><ol class="procedure" type="1"><li class="step"><p>Edit the <code class="filename">/etc/nova/nova.conf</code>
+</li></ol></div><div class="procedure"><a id="d9e8970"> </a><p class="title"><strong>Compute service</strong></p><ol class="procedure" type="1"><li class="step"><p>Edit the <code class="filename">/etc/nova/nova.conf</code>
               file:</p><ol type="a" class="substeps"><li class="step"><p>In the <code class="literal">[DEFAULT]</code> section, rename
                  the <code class="option">glance_host</code> option to
                  <code class="option">host</code> and move it to the
                  <code class="literal">[glance]</code> section.</p></li><li class="step"><p>In the <code class="literal">[DEFAULT]</code> section, rename
                   the following options and move them to the
-                  <code class="literal">[neutron]</code> section:</p><table rules="all" id="d9e8977"><thead><tr>
+                  <code class="literal">[neutron]</code> section:</p><table rules="all" id="d9e8986"><thead><tr>
                       <th>Old options</th>
                       <th>New options</th>
                     </tr></thead><tbody><tr>
@@ -285,7 +285,7 @@ identity_uri = http://<em class="replaceable"><code>controller</code></em>:35357
                     </tr></tbody></table></li><li class="step"><p>In the <code class="literal">[database]</code> section, remove any
                   <code class="option">connection</code> options because the Compute
                   service uses the message queue instead of direct access to
-                  the database.</p></li></ol></li><li class="step"><p>Restart the services.</p></li></ol></div><div class="procedure"><a id="d9e9029"> </a><p class="title"><strong>Networking service</strong></p><ol class="procedure" type="1"><li class="step"><p>Edit the <code class="filename">/etc/neutron/neutron.conf</code>
+                  the database.</p></li></ol></li><li class="step"><p>Restart the services.</p></li></ol></div><div class="procedure"><a id="d9e9038"> </a><p class="title"><strong>Networking service</strong></p><ol class="procedure" type="1"><li class="step"><p>Edit the <code class="filename">/etc/neutron/neutron.conf</code>
               file:</p><ol type="a" class="substeps"><li class="step"><p>In the <code class="literal">[DEFAULT]</code> section, change
                   the value of the <code class="option">rpc_backend</code> option:</p><p>
                   <code class="literal">neutron.openstack.common.rpc.impl_kombu</code>
@@ -317,7 +317,7 @@ nova_region_name = regionOne</pre>
           configuration files, stop the service, synchronize the
           database schema, and start the service. Some services require
           different steps. We recommend verifying operation of each
-          service before proceeding to the next service.</p><div class="procedure"><a id="d9e9076"> </a><p class="title"><strong>All services</strong></p><p>These configuration changes apply to all services.</p><ol class="procedure" type="1"><li class="step"><p>In any file containing the
+          service before proceeding to the next service.</p><div class="procedure"><a id="d9e9085"> </a><p class="title"><strong>All services</strong></p><p>These configuration changes apply to all services.</p><ol class="procedure" type="1"><li class="step"><p>In any file containing the
               <code class="literal">[keystone_authtoken]</code> section, modify Identity
               service access to use the <code class="option">identity_uri</code>
               option:</p>
@@ -330,14 +330,14 @@ identity_uri = http://<em class="replaceable"><code>controller</code></em>:35357
               <code class="literal">identity_uri</code> option replaces them.</p></li><li class="step"><p>In any file containing the <code class="option">auth_uri</code> option,
               modify it to explicitly use version 2.0:</p>
 <pre class="programlisting brush: bash; ">auth_uri = http://<em class="replaceable"><code>controller</code></em>:5000/v2.0</pre>
-</li></ol></div><div class="procedure"><a id="d9e9095"> </a><p class="title"><strong>Block Storage service</strong></p><p>In typical environments, updating the Block Storage service
+</li></ol></div><div class="procedure"><a id="d9e9104"> </a><p class="title"><strong>Block Storage service</strong></p><p>In typical environments, updating the Block Storage service
             only requires restarting the services.</p><ul class="procedure"><li class="step"><p>Restart the services.</p></li></ul></div></div></div></div><script type="text/javascript" src="../common/main.js"><!----></script><div class="logabug" style="text-align: center"><a id="AskOOLink2" href="http://ask.openstack.org" target="_blank"><i class="icon-question"><!----></i>Questions? Discuss on ask.openstack.org</a><br/><a id="logABugLink2" href="" target="_blank"><i class="icon-bug"><!----></i>Found an error? Report a bug against this page</a></div><script language="JavaScript">
 	  var sourceFile = "source File: file:/home/max/projects/operations-guide/doc/openstack-ops/ch_ops_upgrades.xml"
 	  var xmlId = "xml:id: upgrade-icehouse-juno"
 	  var lineFeed = "%0A";
 	  var docUrl = "URL: " + window.location;
 	  var bugTitle = "How to Perform an Upgrade from Icehouse to Juno in OpenStack Operations Guide";
-	  var buildTime = "Built: 2015-10-20T18:33:35+02:00";
+	  var buildTime = "Built: 2015-10-20T23:42:25+02:00";
 	  var gitSha = "git SHA: c736dbf695b9b6d705875e6f24f6f8ec044c4e31";
 	  var fieldComment = encodeURI(buildTime) +  lineFeed + encodeURI(gitSha) + lineFeed + encodeURI(docUrl) + lineFeed + encodeURI(sourceFile) + lineFeed + encodeURI(xmlId);
 	  logABug(bugTitle,fieldComment);

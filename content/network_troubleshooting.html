@@ -3,7 +3,7 @@
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:exsl="http://exslt.org/common" xmlns:ng="http://docbook.org/docbook-ng" xmlns:fb="http://ogp.me/ns/fb#"><head>
 <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"/>
-<title>Chapter 12. Network Troubleshooting - OpenStack Operations Guide</title><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><meta name="mavenGroupId" content="org.openstack.docs"/><meta name="mavenArtifactId" content="openstack-ops-manual"/><meta name="mavenVersionId" content="1.0.0"/><link rel="home" href="index.html" title="OpenStack Operations Guide"/><link rel="up" href="operations.html" title="Operations"/><link rel="prev" href="maintenance.html" title="Chapter 11. Maintenance, Failures, and Debugging"/><link rel="next" href="logging_monitoring.html" title="Chapter 13. Logging and Monitoring"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="git-sha" content="c736dbf695b9b6d705875e6f24f6f8ec044c4e31"/><meta name="buildTime" content="2015-10-20T18:33:32+02:00"/><script type="text/javascript">
+<title>Chapter 12. Network Troubleshooting - OpenStack Operations Guide</title><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><meta name="mavenGroupId" content="org.openstack.docs"/><meta name="mavenArtifactId" content="openstack-ops-manual"/><meta name="mavenVersionId" content="1.0.0"/><link rel="home" href="index.html" title="OpenStack Operations Guide"/><link rel="up" href="operations.html" title="Operations"/><link rel="prev" href="maintenance.html" title="Chapter 11. Maintenance, Failures, and Debugging"/><link rel="next" href="logging_monitoring.html" title="Chapter 13. Logging and Monitoring"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="git-sha" content="c736dbf695b9b6d705875e6f24f6f8ec044c4e31"/><meta name="buildTime" content="2015-10-20T23:42:21+02:00"/><script type="text/javascript">
             //The id for tree cookie
             var treeCookieId = "treeview-openstack-operations-guide";
             var language = "en";
@@ -47,10 +47,10 @@
   the confusion and more quickly isolate where exactly the network issue is.
   This chapter aims to give you the information you need to identify any
   issues for either <code class="literal">nova-network</code> or OpenStack Networking
-  (neutron) with Linux Bridge or Open vSwitch.<a id="d9e5546" class="indexterm"/><a id="d9e5549" class="indexterm"/><a id="d9e5552" class="indexterm"/></p><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="check_interface_states"> </a>Using "ip a" to Check Interface States</h2></div></div></div><p>On compute nodes and nodes running <code class="literal">nova-network</code>,
+  (neutron) with Linux Bridge or Open vSwitch.<a id="d9e5555" class="indexterm"/><a id="d9e5558" class="indexterm"/><a id="d9e5561" class="indexterm"/></p><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="check_interface_states"> </a>Using "ip a" to Check Interface States</h2></div></div></div><p>On compute nodes and nodes running <code class="literal">nova-network</code>,
     use the following command to see information about interfaces, including
     information about IPs, VLANs, and whether your interfaces are
-    up:<a id="d9e5559" class="indexterm"/><a id="d9e5561" class="indexterm"/><a id="d9e5563" class="indexterm"/></p><pre class="screen"># ip a</pre><p>If you're encountering any sort of networking difficulty, one good
+    up:<a id="d9e5568" class="indexterm"/><a id="d9e5570" class="indexterm"/><a id="d9e5572" class="indexterm"/></p><pre class="screen"># ip a</pre><p>If you're encountering any sort of networking difficulty, one good
     initial sanity check is to make sure that your interfaces are up. For
     example:</p><pre class="screen">$ ip a | grep state
 1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 16436 qdisc noqueue state UNKNOWN
@@ -62,7 +62,7 @@
 5: br100: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP
 </pre><p>You can safely ignore the state of <code class="literal">virbr0</code>, which
     is a default bridge created by libvirt and not used by OpenStack.</p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="nova_network_traffic_in_cloud"> </a>Visualizing nova-network Traffic in the Cloud</h2></div></div></div><p>If you are logged in to an instance and ping an external host—for
-    example, Google—the ping packet takes the route shown in <a class="xref" href="network_troubleshooting.html#traffic-12-1" title="Figure 12.1. Traffic route for ping packet">Figure 12.1, “Traffic route for ping packet”</a>.<a id="d9e5575" class="indexterm"/><a id="d9e5577" class="indexterm"/></p><div class="figure"><a id="traffic-12-1"> </a><p class="title"><strong>Figure 12.1. Traffic route for ping packet</strong></p><div class="figure-contents"><div class="mediaobject"><img src="http://git.openstack.org/cgit/openstack/operations-guide/plain/doc/openstack-ops/figures/osog_1201.png"/></div></div></div><br class="figure-break"/><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>The instance generates a packet and places it on the virtual
+    example, Google—the ping packet takes the route shown in <a class="xref" href="network_troubleshooting.html#traffic-12-1" title="Figure 12.1. Traffic route for ping packet">Figure 12.1, “Traffic route for ping packet”</a>.<a id="d9e5584" class="indexterm"/><a id="d9e5586" class="indexterm"/></p><div class="figure"><a id="traffic-12-1"> </a><p class="title"><strong>Figure 12.1. Traffic route for ping packet</strong></p><div class="figure-contents"><div class="mediaobject"><img src="http://git.openstack.org/cgit/openstack/operations-guide/plain/doc/openstack-ops/figures/osog_1201.png"/></div></div></div><br class="figure-break"/><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>The instance generates a packet and places it on the virtual
         Network Interface Card (NIC) inside the instance, such as
         <code class="literal">eth0</code>.</p></li><li class="listitem"><p>The packet transfers to the virtual NIC of the compute host,
         such as, <code class="literal">vnet1</code>. You can find out what vnet NIC is
@@ -129,7 +129,7 @@
         want to snoop on. Finally, you need to tell Open vSwitch to mirror all
         traffic to or from the internal port onto this dummy port. After all
         this, you can then run <code class="literal">tcpdump</code> on the dummy
-        interface and see the traffic on the internal port.</p><div class="procedure"><a id="d9e5654"> </a><p class="title"><strong>To capture packets from the <code class="code">patch-tun</code> internal
+        interface and see the traffic on the internal port.</p><div class="procedure"><a id="d9e5663"> </a><p class="title"><strong>To capture packets from the <code class="code">patch-tun</code> internal
           interface on integration bridge, <code class="code">br-int</code>:</strong></p><ol class="procedure" type="1"><li class="step"><p>Create and bring up a dummy interface,
             <code class="code">snooper0</code>:</p><pre class="screen"># ip link add name snooper0 type dummy</pre><pre class="screen"># ip link set dev snooper0 up
 </pre></li><li class="step"><p>Add device <code class="code">snooper0</code> to bridge
@@ -155,7 +155,7 @@ select-src-port=@patch-tun output-port=@snooper0 select_all=1</pre></li><li clas
         <code class="code">br-int</code>, incoming packets from the
         <code class="code">int-br-eth1</code> are translated from external tags to internal
         tags. Other translations also happen on the other bridges and will be
-        discussed in those sections.</p><div class="procedure"><a id="d9e5687"> </a><p class="title"><strong>To discover which internal VLAN tag is in use for a given
+        discussed in those sections.</p><div class="procedure"><a id="d9e5696"> </a><p class="title"><strong>To discover which internal VLAN tag is in use for a given
           external VLAN by using the <code class="literal">ovs-ofctl</code>
           command:</strong></p><ol class="procedure" type="1"><li class="step"><p>Find the external VLAN tag of the network you're interested
             in. This is the <code class="code">provider:segmentation_id</code> as returned
@@ -236,7 +236,7 @@ actions=mod_vlan_vid:2113,NORMAL</pre><p>Packets, now tagged with the external V
             Open vSwitch. To monitor traffic on them, you need to set up a
             mirror port as described above for <code class="code">patch-tun</code> in the
             <code class="code">br-int</code> bridge.</p><p>All translation of GRE tunnels to and from internal VLANs
-            happens on this bridge.</p></li></ol></div><div class="procedure"><a id="d9e5730"> </a><p class="title"><strong>To discover which internal VLAN tag is in use for a GRE
+            happens on this bridge.</p></li></ol></div><div class="procedure"><a id="d9e5739"> </a><p class="title"><strong>To discover which internal VLAN tag is in use for a GRE
           tunnel by using the <code class="literal">ovs-ofctl</code> command:</strong></p><ol class="procedure" type="1"><li class="step"><p>Find the <code class="code">provider:segmentation_id</code> of the
             network you're interested in. This is the same field used for the
             VLAN ID in VLAN-based networks:</p><pre class="screen"># neutron net-show --fields provider:segmentation_id &lt;network name&gt;
@@ -316,7 +316,7 @@ output:52,output:51,output:50,output:55,output:33
         similar to the l3-agents. DHCP namespaces are named
         <code class="code">qdhcp-&lt;uuid&gt;</code> and have a TAP device on the
         integration bridge. Debugging of DHCP issues usually involves working
-        inside this network namespace.<a id="d9e5776" class="indexterm"/></p></li></ol></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="failure_in_path"> </a>Finding a Failure in the Path</h2></div></div></div><p>Use ping to quickly find where a failure exists in the network path.
+        inside this network namespace.<a id="d9e5785" class="indexterm"/></p></li></ol></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="failure_in_path"> </a>Finding a Failure in the Path</h2></div></div></div><p>Use ping to quickly find where a failure exists in the network path.
     In an instance, first see whether you can ping an external host, such as
     google.com. If you can, then there shouldn't be a network problem at
     all.</p><p>If you can't, try pinging the IP address of the compute node where
@@ -326,12 +326,12 @@ output:52,output:51,output:50,output:55,output:33
     connecting the compute node's main NIC with the vnet NIC of the
     instance.</p><p>One last test is to launch a second instance and see whether the two
     instances can ping each other. If they can, the issue might be related to
-    the firewall on the compute node.<a id="d9e5783" class="indexterm"/><a id="d9e5785" class="indexterm"/></p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="tcpdump"> </a>tcpdump</h2></div></div></div><p>One great, although very in-depth, way of troubleshooting network
+    the firewall on the compute node.<a id="d9e5792" class="indexterm"/><a id="d9e5794" class="indexterm"/></p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="tcpdump"> </a>tcpdump</h2></div></div></div><p>One great, although very in-depth, way of troubleshooting network
     issues is to use <code class="literal">tcpdump</code>. We recommended using
     <code class="literal">tcpdump</code> at several points along the network path to
     correlate where a problem might be. If you prefer working with a GUI,
     either live or by using a <code class="literal">tcpdump</code> capture, do also
-    check out <a class="link" href="http://www.wireshark.org/" title="Wireshark" target="_top">Wireshark</a>.<a id="d9e5795" class="indexterm"/></p><p>For example, run the following command:</p><pre class="screen">tcpdump -i any -n -v \ 'icmp[icmptype] = icmp-echoreply or icmp[icmptype] =
+    check out <a class="link" href="http://www.wireshark.org/" title="Wireshark" target="_top">Wireshark</a>.<a id="d9e5804" class="indexterm"/></p><p>For example, run the following command:</p><pre class="screen">tcpdump -i any -n -v \ 'icmp[icmptype] = icmp-echoreply or icmp[icmptype] =
 icmp-echo'</pre><p>Run this on the command line of the following areas:</p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>An external server outside of the cloud</p></li><li class="listitem"><p>A compute node</p></li><li class="listitem"><p>An instance running on that compute node</p></li></ol></div><p>In this example, these locations have the following IP
     addresses:</p><pre class="screen">Instance
                           10.0.2.24
@@ -378,7 +378,7 @@ proto ICMP (1), length 84)
     node, forwarding floating IP traffic, and managing security group rules.
     In addition to managing the rules, comments (if supported) will be
     inserted in the rules to help indicate the purpose
-    of the rule.  <a id="d9e5824" class="indexterm"/><a id="d9e5826" class="indexterm"/></p><p>The following comments are added to the rule set as
+    of the rule.  <a id="d9e5833" class="indexterm"/><a id="d9e5835" class="indexterm"/></p><p>The following comments are added to the rule set as
     appropriate:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Perform source NAT on outgoing traffic.</p></li><li class="listitem"><p>Default drop rule for unmatched traffic.</p></li><li class="listitem"><p>Direct traffic from the VM interface to the security group
         chain.</p></li><li class="listitem"><p>Jump to the VM specific chain.</p></li><li class="listitem"><p>Direct incoming traffic from VM to the security group
         chain.</p></li><li class="listitem"><p>Allow traffic from defined IP/MAC pairs.</p></li><li class="listitem"><p>Drop traffic without an IP/MAC allow rule.</p></li><li class="listitem"><p>Allow DHCP client traffic.</p></li><li class="listitem"><p>Prevent DHCP Spoofing by VM.</p></li><li class="listitem"><p>Send unmatched traffic to the fallback chain.</p></li><li class="listitem"><p>Drop packets that are not associated with a state.</p></li><li class="listitem"><p>Direct packets associated with a known session to the
@@ -387,7 +387,7 @@ proto ICMP (1), length 84)
       restart <code class="literal">nova-network</code> or
       <code class="literal">neutron-server</code>. You must use OpenStack to
       manage iptables.</p></td></tr></table></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="network_config_database"> </a>Network Configuration in the Database for nova-network</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="network_troubleshooting.html#dissasociate_floating_ip">Manually Disassociating a Floating IP</a></span></dt></dl></div><p>With <code class="literal">nova-network</code>, the nova database table
-    contains a few tables with networking information:<a id="d9e5867" class="indexterm"/><a id="d9e5870" class="indexterm"/></p><div class="variablelist"><dl><dt><span class="term"><code class="literal">fixed_ips</code></span></dt><dd><p>Contains each possible IP address for the subnet(s) added to
+    contains a few tables with networking information:<a id="d9e5876" class="indexterm"/><a id="d9e5879" class="indexterm"/></p><div class="variablelist"><dl><dt><span class="term"><code class="literal">fixed_ips</code></span></dt><dd><p>Contains each possible IP address for the subnet(s) added to
           Compute. This table is related to the <code class="literal">instances</code>
           table by way of the <code class="literal">fixed_ips.instance_uuid</code>
           column.</p></dd><dt><span class="term"><code class="literal">floating_ips</code></span></dt><dd><p>Contains each floating IP address that was added to Compute.
@@ -400,13 +400,13 @@ proto ICMP (1), length 84)
     IP.</p><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="dissasociate_floating_ip"> </a>Manually Disassociating a Floating IP</h3></div></div></div><p>Sometimes an instance is terminated but the floating IP was not
       correctly de-associated from that instance. Because the database is in
       an inconsistent state, the usual tools to disassociate the IP no longer
-      work. To fix this, you must manually update the database.<a id="d9e5899" class="indexterm"/><a id="d9e5902" class="indexterm"/></p><p>First, find the UUID of the instance in question:</p><pre class="screen">mysql&gt; select uuid from instances where hostname = 'hostname';</pre><p>Next, find the fixed IP entry for that UUID:</p><pre class="screen">mysql&gt; select * from fixed_ips where instance_uuid = '&lt;uuid&gt;';</pre><p>You can now get the related floating IP entry:</p><pre class="screen">mysql&gt; select * from floating_ips where fixed_ip_id = '&lt;fixed_ip_id&gt;';</pre><p>And finally, you can disassociate the floating IP:</p><pre class="screen">mysql&gt; update floating_ips set fixed_ip_id = NULL, host = NULL where
+      work. To fix this, you must manually update the database.<a id="d9e5908" class="indexterm"/><a id="d9e5911" class="indexterm"/></p><p>First, find the UUID of the instance in question:</p><pre class="screen">mysql&gt; select uuid from instances where hostname = 'hostname';</pre><p>Next, find the fixed IP entry for that UUID:</p><pre class="screen">mysql&gt; select * from fixed_ips where instance_uuid = '&lt;uuid&gt;';</pre><p>You can now get the related floating IP entry:</p><pre class="screen">mysql&gt; select * from floating_ips where fixed_ip_id = '&lt;fixed_ip_id&gt;';</pre><p>And finally, you can disassociate the floating IP:</p><pre class="screen">mysql&gt; update floating_ips set fixed_ip_id = NULL, host = NULL where
        fixed_ip_id = '&lt;fixed_ip_id&gt;';</pre><p>You can optionally also deallocate the IP from the user's
       pool:</p><pre class="screen">mysql&gt; update floating_ips set project_id = NULL where
        fixed_ip_id = '&lt;fixed_ip_id&gt;';</pre></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="debug_dhcp_issues"> </a>Debugging DHCP Issues with nova-network</h2></div></div></div><p>One common networking problem is that an instance boots successfully
     but is not reachable because it failed to obtain an IP address from
     dnsmasq, which is the DHCP server that is launched by the
-    <code class="literal">nova-network</code> service.<a id="d9e5918" class="indexterm"/><a id="d9e5921" class="indexterm"/></p><p>The simplest way to identify that this is the problem with your
+    <code class="literal">nova-network</code> service.<a id="d9e5927" class="indexterm"/><a id="d9e5930" class="indexterm"/></p><p>The simplest way to identify that this is the problem with your
     instance is to look at the console output of your instance. If DHCP
     failed, you can retrieve the console log by doing:</p><pre class="screen">$ nova console-log &lt;instance name or uuid&gt;</pre><p>If your instance failed to obtain an IP through DHCP, some messages
     should appear in the console. For example, for the Cirros image, you see
@@ -513,7 +513,7 @@ nobody 2438 0.0 0.0 27540 1096 ? S Feb26 0:00 /usr/sbin/dnsmasq --strict-order
     the SSH server does a reverse DNS lookup on the IP address that you are
     connecting from. If DNS lookup isn't working on your instances, then you
     must wait for the DNS reverse lookup timeout to occur for the SSH login
-    process to complete.<a id="d9e5967" class="indexterm"/><a id="d9e5970" class="indexterm"/></p><p>When debugging DNS issues, start by making sure that the host where
+    process to complete.<a id="d9e5976" class="indexterm"/><a id="d9e5979" class="indexterm"/></p><p>When debugging DNS issues, start by making sure that the host where
     the dnsmasq process for that instance runs is able to correctly resolve.
     If the host cannot resolve, then the instances won't be able to
     either.</p><p>A quick way to check whether DNS is working is to resolve a hostname
@@ -556,7 +556,7 @@ proto UDP (17), length 75)
     practice, given the preceding configuration, the most common issues are
     being sure that the required bridges (<code class="code">br-int</code>,
     <code class="code">br-tun</code>, and <code class="code">br-ex</code>) exist and have the proper
-    ports connected to them.<a id="d9e5999" class="indexterm"/><a id="d9e6002" class="indexterm"/></p><p>The Open vSwitch driver should and usually does manage this
+    ports connected to them.<a id="d9e6008" class="indexterm"/><a id="d9e6011" class="indexterm"/></p><p>The Open vSwitch driver should and usually does manage this
     automatically, but it is useful to know how to do this by hand with the
     <code class="literal">ovs-vsctl</code> command. This command has many more
     subcommands than we will use here; see the man page or use
@@ -605,7 +605,7 @@ gre-&lt;N&gt;
     it is enabled in your environment, your network nodes will run their
     dhcp-agents and l3-agents in isolated namespaces. Network interfaces and
     traffic on those interfaces will not be visible in the default
-    namespace.<a id="d9e6034" class="indexterm"/><a id="d9e6036" class="indexterm"/><a id="d9e6038" class="indexterm"/></p><p>To see whether you are using namespaces, run <code class="literal">ip
+    namespace.<a id="d9e6043" class="indexterm"/><a id="d9e6045" class="indexterm"/><a id="d9e6047" class="indexterm"/></p><p>To see whether you are using namespaces, run <code class="literal">ip
     netns</code>:</p><pre class="screen"># ip netns
 qdhcp-e521f9d0-a1bd-4ff4-bc81-78a60dd88fe5
 qdhcp-a4d00c60-f005-400e-a24c-1bf8b8308f98
@@ -653,7 +653,7 @@ qrouter-8a4ce760-ab55-4f2f-8ec5-a2e858ce0d39
 	  var lineFeed = "%0A";
 	  var docUrl = "URL: " + window.location;
 	  var bugTitle = "Chapter 12. Network Troubleshooting in OpenStack Operations Guide";
-	  var buildTime = "Built: 2015-10-20T18:33:32+02:00";
+	  var buildTime = "Built: 2015-10-20T23:42:21+02:00";
 	  var gitSha = "git SHA: c736dbf695b9b6d705875e6f24f6f8ec044c4e31";
 	  var fieldComment = encodeURI(buildTime) +  lineFeed + encodeURI(gitSha) + lineFeed + encodeURI(docUrl) + lineFeed + encodeURI(sourceFile) + lineFeed + encodeURI(xmlId);
 	  logABug(bugTitle,fieldComment);

@@ -3,7 +3,7 @@
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:exsl="http://exslt.org/common" xmlns:ng="http://docbook.org/docbook-ng" xmlns:fb="http://ogp.me/ns/fb#"><head>
 <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"/>
-<title>Rolling Back a Failed Upgrade - OpenStack Operations Guide</title><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><meta name="mavenGroupId" content="org.openstack.docs"/><meta name="mavenArtifactId" content="openstack-ops-manual"/><meta name="mavenVersionId" content="1.0.0"/><link rel="home" href="index.html" title="OpenStack Operations Guide"/><link rel="up" href="ch_ops_upgrades.html" title="Chapter 18. Upgrades"/><link rel="prev" href="ops_upgrades-final-steps.html" title="Cleaning Up and Final Configuration File Updates"/><link rel="next" href="use-cases.html" title="Appendix A. Use Cases"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="git-sha" content="c736dbf695b9b6d705875e6f24f6f8ec044c4e31"/><meta name="buildTime" content="2015-10-20T18:33:36+02:00"/><script type="text/javascript">
+<title>Rolling Back a Failed Upgrade - OpenStack Operations Guide</title><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><meta name="mavenGroupId" content="org.openstack.docs"/><meta name="mavenArtifactId" content="openstack-ops-manual"/><meta name="mavenVersionId" content="1.0.0"/><link rel="home" href="index.html" title="OpenStack Operations Guide"/><link rel="up" href="ch_ops_upgrades.html" title="Chapter 18. Upgrades"/><link rel="prev" href="ops_upgrades-final-steps.html" title="Cleaning Up and Final Configuration File Updates"/><link rel="next" href="use-cases.html" title="Appendix A. Use Cases"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="git-sha" content="c736dbf695b9b6d705875e6f24f6f8ec044c4e31"/><meta name="buildTime" content="2015-10-20T23:42:25+02:00"/><script type="text/javascript">
             //The id for tree cookie
             var treeCookieId = "treeview-openstack-operations-guide";
             var language = "en";
@@ -46,7 +46,7 @@
         not supported, and the only method available to get back to a
         prior database version will be to restore from backup.</p><p>This section provides guidance for rolling back to a previous
        release of OpenStack. Although only tested on Ubuntu, other
-      distributions follow a similar <span class="keep-together">procedure</span>.<a id="d9e9127" class="indexterm"/><a id="d9e9130" class="indexterm"/></p><p>In this section, we consider only the most immediate case:
+      distributions follow a similar <span class="keep-together">procedure</span>.<a id="d9e9136" class="indexterm"/><a id="d9e9139" class="indexterm"/></p><p>In this section, we consider only the most immediate case:
       you have taken down production management services in
       preparation for an upgrade, completed part of the upgrade
       process, discovered one or more problems not encountered during
@@ -68,7 +68,7 @@
       it back. Generally, consider rolling back as the very last
       option.</p><p>The following steps described for Ubuntu have worked on at
       least one production environment, but they might not work for
-      all environments.</p><div class="procedure"><a id="d9e9144"> </a><p class="title"><strong>To perform the rollback from Havana to Grizzly</strong></p><ol class="procedure" type="1"><li class="step"><p>Stop all OpenStack services.</p></li><li class="step"><p>Copy contents of configuration backup directories
+      all environments.</p><div class="procedure"><a id="d9e9153"> </a><p class="title"><strong>To perform the rollback from Havana to Grizzly</strong></p><ol class="procedure" type="1"><li class="step"><p>Stop all OpenStack services.</p></li><li class="step"><p>Copy contents of configuration backup directories
             <code class="filename">/etc/&lt;service&gt;.grizzly</code> that you
           created during the upgrade process back to
             <code class="filename">/etc/&lt;service&gt;</code>:</p></li><li class="step"><p>Restore databases from the
@@ -212,7 +212,7 @@ python-novaclient=1:2.13.0-0ubuntu1~cloud0
 	  var lineFeed = "%0A";
 	  var docUrl = "URL: " + window.location;
 	  var bugTitle = "Rolling Back a Failed Upgrade in OpenStack Operations Guide";
-	  var buildTime = "Built: 2015-10-20T18:33:36+02:00";
+	  var buildTime = "Built: 2015-10-20T23:42:25+02:00";
 	  var gitSha = "git SHA: c736dbf695b9b6d705875e6f24f6f8ec044c4e31";
 	  var fieldComment = encodeURI(buildTime) +  lineFeed + encodeURI(gitSha) + lineFeed + encodeURI(docUrl) + lineFeed + encodeURI(sourceFile) + lineFeed + encodeURI(xmlId);
 	  logABug(bugTitle,fieldComment);

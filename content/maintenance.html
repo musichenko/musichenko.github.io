@@ -3,7 +3,7 @@
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:exsl="http://exslt.org/common" xmlns:ng="http://docbook.org/docbook-ng" xmlns:fb="http://ogp.me/ns/fb#"><head>
 <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"/>
-<title>Chapter 11. Maintenance, Failures, and Debugging - OpenStack Operations Guide</title><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><meta name="mavenGroupId" content="org.openstack.docs"/><meta name="mavenArtifactId" content="openstack-ops-manual"/><meta name="mavenVersionId" content="1.0.0"/><link rel="home" href="index.html" title="OpenStack Operations Guide"/><link rel="up" href="operations.html" title="Operations"/><link rel="prev" href="user-facing-outro.html" title="Good Luck!"/><link rel="next" href="network_troubleshooting.html" title="Chapter 12. Network Troubleshooting"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="git-sha" content="c736dbf695b9b6d705875e6f24f6f8ec044c4e31"/><meta name="buildTime" content="2015-10-20T18:33:32+02:00"/><script type="text/javascript">
+<title>Chapter 11. Maintenance, Failures, and Debugging - OpenStack Operations Guide</title><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><meta name="mavenGroupId" content="org.openstack.docs"/><meta name="mavenArtifactId" content="openstack-ops-manual"/><meta name="mavenVersionId" content="1.0.0"/><link rel="home" href="index.html" title="OpenStack Operations Guide"/><link rel="up" href="operations.html" title="Operations"/><link rel="prev" href="user-facing-outro.html" title="Good Luck!"/><link rel="next" href="network_troubleshooting.html" title="Chapter 12. Network Troubleshooting"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="git-sha" content="c736dbf695b9b6d705875e6f24f6f8ec044c4e31"/><meta name="buildTime" content="2015-10-20T23:42:21+02:00"/><script type="text/javascript">
             //The id for tree cookie
             var treeCookieId = "treeview-openstack-operations-guide";
             var language = "en";
@@ -53,10 +53,10 @@
       is to simply do it off-hours, such as at 1 a.m. or 2 a.m. This strategy
       affects fewer users. If your cloud controller or storage proxy is too
       important to have unavailable at any point in time, you must look into
-      high-availability options.<a id="d9e4952" class="indexterm"/><a id="d9e4955" class="indexterm"/></p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="reboot_cloud_controller"> </a>Rebooting a Cloud Controller or Storage Proxy</h3></div></div></div><p>All in all, just issue the "reboot" command. The operating system
+      high-availability options.<a id="d9e4961" class="indexterm"/><a id="d9e4964" class="indexterm"/></p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="reboot_cloud_controller"> </a>Rebooting a Cloud Controller or Storage Proxy</h3></div></div></div><p>All in all, just issue the "reboot" command. The operating system
       cleanly shuts down services and then automatically reboots. If you want
       to be very thorough, run your backup jobs just before you
-      reboot.<a id="d9e4961" class="indexterm"/><a id="d9e4964" class="indexterm"/><a id="d9e4967" class="indexterm"/><a id="d9e4970" class="indexterm"/></p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="after_a_cc_reboot"> </a>After a Cloud Controller or Storage Proxy Reboots</h3></div></div></div><p>After a cloud controller reboots, ensure that all required
+      reboot.<a id="d9e4970" class="indexterm"/><a id="d9e4973" class="indexterm"/><a id="d9e4976" class="indexterm"/><a id="d9e4979" class="indexterm"/></p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="after_a_cc_reboot"> </a>After a Cloud Controller or Storage Proxy Reboots</h3></div></div></div><p>After a cloud controller reboots, ensure that all required
       services were successfully started. The following commands use
       <code class="code">ps</code> and <code class="code">grep</code> to determine if nova, glance, and
       keystone are currently running:</p><pre class="programlisting"># ps aux | grep nova-
@@ -77,7 +77,7 @@
       your cloud controller has failed, your users definitely will.
       Unfortunately, this is a rough situation. The cloud controller is an
       integral part of your cloud. If you have only one controller, you will
-      have many missing services if it goes down.<a id="d9e4989" class="indexterm"/><a id="d9e4992" class="indexterm"/></p><p>To avoid this situation, create a highly available cloud
+      have many missing services if it goes down.<a id="d9e4998" class="indexterm"/><a id="d9e5001" class="indexterm"/></p><p>To avoid this situation, create a highly available cloud
       controller cluster. This is outside the scope of this document, but you
       can read more in the draft <a class="link" href="http://docs.openstack.org/high-availability-guide/content/ch-intro.html" target="_top">OpenStack High Availability
       Guide</a>.</p><p>The next best approach is to use a configuration-management tool,
@@ -91,7 +91,7 @@
       (such as a software or hardware upgrade), first ensure that all hosted
       instances have been moved off the node. If your cloud is utilizing
       shared storage, use the <code class="code">nova live-migration</code> command. First,
-      get a list of instances that need to be moved:<a id="d9e5008" class="indexterm"/><a id="d9e5011" class="indexterm"/></p><pre class="programlisting"># nova list --host c01.example.com --all-tenants</pre><p>Next, migrate them one by one:</p><pre class="programlisting"># nova live-migration &lt;uuid&gt; c02.example.com</pre><p>If you are not using shared storage, you can use the
+      get a list of instances that need to be moved:<a id="d9e5017" class="indexterm"/><a id="d9e5020" class="indexterm"/></p><pre class="programlisting"># nova list --host c01.example.com --all-tenants</pre><p>Next, migrate them one by one:</p><pre class="programlisting"># nova live-migration &lt;uuid&gt; c02.example.com</pre><p>If you are not using shared storage, you can use the
       <code class="code">--block-migrate</code> option:</p><pre class="programlisting"># nova live-migration --block-migrate &lt;uuid&gt; c02.example.com</pre><p>After you have migrated all instances, ensure that the
       <code class="code">nova-compute</code> service has <span class="keep-together">stopped</span>:</p><pre class="programlisting"># stop nova-compute</pre><p>If you use a configuration-management system, such as Puppet, that
       ensures the <code class="code">nova-compute</code> service is always running, you can
@@ -103,7 +103,7 @@
 # mv /root/tmp/nova-compute /etc/init.d/</pre><p>Then start the <code class="code">nova-compute</code> service:</p><pre class="programlisting"># start nova-compute</pre><p>You can now optionally migrate the instances back to their
       original compute node.</p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="after_compute_node_reboot"> </a>After a Compute Node Reboots</h3></div></div></div><p>When you reboot a compute node, first verify that it booted
       successfully. This includes ensuring that the <code class="code">nova-compute</code>
-      service is running:<a id="d9e5039" class="indexterm"/><a id="d9e5042" class="indexterm"/></p><pre class="programlisting"># ps aux | grep nova-compute
+      service is running:<a id="d9e5048" class="indexterm"/><a id="d9e5051" class="indexterm"/></p><pre class="programlisting"># ps aux | grep nova-compute
 # status nova-compute</pre><p>Also ensure that it has successfully connected to the AMQP
       server:</p><pre class="programlisting"># grep AMQP /var/log/nova/nova-compute
 2013-02-26 09:51:31 12427 INFO nova.openstack.common.rpc.common [-] Connected to AMQP server on 199.116.232.36:5672</pre><p>After the compute node is successfully running, you must deal with
@@ -111,7 +111,7 @@
       are running. Depending on your SLA with your users or customers, you
       might have to start each instance and ensure that they start
       correctly.</p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="maintenance_instances"> </a>Instances</h3></div></div></div><p>You can create a list of instances that are hosted on the compute
-      node by performing the following command:<a id="d9e5052" class="indexterm"/><a id="d9e5055" class="indexterm"/></p><pre class="programlisting"># nova list --host c01.example.com --all-tenants</pre><p>After you have the list, you can use the nova command to start
+      node by performing the following command:<a id="d9e5061" class="indexterm"/><a id="d9e5064" class="indexterm"/></p><pre class="programlisting"># nova list --host c01.example.com --all-tenants</pre><p>After you have the list, you can use the nova command to start
       each instance:</p><pre class="programlisting"># nova reboot &lt;uuid&gt;</pre><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../common/images/admon/note.png"/></td><th align="left">Note</th></tr><tr><td align="left" valign="top"><p>Any time an instance shuts down unexpectedly, it might have
         problems on boot. For example, the instance might require an
         <code class="code">fsck</code> on the root partition. If this happens, the user can
@@ -127,8 +127,8 @@
       displaying a boot failure or kernel panic error messages. This could be
       an indication of file system corruption on the VM itself. If you need to
       recover files or inspect the content of the instance, qemu-nbd can be
-      used to mount the disk.<a id="d9e5075" class="indexterm"/></p><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Warning"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Warning]" src="../common/images/admon/warning.png"/></td><th align="left">Warning</th></tr><tr><td align="left" valign="top"><p>If you access or view the user's content and data, get approval
-        first!<a id="d9e5080" class="indexterm"/></p></td></tr></table></div><p>To access the instance's disk
+      used to mount the disk.<a id="d9e5084" class="indexterm"/></p><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Warning"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Warning]" src="../common/images/admon/warning.png"/></td><th align="left">Warning</th></tr><tr><td align="left" valign="top"><p>If you access or view the user's content and data, get approval
+        first!<a id="d9e5089" class="indexterm"/></p></td></tr></table></div><p>To access the instance's disk
       (<code class="literal">/var/lib/nova/instances/instance-<em class="replaceable"><code>xxxxxx</code></em>/disk</code>),
       use the following steps:</p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>Suspend the instance using the <code class="literal">virsh</code>
           command.</p></li><li class="listitem"><p>Connect the qemu-nbd device to the disk.</p></li><li class="listitem"><p>Mount the qemu-nbd device.</p></li><li class="listitem"><p>Unmount the device after inspecting.</p></li><li class="listitem"><p>Disconnect the qemu-nbd device.</p></li><li class="listitem"><p>Resume the instance.</p></li></ol></div><p>If you do not follow steps 4 through 6, OpenStack Compute cannot
@@ -139,7 +139,7 @@
       any files because this could change the access control lists (ACLs) that
       are used to determine which accounts can perform what operations on
       files and directories. Changing ACLs can make the instance unbootable if
-      it is not already.<a id="d9e5102" class="indexterm"/></p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>Suspend the instance using the <code class="literal">virsh</code>
+      it is not already.<a id="d9e5111" class="indexterm"/></p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>Suspend the instance using the <code class="literal">virsh</code>
           command, taking note of the internal ID:</p><pre class="programlisting"># virsh list
 Id Name                 State
 ----------------------------------
@@ -197,7 +197,7 @@ Id Name                 State
 
 # virsh resume 30
 Domain 30 resumed</pre></li></ol></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="volumes"> </a>Volumes</h3></div></div></div><p>If the affected instances also had attached volumes, first
-      generate a list of instance and volume UUIDs:<a id="d9e5133" class="indexterm"/><a id="d9e5136" class="indexterm"/></p><pre class="programlisting">mysql&gt; select nova.instances.uuid as instance_uuid,
+      generate a list of instance and volume UUIDs:<a id="d9e5142" class="indexterm"/><a id="d9e5145" class="indexterm"/></p><pre class="programlisting">mysql&gt; select nova.instances.uuid as instance_uuid,
 cinder.volumes.id as volume_uuid, cinder.volumes.status,
 cinder.volumes.attach_status, cinder.volumes.mountpoint,
 cinder.volumes.display_name from cinder.volumes
@@ -217,7 +217,7 @@ inner join nova.instances on cinder.volumes.instance_uuid=nova.instances.uuid
       running on that compute node will not be available. Just like with a
       cloud controller failure, if your infrastructure monitoring does not
       detect a failed compute node, your users will notify you because of
-      their lost instances.<a id="d9e5148" class="indexterm"/><a id="d9e5151" class="indexterm"/></p><p>If a compute node fails and won't be fixed for a few hours (or at
+      their lost instances.<a id="d9e5157" class="indexterm"/><a id="d9e5160" class="indexterm"/></p><p>If a compute node fails and won't be fixed for a few hours (or at
       all), you can relaunch all instances that are hosted on the failed node
       if you use shared storage for
       <code class="code">/var/lib/nova/instances</code>.</p><p>To do this, generate a list of instance UUIDs that are hosted on
@@ -233,7 +233,7 @@ inner join nova.instances on cinder.volumes.instance_uuid=nova.instances.uuid
       compute nodes. This directory contains the libvirt KVM file-based disk
       images for the instances that are hosted on that compute node. If you
       are not running your cloud in a shared storage environment, this
-      directory is unique across all compute nodes.<a id="d9e5168" class="indexterm"/><a id="d9e5170" class="indexterm"/></p><p><code class="code">/var/lib/nova/instances</code> contains two types of
+      directory is unique across all compute nodes.<a id="d9e5177" class="indexterm"/><a id="d9e5179" class="indexterm"/></p><p><code class="code">/var/lib/nova/instances</code> contains two types of
       directories.</p><p>The first is the <code class="code">_base</code> directory. This contains all
       the cached base images from glance for each unique image that has been
       launched on that compute node. Files ending in <code class="code">_20</code> (or a
@@ -255,9 +255,9 @@ inner join nova.instances on cinder.volumes.instance_uuid=nova.instances.uuid
     object storage node issues is a lot easier than dealing with compute node
     issues.</p><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="reboot_storage_node"> </a>Rebooting a Storage Node</h3></div></div></div><p>If a storage node requires a reboot, simply reboot it. Requests
       for data hosted on that node are redirected to other copies while the
-      server is rebooting.<a id="d9e5193" class="indexterm"/><a id="d9e5195" class="indexterm"/><a id="d9e5198" class="indexterm"/></p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="shut_down_storage_node"> </a>Shutting Down a Storage Node</h3></div></div></div><p>If you need to shut down a storage node for an extended period of
+      server is rebooting.<a id="d9e5202" class="indexterm"/><a id="d9e5204" class="indexterm"/><a id="d9e5207" class="indexterm"/></p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="shut_down_storage_node"> </a>Shutting Down a Storage Node</h3></div></div></div><p>If you need to shut down a storage node for an extended period of
       time (one or more days), consider removing the node from the storage
-      ring. For example:<a id="d9e5204" class="indexterm"/></p><pre class="programlisting"># swift-ring-builder account.builder remove &lt;ip address of storage node&gt;
+      ring. For example:<a id="d9e5213" class="indexterm"/></p><pre class="programlisting"># swift-ring-builder account.builder remove &lt;ip address of storage node&gt;
 # swift-ring-builder container.builder remove &lt;ip address of storage node&gt;
 # swift-ring-builder object.builder remove &lt;ip address of storage node&gt;
 # swift-ring-builder account.builder rebalance
@@ -274,14 +274,14 @@ inner join nova.instances on cinder.volumes.instance_uuid=nova.instances.uuid
       relatively easy. This assumes that your Object Storage environment is
       configured correctly, where the data that is stored on the failed drive
       is also replicated to other drives in the Object Storage
-      environment.<a id="d9e5216" class="indexterm"/><a id="d9e5218" class="indexterm"/></p><p>This example assumes that <code class="code">/dev/sdb</code> has failed.</p><p>First, unmount the disk:</p><pre class="programlisting"># umount /dev/sdb</pre><p>Next, physically remove the disk from the server and replace it
+      environment.<a id="d9e5225" class="indexterm"/><a id="d9e5227" class="indexterm"/></p><p>This example assumes that <code class="code">/dev/sdb</code> has failed.</p><p>First, unmount the disk:</p><pre class="programlisting"># umount /dev/sdb</pre><p>Next, physically remove the disk from the server and replace it
       with a working disk.</p><p>Ensure that the operating system has recognized the new
       disk:</p><pre class="programlisting"># dmesg | tail</pre><p>You should see a message about <code class="code">/dev/sdb</code>.</p><p>Because it is recommended to not use partitions on a swift disk,
       simply format the disk as a whole:</p><pre class="programlisting"># mkfs.xfs /dev/sdb</pre><p>Finally, mount the disk:</p><pre class="programlisting"># mount -a</pre><p>Swift should notice the new disk and that no data exists. It then
       begins replicating the data to the disk from the other existing
       replicas.</p></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="complete_failure"> </a>Handling a Complete Failure</h2></div></div></div><p>A common way of dealing with the recovery from a full system
     failure, such as a power outage of a data center, is to assign each
-    service a priority, and restore in order. <a class="xref" href="maintenance.html#restor-prior-table" title="Table 11.1. Example service restoration priority list">Table 11.1, “Example service restoration priority list”</a> shows an example.<a id="d9e5239" class="indexterm"/><a id="d9e5241" class="indexterm"/></p><table rules="all" id="restor-prior-table"><caption>Table 11.1. Example service restoration priority list</caption><thead><tr>
+    service a priority, and restore in order. <a class="xref" href="maintenance.html#restor-prior-table" title="Table 11.1. Example service restoration priority list">Table 11.1, “Example service restoration priority list”</a> shows an example.<a id="d9e5248" class="indexterm"/><a id="d9e5250" class="indexterm"/></p><table rules="all" id="restor-prior-table"><caption>Table 11.1. Example service restoration priority list</caption><thead><tr>
           <th>Priority</th>
 
           <th>Services</th>
@@ -350,7 +350,7 @@ inner join nova.instances on cinder.volumes.instance_uuid=nova.instances.uuid
     configuration-management tool. These tools automate the process of
     ensuring that all your nodes are configured properly and encourage you to
     maintain your configuration information (such as packages and
-    configuration options) in a version-controlled repository.<a id="d9e5327" class="indexterm"/><a id="d9e5329" class="indexterm"/><a id="d9e5332" class="indexterm"/></p><div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Tip"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Tip]" src="../common/images/admon/tip.png"/></td><th align="left">Tip</th></tr><tr><td align="left" valign="top"><p>Several configuration-management tools are available, and this
+    configuration options) in a version-controlled repository.<a id="d9e5336" class="indexterm"/><a id="d9e5338" class="indexterm"/><a id="d9e5341" class="indexterm"/></p><div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Tip"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Tip]" src="../common/images/admon/tip.png"/></td><th align="left">Tip</th></tr><tr><td align="left" valign="top"><p>Several configuration-management tools are available, and this
       guide does not recommend a specific one. The two most popular ones in
       the OpenStack community are <a class="link" href="https://puppetlabs.com/" target="_top">Puppet</a>, with available
       <a class="link" href="https://github.com/puppetlabs/puppetlabs-openstack" target="_top">OpenStack Puppet
@@ -361,7 +361,7 @@ inner join nova.instances on cinder.volumes.instance_uuid=nova.instances.uuid
     that uses the hardware to its limits—maxing out RAM, CPU, disk, and
     network. Many options are available, and normally double as benchmark
     software, so you also get a good idea of the performance of your
-    system.<a id="d9e5349" class="indexterm"/><a id="d9e5352" class="indexterm"/></p><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="add_new_node"> </a>Adding a Compute Node</h3></div></div></div><p>If you find that you have reached or are reaching the capacity
+    system.<a id="d9e5358" class="indexterm"/><a id="d9e5361" class="indexterm"/></p><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="add_new_node"> </a>Adding a Compute Node</h3></div></div></div><p>If you find that you have reached or are reaching the capacity
       limit of your computing resources, you should plan to add additional
       compute nodes. Adding more nodes is quite easy. The process for adding
       compute nodes is the same as when the initial compute nodes were
@@ -371,7 +371,7 @@ inner join nova.instances on cinder.volumes.instance_uuid=nova.instances.uuid
       Once the Compute service has been installed and configured in the same
       way as the other compute nodes, it automatically attaches itself to the
       cloud. The cloud controller notices the new node(s) and begins
-      scheduling instances to launch there.<a id="d9e5358" class="indexterm"/><a id="d9e5361" class="indexterm"/><a id="d9e5364" class="indexterm"/></p><p>If your OpenStack Block Storage nodes are separate from your
+      scheduling instances to launch there.<a id="d9e5367" class="indexterm"/><a id="d9e5370" class="indexterm"/><a id="d9e5373" class="indexterm"/></p><p>If your OpenStack Block Storage nodes are separate from your
       compute nodes, the same procedure still applies because the same queuing
       and polling system is used in both services.</p><p>We recommend that you use the same hardware for new compute and
       block storage nodes. At the very least, ensure that the CPUs are similar
@@ -384,7 +384,7 @@ inner join nova.instances on cinder.volumes.instance_uuid=nova.instances.uuid
       Simply rerun this command on the object storage proxy server for all
       disks on the new object storage node. Once this has been done, rebalance
       the ring and copy the resulting ring files to the other storage
-      nodes.<a id="d9e5372" class="indexterm"/></p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../common/images/admon/note.png"/></td><th align="left">Note</th></tr><tr><td align="left" valign="top"><p>If your new object storage node has a different number of disks
+      nodes.<a id="d9e5381" class="indexterm"/></p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../common/images/admon/note.png"/></td><th align="left">Note</th></tr><tr><td align="left" valign="top"><p>If your new object storage node has a different number of disks
         than the original nodes have, the command to add the new node is
         different from the original commands. These parameters vary from
         environment to environment.</p></td></tr></table></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="replace_components"> </a>Replacing Components</h3></div></div></div><p>Failures of hardware are common in large-scale deployments such as
@@ -398,7 +398,7 @@ inner join nova.instances on cinder.volumes.instance_uuid=nova.instances.uuid
     administration is applicable to these databases. OpenStack does not
     configure the databases out of the ordinary. Basic administration includes
     performance tweaking, high availability, backup, recovery, and repairing.
-    For more information, see a standard MySQL administration guide.<a id="d9e5383" class="indexterm"/><a id="d9e5386" class="indexterm"/></p><p>You can perform a couple of tricks with the database to either more
+    For more information, see a standard MySQL administration guide.<a id="d9e5392" class="indexterm"/><a id="d9e5395" class="indexterm"/></p><p>You can perform a couple of tricks with the database to either more
     quickly retrieve information or fix a data inconsistency error—for
     example, an instance was terminated, but the status was not updated in the
     database. These tricks are discussed throughout this book.</p><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="database_connect"> </a>Database Connectivity</h3></div></div></div><p>Review the component's configuration file to see how each
@@ -417,7 +417,7 @@ sql_connection = mysql+pymysql://cinder:password@cloud.example.com/cinder
       dedicated to this topic: <a class="link" href="http://dev.mysql.com/doc/refman/5.5/en/optimize-overview.html" target="_top">Optimization
       Overview</a>.</p></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="hdmy"> </a>HDWMY</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="maintenance.html#hourly">Hourly</a></span></dt><dt><span class="section"><a href="maintenance.html#daily">Daily</a></span></dt><dt><span class="section"><a href="maintenance.html#weekly">Weekly</a></span></dt><dt><span class="section"><a href="maintenance.html#monthly">Monthly</a></span></dt><dt><span class="section"><a href="maintenance.html#quarterly">Quarterly</a></span></dt><dt><span class="section"><a href="maintenance.html#semiannual">Semiannually</a></span></dt></dl></div><p>Here's a quick list of various to-do items for each hour, day, week,
     month, and year. Please note that these tasks are neither required nor
-    definitive but helpful ideas:<a id="d9e5407" class="indexterm"/></p><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="hourly"> </a>Hourly</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Check your monitoring system for alerts and act on
+    definitive but helpful ideas:<a id="d9e5416" class="indexterm"/></p><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="hourly"> </a>Hourly</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Check your monitoring system for alerts and act on
           them.</p></li><li class="listitem"><p>Check your ticket queue for new tickets.</p></li></ul></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="daily"> </a>Daily</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Check for instances in a failed or weird state and investigate
           why.</p></li><li class="listitem"><p>Check for security patches and apply them as needed.</p></li></ul></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="weekly"> </a>Weekly</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Check cloud usage: </p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>User quotas</p></li><li class="listitem"><p>Disk space</p></li><li class="listitem"><p>Image usage</p></li><li class="listitem"><p>Large instances</p></li><li class="listitem"><p>Network usage (bandwidth and IP usage)</p></li></ul></div></li><li class="listitem"><p>Verify your alert mechanisms are still working.</p></li></ul></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="monthly"> </a>Monthly</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Check usage and trends over the past month.</p></li><li class="listitem"><p>Check for user accounts that should be removed.</p></li><li class="listitem"><p>Check for operator accounts that should be removed.</p></li></ul></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="quarterly"> </a>Quarterly</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Review usage and trends over the past quarter.</p></li><li class="listitem"><p>Prepare any quarterly reports on usage and statistics.</p></li><li class="listitem"><p>Review and plan any necessary cloud additions.</p></li><li class="listitem"><p>Review and plan any major OpenStack upgrades.</p></li></ul></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="semiannual"> </a>Semiannually</h3></div></div></div><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Upgrade OpenStack.</p></li><li class="listitem"><p>Clean up after an OpenStack upgrade (any unused or new
           services to be aware of?).</p></li></ul></div></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="broken_component"> </a>Determining Which Component Is Broken</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="maintenance.html#tailing_logs">Tailing Logs</a></span></dt><dt><span class="section"><a href="maintenance.html#daemons_cli">Running Daemons on the CLI</a></span></dt></dl></div><p>OpenStack's collection of different components interact with each
@@ -426,9 +426,9 @@ sql_connection = mysql+pymysql://cinder:password@cloud.example.com/cinder
     <code class="code">glance-registry</code>, keystone, and potentially
     <code class="code">swift-proxy</code>. As a result, it is sometimes difficult to
     determine exactly where problems lie. Assisting in this is the purpose of
-    this section.<a id="d9e5476" class="indexterm"/><a id="d9e5479" class="indexterm"/></p><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="tailing_logs"> </a>Tailing Logs</h3></div></div></div><p>The first place to look is the log file related to the command you
+    this section.<a id="d9e5485" class="indexterm"/><a id="d9e5488" class="indexterm"/></p><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="tailing_logs"> </a>Tailing Logs</h3></div></div></div><p>The first place to look is the log file related to the command you
       are trying to run. For example, if <code class="code">nova list</code> is failing,
-      try tailing a nova log file and running the command again:<a id="d9e5486" class="indexterm"/></p><p>Terminal 1:</p><pre class="programlisting"># tail -f /var/log/nova/nova-api.log</pre><p>Terminal 2:</p><pre class="programlisting"># nova list</pre><p>Look for any errors or traces in the log file. For more
+      try tailing a nova log file and running the command again:<a id="d9e5495" class="indexterm"/></p><p>Terminal 1:</p><pre class="programlisting"># tail -f /var/log/nova/nova-api.log</pre><p>Terminal 2:</p><pre class="programlisting"># nova list</pre><p>Look for any errors or traces in the log file. For more
       information, see <a class="xref" href="logging_monitoring.html" title="Chapter 13. Logging and Monitoring">Chapter 13, <em>Logging and Monitoring</em></a>.</p><p>If the error indicates that the problem is with another component,
       switch to tailing that component's log file. For example, if nova cannot
       access glance, look at the <code class="literal">glance-api</code> log:</p><p>Terminal 1:</p><pre class="programlisting"># tail -f /var/log/glance/api.log</pre><p>Terminal 2:</p><pre class="programlisting"># nova list</pre><p>Wash, rinse, and repeat until you find the core cause of the
@@ -436,7 +436,7 @@ sql_connection = mysql+pymysql://cinder:password@cloud.example.com/cinder
       files. In this case, switch tactics and use a different command; maybe
       run the service directly on the command line. For example, if the
       <code class="code">glance-api</code> service refuses to start and stay running, try
-      launching the daemon from the command line:<a id="d9e5505" class="indexterm"/><a id="d9e5508" class="indexterm"/></p><pre class="programlisting"># sudo -u glance -H glance-api</pre><p>This might print the error and cause of the problem.</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../common/images/admon/note.png"/></td><th align="left">Note</th></tr><tr><td align="left" valign="top"><p>The <code class="literal">-H</code> flag is required when running the
+      launching the daemon from the command line:<a id="d9e5514" class="indexterm"/><a id="d9e5517" class="indexterm"/></p><pre class="programlisting"># sudo -u glance -H glance-api</pre><p>This might print the error and cause of the problem.</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../common/images/admon/note.png"/></td><th align="left">Note</th></tr><tr><td align="left" valign="top"><p>The <code class="literal">-H</code> flag is required when running the
           daemons with sudo because some daemons will write files relative to
           the user's home directory, and this write may fail if
           <code class="literal">-H</code> is left off.</p></td></tr></table></div><div class="sidebar"><div class="titlepage"><!--FOOBAR!--><div><div><p class="title"><strong>Example of Complexity</strong></p></div></div></div><p>One morning, a compute node failed to run any instances. The log
@@ -454,18 +454,18 @@ sql_connection = mysql+pymysql://cinder:password@cloud.example.com/cinder
         Simply starting d-bus set the entire chain back on track, and soon
         everything was back up and running.</p></div></div></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="uninstalling"> </a>Uninstalling</h2></div></div></div><p>While we'd always recommend using your automated deployment system
     to reinstall systems from scratch, sometimes you do need to remove
-    OpenStack from a system the hard way. Here's how:<a id="d9e5527" class="indexterm"/><a id="d9e5529" class="indexterm"/></p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Remove all packages.</p></li><li class="listitem"><p>Remove remaining files.</p></li><li class="listitem"><p>Remove databases.</p></li></ul></div><p>These steps depend on your underlying distribution, but in general
+    OpenStack from a system the hard way. Here's how:<a id="d9e5536" class="indexterm"/><a id="d9e5538" class="indexterm"/></p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Remove all packages.</p></li><li class="listitem"><p>Remove remaining files.</p></li><li class="listitem"><p>Remove databases.</p></li></ul></div><p>These steps depend on your underlying distribution, but in general
     you should be looking for "purge" commands in your package manager, like
     <code class="literal">aptitude purge ~c $package</code>. Following this, you can
     look for orphaned files in the directories referenced throughout this
     guide. To uninstall the database properly, refer to the manual appropriate
-    for the product in use.<a id="d9e5541" class="indexterm"/></p></div></div><script type="text/javascript" src="../common/main.js"><!----></script><div class="logabug" style="text-align: center"><a id="AskOOLink2" href="http://ask.openstack.org" target="_blank"><i class="icon-question"><!----></i>Questions? Discuss on ask.openstack.org</a><br/><a id="logABugLink2" href="" target="_blank"><i class="icon-bug"><!----></i>Found an error? Report a bug against this page</a></div><script language="JavaScript">
+    for the product in use.<a id="d9e5550" class="indexterm"/></p></div></div><script type="text/javascript" src="../common/main.js"><!----></script><div class="logabug" style="text-align: center"><a id="AskOOLink2" href="http://ask.openstack.org" target="_blank"><i class="icon-question"><!----></i>Questions? Discuss on ask.openstack.org</a><br/><a id="logABugLink2" href="" target="_blank"><i class="icon-bug"><!----></i>Found an error? Report a bug against this page</a></div><script language="JavaScript">
 	  var sourceFile = "source File: file:/home/max/projects/operations-guide/doc/openstack-ops/ch_ops_maintenance.xml"
 	  var xmlId = "xml:id: maintenance"
 	  var lineFeed = "%0A";
 	  var docUrl = "URL: " + window.location;
 	  var bugTitle = "Chapter 11. Maintenance, Failures, and Debugging in OpenStack Operations Guide";
-	  var buildTime = "Built: 2015-10-20T18:33:32+02:00";
+	  var buildTime = "Built: 2015-10-20T23:42:21+02:00";
 	  var gitSha = "git SHA: c736dbf695b9b6d705875e6f24f6f8ec044c4e31";
 	  var fieldComment = encodeURI(buildTime) +  lineFeed + encodeURI(gitSha) + lineFeed + encodeURI(docUrl) + lineFeed + encodeURI(sourceFile) + lineFeed + encodeURI(xmlId);
 	  logABug(bugTitle,fieldComment);

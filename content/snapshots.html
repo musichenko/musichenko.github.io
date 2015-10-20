@@ -6,7 +6,7 @@
                SyntaxHighlighter.config.space = ' ';
                SyntaxHighlighter.all();
     </script>
-<title>Taking Snapshots - OpenStack Operations Guide</title><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><meta name="mavenGroupId" content="org.openstack.docs"/><meta name="mavenArtifactId" content="openstack-ops-manual"/><meta name="mavenVersionId" content="1.0.0"/><link rel="home" href="index.html" title="OpenStack Operations Guide"/><link rel="up" href="user_facing_operations.html" title="Chapter 10. User-Facing Operations"/><link rel="prev" href="attach_block_storage.html" title="Attaching Block Storage"/><link rel="next" href="database_instances.html" title="Instances in the Database"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="git-sha" content="c736dbf695b9b6d705875e6f24f6f8ec044c4e31"/><meta name="buildTime" content="2015-10-20T18:33:31+02:00"/><script type="text/javascript">
+<title>Taking Snapshots - OpenStack Operations Guide</title><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><meta name="mavenGroupId" content="org.openstack.docs"/><meta name="mavenArtifactId" content="openstack-ops-manual"/><meta name="mavenVersionId" content="1.0.0"/><link rel="home" href="index.html" title="OpenStack Operations Guide"/><link rel="up" href="user_facing_operations.html" title="Chapter 10. User-Facing Operations"/><link rel="prev" href="attach_block_storage.html" title="Attaching Block Storage"/><link rel="next" href="database_instances.html" title="Instances in the Database"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="git-sha" content="c736dbf695b9b6d705875e6f24f6f8ec044c4e31"/><meta name="buildTime" content="2015-10-20T23:42:20+02:00"/><script type="text/javascript">
             //The id for tree cookie
             var treeCookieId = "treeview-openstack-operations-guide";
             var language = "en";
@@ -46,14 +46,14 @@
         <a id="logABugLink1" href="" target="_blank" title="Found an error? Report a bug against this page"><i class="icon-bug"><!----></i></a></div></div></div><div id="content"><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="snapshots"> </a>Taking Snapshots</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="snapshots.html#live-snapshots">Live Snapshots</a></span></dt></dl></div><p>The OpenStack snapshot mechanism allows you to create new images
     from running instances. This is very convenient for upgrading base images
     or for taking a published image and customizing it for local use. To
-    snapshot a running instance to an image using the CLI, do this:<a id="d9e4741" class="indexterm"/><a id="d9e4743" class="indexterm"/><a id="d9e4745" class="indexterm"/></p><pre class="screen">$ nova image-create &lt;instance name or uuid&gt; &lt;name of new image&gt;</pre><p>The dashboard interface for snapshots can be confusing because the
+    snapshot a running instance to an image using the CLI, do this:<a id="d9e4750" class="indexterm"/><a id="d9e4752" class="indexterm"/><a id="d9e4754" class="indexterm"/></p><pre class="screen">$ nova image-create &lt;instance name or uuid&gt; &lt;name of new image&gt;</pre><p>The dashboard interface for snapshots can be confusing because the
     <span class="guilabel"><strong>Images &amp; Snapshots</strong></span> page splits content up into
     several areas:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Images</p></li><li class="listitem"><p>Instance snapshots</p></li><li class="listitem"><p>Volume snapshots</p></li></ul></div><p>However, an instance snapshot <span class="emphasis"><em>is</em></span> an image. The
     only difference between an image that you upload directly to the Image
     Service and an image that you create by snapshot is that an image created
     by snapshot has additional properties in the glance database. These
     properties are found in the <code class="literal">image_properties</code> table and
-    include:</p><table rules="all" id="d9e4761"><thead><tr>
+    include:</p><table rules="all" id="d9e4770"><thead><tr>
           <th>Name</th>
 
           <th>Value</th>
@@ -78,7 +78,7 @@
       running virtual machines without pausing them. These snapshots are
       simply disk-only snapshots. Snapshotting an instance can now be
       performed with no downtime (assuming QEMU 1.3+ and libvirt 1.0+ are
-      used).<a id="d9e4794" class="indexterm"/></p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note: Disable live snapshotting"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../common/images/admon/note.png"/></td><th align="left">Disable live snapshotting</th></tr><tr><td align="left" valign="top"><p>If you use libvirt version <code class="literal">1.2.2</code>,
+      used).<a id="d9e4803" class="indexterm"/></p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Note: Disable live snapshotting"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Note]" src="../common/images/admon/note.png"/></td><th align="left">Disable live snapshotting</th></tr><tr><td align="left" valign="top"><p>If you use libvirt version <code class="literal">1.2.2</code>,
                   you may experience intermittent problems with live snapshot creation.
             </p><p>To effectively disable the libvirt live snapshotting, until the problem
                   is resolved, add the below setting to nova.conf.</p>
@@ -166,7 +166,7 @@
 	  var lineFeed = "%0A";
 	  var docUrl = "URL: " + window.location;
 	  var bugTitle = "Taking Snapshots in OpenStack Operations Guide";
-	  var buildTime = "Built: 2015-10-20T18:33:31+02:00";
+	  var buildTime = "Built: 2015-10-20T23:42:20+02:00";
 	  var gitSha = "git SHA: c736dbf695b9b6d705875e6f24f6f8ec044c4e31";
 	  var fieldComment = encodeURI(buildTime) +  lineFeed + encodeURI(gitSha) + lineFeed + encodeURI(docUrl) + lineFeed + encodeURI(sourceFile) + lineFeed + encodeURI(xmlId);
 	  logABug(bugTitle,fieldComment);

@@ -3,7 +3,7 @@
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:exsl="http://exslt.org/common" xmlns:ng="http://docbook.org/docbook-ng" xmlns:fb="http://ogp.me/ns/fb#"><head>
 <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"/>
-<title>Pre-Upgrade Testing Environment - OpenStack Operations Guide</title><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><meta name="mavenGroupId" content="org.openstack.docs"/><meta name="mavenArtifactId" content="openstack-ops-manual"/><meta name="mavenVersionId" content="1.0.0"/><link rel="home" href="index.html" title="OpenStack Operations Guide"/><link rel="up" href="ch_ops_upgrades.html" title="Chapter 18. Upgrades"/><link rel="prev" href="ch_ops_upgrades.html" title="Chapter 18. Upgrades"/><link rel="next" href="ops_upgrades-prepare-roll-back.html" title="Preparing for a Rollback"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="git-sha" content="c736dbf695b9b6d705875e6f24f6f8ec044c4e31"/><meta name="buildTime" content="2015-10-20T18:33:34+02:00"/><script type="text/javascript">
+<title>Pre-Upgrade Testing Environment - OpenStack Operations Guide</title><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><meta name="mavenGroupId" content="org.openstack.docs"/><meta name="mavenArtifactId" content="openstack-ops-manual"/><meta name="mavenVersionId" content="1.0.0"/><link rel="home" href="index.html" title="OpenStack Operations Guide"/><link rel="up" href="ch_ops_upgrades.html" title="Chapter 18. Upgrades"/><link rel="prev" href="ch_ops_upgrades.html" title="Chapter 18. Upgrades"/><link rel="next" href="ops_upgrades-prepare-roll-back.html" title="Preparing for a Rollback"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="git-sha" content="c736dbf695b9b6d705875e6f24f6f8ec044c4e31"/><meta name="buildTime" content="2015-10-20T23:42:23+02:00"/><script type="text/javascript">
             //The id for tree cookie
             var treeCookieId = "treeview-openstack-operations-guide";
             var language = "en";
@@ -46,7 +46,7 @@
       prefer to wait until the first point release is announced.
       However, if you have a significant deployment, you might follow
       the development and testing of the release to ensure that bugs
-      for your use cases are fixed.<a id="d9e7579" class="indexterm"/></p><p>Even if you have what seems to be a near-identical
+      for your use cases are fixed.<a id="d9e7588" class="indexterm"/></p><p>Even if you have what seems to be a near-identical
       architecture as the one described in this guide, each OpenStack
       cloud is different. As a result, you must still test upgrades
       between versions in your environment. For this, you need an
@@ -54,7 +54,7 @@
       size or use identical hardware as the production environment—few
       of us have that luxury. It is important to consider the hardware
       and scale of the cloud that you are upgrading, but these tips
-      can help you avoid that incredible cost:<a id="d9e7584" class="indexterm"/></p><div class="variablelist"><dl><dt><span class="term">Use your own cloud</span></dt><dd><p>The simplest place to start testing the next version
+      can help you avoid that incredible cost:<a id="d9e7593" class="indexterm"/></p><div class="variablelist"><dl><dt><span class="term">Use your own cloud</span></dt><dd><p>The simplest place to start testing the next version
             of OpenStack is by setting up a new environment inside
             your own cloud. This might seem odd—especially the double
             virtualization used in running compute nodes—but it's a
@@ -64,7 +64,7 @@
             scalability limits of your cloud controller configuration.
             Most public clouds bill by the hour, which means it can be
             inexpensive to perform even a test with many
-              nodes.<a id="d9e7596" class="indexterm"/></p></dd><dt><span class="term">Make another storage endpoint on the same system</span></dt><dd><p>If you use an external storage plug-in or shared file
+              nodes.<a id="d9e7605" class="indexterm"/></p></dd><dt><span class="term">Make another storage endpoint on the same system</span></dt><dd><p>If you use an external storage plug-in or shared file
             system with your cloud, in many cases, you can test
             whether it works by creating a second share or endpoint.
             This action enables you to test the system before
@@ -94,7 +94,7 @@
 	  var lineFeed = "%0A";
 	  var docUrl = "URL: " + window.location;
 	  var bugTitle = "Pre-Upgrade Testing Environment in OpenStack Operations Guide";
-	  var buildTime = "Built: 2015-10-20T18:33:34+02:00";
+	  var buildTime = "Built: 2015-10-20T23:42:23+02:00";
 	  var gitSha = "git SHA: c736dbf695b9b6d705875e6f24f6f8ec044c4e31";
 	  var fieldComment = encodeURI(buildTime) +  lineFeed + encodeURI(gitSha) + lineFeed + encodeURI(docUrl) + lineFeed + encodeURI(sourceFile) + lineFeed + encodeURI(xmlId);
 	  logABug(bugTitle,fieldComment);

@@ -3,7 +3,7 @@
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:exsl="http://exslt.org/common" xmlns:ng="http://docbook.org/docbook-ng" xmlns:fb="http://ogp.me/ns/fb#"><head>
 <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"/>
-<title>Deprecation of Nova Network - OpenStack Operations Guide</title><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><meta name="mavenGroupId" content="org.openstack.docs"/><meta name="mavenArtifactId" content="openstack-ops-manual"/><meta name="mavenVersionId" content="1.0.0"/><link rel="home" href="index.html" title="OpenStack Operations Guide"/><link rel="up" href="aspects-to-watch.html" title="Aspects to Watch"/><link rel="prev" href="roadmap-easier-upgrades.html" title="Easier Upgrades"/><link rel="next" href="roadmap-DVR.html" title="Distributed Virtual Router"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="git-sha" content="c736dbf695b9b6d705875e6f24f6f8ec044c4e31"/><meta name="buildTime" content="2015-10-20T18:33:41+02:00"/><script type="text/javascript">
+<title>Deprecation of Nova Network - OpenStack Operations Guide</title><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><meta name="mavenGroupId" content="org.openstack.docs"/><meta name="mavenArtifactId" content="openstack-ops-manual"/><meta name="mavenVersionId" content="1.0.0"/><link rel="home" href="index.html" title="OpenStack Operations Guide"/><link rel="up" href="aspects-to-watch.html" title="Aspects to Watch"/><link rel="prev" href="roadmap-easier-upgrades.html" title="Easier Upgrades"/><link rel="next" href="roadmap-DVR.html" title="Distributed Virtual Router"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="git-sha" content="c736dbf695b9b6d705875e6f24f6f8ec044c4e31"/><meta name="buildTime" content="2015-10-20T23:42:30+02:00"/><script type="text/javascript">
             //The id for tree cookie
             var treeCookieId = "treeview-openstack-operations-guide";
             var language = "en";
@@ -46,7 +46,7 @@
       the Compute component has gradually lessened. While many still use
       <code class="literal">nova-network</code> in production, there has been a
       long-term plan to remove the code in favor of the more flexible and
-      full-featured OpenStack Networking.<a id="d9e9839" class="indexterm"/></p><p>An attempt was made to deprecate <code class="literal">nova-network</code>
+      full-featured OpenStack Networking.<a id="d9e9848" class="indexterm"/></p><p>An attempt was made to deprecate <code class="literal">nova-network</code>
       during the Havana release, which was aborted due to the lack of
       equivalent functionality (such as the FlatDHCP multi-host
       high-availability mode mentioned in this guide), lack of a migration
@@ -57,7 +57,7 @@
       deprecated in the Juno release. In addition, to a limited degree,
       patches to <code class="literal">nova-network</code> have again begin to be
       accepted, such as adding a per-network settings feature and SR-IOV
-      support in Juno.<a id="d9e9847" class="indexterm"/></p><p>This leaves you with an important point of decision when designing
+      support in Juno.<a id="d9e9856" class="indexterm"/></p><p>This leaves you with an important point of decision when designing
       your cloud. OpenStack Networking is robust enough to use with a small
       number of limitations (performance issues in some scenarios, only basic
       high availability of layer 3 systems) and provides many more features than
@@ -80,7 +80,7 @@
 	  var lineFeed = "%0A";
 	  var docUrl = "URL: " + window.location;
 	  var bugTitle = "Deprecation of Nova Network in OpenStack Operations Guide";
-	  var buildTime = "Built: 2015-10-20T18:33:41+02:00";
+	  var buildTime = "Built: 2015-10-20T23:42:30+02:00";
 	  var gitSha = "git SHA: c736dbf695b9b6d705875e6f24f6f8ec044c4e31";
 	  var fieldComment = encodeURI(buildTime) +  lineFeed + encodeURI(gitSha) + lineFeed + encodeURI(docUrl) + lineFeed + encodeURI(sourceFile) + lineFeed + encodeURI(xmlId);
 	  logABug(bugTitle,fieldComment);

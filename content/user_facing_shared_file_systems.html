@@ -3,7 +3,7 @@
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:exsl="http://exslt.org/common" xmlns:ng="http://docbook.org/docbook-ng" xmlns:fb="http://ogp.me/ns/fb#"><head>
 <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"/>
-<title>Shared File System Storage - OpenStack Operations Guide</title><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><meta name="mavenGroupId" content="org.openstack.docs"/><meta name="mavenArtifactId" content="openstack-ops-manual"/><meta name="mavenVersionId" content="1.0.0"/><link rel="home" href="index.html" title="OpenStack Operations Guide"/><link rel="up" href="user_facing_operations.html" title="Chapter 10. User-Facing Operations"/><link rel="prev" href="user_facing_block_storage.html" title="Block Storage"/><link rel="next" href="instances.html" title="Instances"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="git-sha" content="c736dbf695b9b6d705875e6f24f6f8ec044c4e31"/><meta name="buildTime" content="2015-10-20T18:33:30+02:00"/><script type="text/javascript">
+<title>Shared File System Storage - OpenStack Operations Guide</title><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><meta name="mavenGroupId" content="org.openstack.docs"/><meta name="mavenArtifactId" content="openstack-ops-manual"/><meta name="mavenVersionId" content="1.0.0"/><link rel="home" href="index.html" title="OpenStack Operations Guide"/><link rel="up" href="user_facing_operations.html" title="Chapter 10. User-Facing Operations"/><link rel="prev" href="user_facing_block_storage.html" title="Block Storage"/><link rel="next" href="instances.html" title="Instances"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="git-sha" content="c736dbf695b9b6d705875e6f24f6f8ec044c4e31"/><meta name="buildTime" content="2015-10-20T23:42:19+02:00"/><script type="text/javascript">
             //The id for tree cookie
             var treeCookieId = "treeview-openstack-operations-guide";
             var language = "en";
@@ -505,13 +505,68 @@ $ manila share-network-list
             See “Share Networks” subsection of “Shared File System” section of “OpenStack
             Operations Guide” document for more details.
           </p></td></tr></table></div><p>
-      </p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="manage_a_share_network"> </a>Manage a Share Network</h3></div></div></div><p/></div></div><script type="text/javascript" src="../common/main.js"><!----></script><div class="logabug" style="text-align: center"><a id="AskOOLink2" href="http://ask.openstack.org" target="_blank"><i class="icon-question"><!----></i>Questions? Discuss on ask.openstack.org</a><br/><a id="logABugLink2" href="" target="_blank"><i class="icon-bug"><!----></i>Found an error? Report a bug against this page</a></div><script language="JavaScript">
+      </p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="manage_a_share_network"> </a>Manage a Share Network</h3></div></div></div><p>
+        There is a pair of useful commands that help manipulate with Share networks.
+        Intially, let us check the network list:
+        </p><pre class="screen">
+$ manila share-network-list
++--------------------------------------+--------------+
+| id                                   | name         |
++--------------------------------------+--------------+
+| 5c3cbabb-f4da-465f-bc7f-fadbe047b85a | my_share_net |
++--------------------------------------+--------------+
+        </pre><p>
+        If you configured the Generic driver with <code class="code">driver_handles_share_servers = True</code>
+        (with the share servers) and had already some operations in the Shared
+        File Systems service, you can see <code class="code">manila_service_network</code> in
+        the neutron list of networks. This network was created by Generic driver
+        for inner usage.
+        </p><pre class="screen">
+$ neutron net-list
++--------------+------------------------+------------------------------------+
+| id           | name                   | subnets                            |
++--------------+------------------------+------------------------------------+
+| 3b5a629a-e...| manila_service_network | 4f366100-50... 10.254.0.0/28       |
+| bee7411d-d...| public                 | 884a6564-01... 2001:db8::/64       |
+|              |                        | e6da81fa-55... 172.24.4.0/24       |
+| 5ed5a854-2...| private                | 74dcfb5a-bd... 10.0.0.0/24         |
+|              |                        | cc297be2-51... fd7d:177d:a48b::/64 |
++--------------+------------------------+------------------------------------+
+        </pre><p>
+      </p><p>
+        You also can see detailed information about the share network including
+        <code class="code">network_type, segmentation_id</code> fields:
+        </p><pre class="screen">
+$ neutron net-show manila_service_network
++---------------------------+--------------------------------------+
+| Field                     | Value                                |
++---------------------------+--------------------------------------+
+| admin_state_up            | True                                 |
+| id                        | 3b5a629a-e7a1-46a3-afb2-ab666fb884bc |
+| mtu                       | 0                                    |
+| name                      | manila_service_network               |
+| port_security_enabled     | True                                 |
+| provider:network_type     | vxlan                                |
+| provider:physical_network |                                      |
+| provider:segmentation_id  | 1068                                 |
+| router:external           | False                                |
+| shared                    | False                                |
+| status                    | ACTIVE                               |
+| subnets                   | 4f366100-5108-4fa2-b5b1-989a121c1403 |
+| tenant_id                 | 24c6491074e942309a908c674606f598     |
++---------------------------+--------------------------------------+
+        </pre><p>
+        You also can add and remove the security services to the share network.
+      </p><div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Tip"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Tip]" src="../common/images/admon/tip.png"/></td><th align="left">Tip</th></tr><tr><td align="left" valign="top"><p>
+          For details, see "Security Services" subsection of “Shared File Systems”
+          section of “Cloud Administration Guide” document.
+        </p></td></tr></table></div></div></div><script type="text/javascript" src="../common/main.js"><!----></script><div class="logabug" style="text-align: center"><a id="AskOOLink2" href="http://ask.openstack.org" target="_blank"><i class="icon-question"><!----></i>Questions? Discuss on ask.openstack.org</a><br/><a id="logABugLink2" href="" target="_blank"><i class="icon-bug"><!----></i>Found an error? Report a bug against this page</a></div><script language="JavaScript">
 	  var sourceFile = "source File: file:/home/max/projects/operations-guide/doc/openstack-ops/ch_ops_user_facing.xml"
 	  var xmlId = "xml:id: user_facing_shared_file_systems"
 	  var lineFeed = "%0A";
 	  var docUrl = "URL: " + window.location;
 	  var bugTitle = "Shared File System Storage in OpenStack Operations Guide";
-	  var buildTime = "Built: 2015-10-20T18:33:30+02:00";
+	  var buildTime = "Built: 2015-10-20T23:42:19+02:00";
 	  var gitSha = "git SHA: c736dbf695b9b6d705875e6f24f6f8ec044c4e31";
 	  var fieldComment = encodeURI(buildTime) +  lineFeed + encodeURI(gitSha) + lineFeed + encodeURI(docUrl) + lineFeed + encodeURI(sourceFile) + lineFeed + encodeURI(xmlId);
 	  logABug(bugTitle,fieldComment);

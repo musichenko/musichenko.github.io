@@ -3,7 +3,7 @@
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:exsl="http://exslt.org/common" xmlns:ng="http://docbook.org/docbook-ng" xmlns:fb="http://ogp.me/ns/fb#"><head>
 <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"/>
-<title>Attaching Block Storage - OpenStack Operations Guide</title><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><meta name="mavenGroupId" content="org.openstack.docs"/><meta name="mavenArtifactId" content="openstack-ops-manual"/><meta name="mavenVersionId" content="1.0.0"/><link rel="home" href="index.html" title="OpenStack Operations Guide"/><link rel="up" href="user_facing_operations.html" title="Chapter 10. User-Facing Operations"/><link rel="prev" href="floating_ips.html" title="Floating IPs"/><link rel="next" href="snapshots.html" title="Taking Snapshots"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="git-sha" content="c736dbf695b9b6d705875e6f24f6f8ec044c4e31"/><meta name="buildTime" content="2015-10-20T18:33:31+02:00"/><script type="text/javascript">
+<title>Attaching Block Storage - OpenStack Operations Guide</title><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><meta name="mavenGroupId" content="org.openstack.docs"/><meta name="mavenArtifactId" content="openstack-ops-manual"/><meta name="mavenVersionId" content="1.0.0"/><link rel="home" href="index.html" title="OpenStack Operations Guide"/><link rel="up" href="user_facing_operations.html" title="Chapter 10. User-Facing Operations"/><link rel="prev" href="floating_ips.html" title="Floating IPs"/><link rel="next" href="snapshots.html" title="Taking Snapshots"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="git-sha" content="c736dbf695b9b6d705875e6f24f6f8ec044c4e31"/><meta name="buildTime" content="2015-10-20T23:42:20+02:00"/><script type="text/javascript">
             //The id for tree cookie
             var treeCookieId = "treeview-openstack-operations-guide";
             var language = "en";
@@ -43,8 +43,8 @@
         <a id="logABugLink1" href="" target="_blank" title="Found an error? Report a bug against this page"><i class="icon-bug"><!----></i></a></div></div></div><div id="content"><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="attach_block_storage"> </a>Attaching Block Storage</h2></div></div></div><p>You can attach block storage to instances from the dashboard on the
     <span class="guilabel"><strong>Volumes</strong></span> page. Click the <span class="guibutton"><strong>Edit
     Attachments</strong></span> action next to the volume you want to
-    attach.<a id="d9e4679" class="indexterm"/><a id="d9e4682" class="indexterm"/><a id="d9e4684" class="indexterm"/></p><p>To perform this action from command line, run the following
-    command:</p><pre class="screen">$ nova volume-attach &lt;server&gt; &lt;volume&gt; &lt;device&gt;</pre><p>You can also specify block device<a id="d9e4690" class="indexterm"/> mapping at instance boot time through the nova command-line
+    attach.<a id="d9e4688" class="indexterm"/><a id="d9e4691" class="indexterm"/><a id="d9e4693" class="indexterm"/></p><p>To perform this action from command line, run the following
+    command:</p><pre class="screen">$ nova volume-attach &lt;server&gt; &lt;volume&gt; &lt;device&gt;</pre><p>You can also specify block device<a id="d9e4699" class="indexterm"/> mapping at instance boot time through the nova command-line
     client with this option set:</p><pre class="screen">--block-device-mapping &lt;dev-name=mapping&gt; </pre><p><span class="keep-together">The block device mapping format is
     <code class="code">&lt;dev-name&gt;=&lt;id&gt;:&lt;type&gt;:&lt;size(GB)&gt;:</code></span><span class="keep-together"><code class="code">&lt;delete-on-terminate&gt;</code>,
     where:</span></p><div class="variablelist"><dl><dt><span class="term">dev-name</span></dt><dd><p>A device name where the volume is attached in the system at
@@ -80,7 +80,7 @@
 	  var lineFeed = "%0A";
 	  var docUrl = "URL: " + window.location;
 	  var bugTitle = "Attaching Block Storage in OpenStack Operations Guide";
-	  var buildTime = "Built: 2015-10-20T18:33:31+02:00";
+	  var buildTime = "Built: 2015-10-20T23:42:20+02:00";
 	  var gitSha = "git SHA: c736dbf695b9b6d705875e6f24f6f8ec044c4e31";
 	  var fieldComment = encodeURI(buildTime) +  lineFeed + encodeURI(gitSha) + lineFeed + encodeURI(docUrl) + lineFeed + encodeURI(sourceFile) + lineFeed + encodeURI(xmlId);
 	  logABug(bugTitle,fieldComment);

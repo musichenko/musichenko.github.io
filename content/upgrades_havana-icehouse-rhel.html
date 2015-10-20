@@ -6,7 +6,7 @@
                SyntaxHighlighter.config.space = ' ';
                SyntaxHighlighter.all();
     </script>
-<title>How to Perform an Upgrade from Havana to Icehouse—Red Hat Enterprise Linux and Derivatives - OpenStack Operations Guide</title><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><meta name="mavenGroupId" content="org.openstack.docs"/><meta name="mavenArtifactId" content="openstack-ops-manual"/><meta name="mavenVersionId" content="1.0.0"/><link rel="home" href="index.html" title="OpenStack Operations Guide"/><link rel="up" href="ch_ops_upgrades.html" title="Chapter 18. Upgrades"/><link rel="prev" href="upgrades_havana-icehouse-ubuntu.html" title="How to Perform an Upgrade from Havana to Icehouse—Ubuntu"/><link rel="next" href="upgrade-icehouse-juno.html" title="How to Perform an Upgrade from Icehouse to Juno"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="git-sha" content="c736dbf695b9b6d705875e6f24f6f8ec044c4e31"/><meta name="buildTime" content="2015-10-20T18:33:35+02:00"/><script type="text/javascript">
+<title>How to Perform an Upgrade from Havana to Icehouse—Red Hat Enterprise Linux and Derivatives - OpenStack Operations Guide</title><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><meta name="mavenGroupId" content="org.openstack.docs"/><meta name="mavenArtifactId" content="openstack-ops-manual"/><meta name="mavenVersionId" content="1.0.0"/><link rel="home" href="index.html" title="OpenStack Operations Guide"/><link rel="up" href="ch_ops_upgrades.html" title="Chapter 18. Upgrades"/><link rel="prev" href="upgrades_havana-icehouse-ubuntu.html" title="How to Perform an Upgrade from Havana to Icehouse—Ubuntu"/><link rel="next" href="upgrade-icehouse-juno.html" title="How to Perform an Upgrade from Icehouse to Juno"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="git-sha" content="c736dbf695b9b6d705875e6f24f6f8ec044c4e31"/><meta name="buildTime" content="2015-10-20T23:42:24+02:00"/><script type="text/javascript">
             //The id for tree cookie
             var treeCookieId = "treeview-openstack-operations-guide";
             var language = "en";
@@ -98,10 +98,10 @@ done
         command to update the associated database, and start the
         service to apply the new configuration. You will need administrator
         privileges for these procedures. Some services will require
-        additional steps.</p><div class="procedure"><a id="d9e8331"> </a><p class="title"><strong>Upgrade OpenStack Identity</strong></p><ol class="procedure" type="1"><li class="step"><p>Edit the <code class="filename">/etc/keystone/keystone.conf</code>
+        additional steps.</p><div class="procedure"><a id="d9e8340"> </a><p class="title"><strong>Upgrade OpenStack Identity</strong></p><ol class="procedure" type="1"><li class="step"><p>Edit the <code class="filename">/etc/keystone/keystone.conf</code>
             file for compatibility for Icehouse:</p><ol type="a" class="substeps"><li class="step"><p>Add the <code class="literal">[database]</code> section.</p></li><li class="step"><p>Move the <code class="option">connection</code> key from
                 the<code class="literal">[sql]</code> section to the
-                <code class="literal">[database]</code> section.</p></li></ol></li><li class="step"><p>Stop the services:</p><pre class="screen"># service openstack-keystone stop</pre><pre class="screen"># keystone-manage token_flush</pre></li><li class="step"><p>Upgrade the database:</p><pre class="screen"># keystone-manage db_sync</pre></li><li class="step"><p>Start the services:</p><pre class="screen"># service openstack-keystone start</pre></li></ol></div><div class="procedure"><a id="d9e8355"> </a><p class="title"><strong>OpenStack Image service:</strong></p><p>Before upgrading the Image service database, you must convert
+                <code class="literal">[database]</code> section.</p></li></ol></li><li class="step"><p>Stop the services:</p><pre class="screen"># service openstack-keystone stop</pre><pre class="screen"># keystone-manage token_flush</pre></li><li class="step"><p>Upgrade the database:</p><pre class="screen"># keystone-manage db_sync</pre></li><li class="step"><p>Start the services:</p><pre class="screen"># service openstack-keystone start</pre></li></ol></div><div class="procedure"><a id="d9e8364"> </a><p class="title"><strong>OpenStack Image service:</strong></p><p>Before upgrading the Image service database, you must convert
             the character set for each table to UTF-8.</p><ol class="procedure" type="1"><li class="step"><p>Use the MySQL client to run the following
             commands:</p><pre class="screen"># mysql -u root -p
 mysql&gt; SET foreign_key_checks = 0;
@@ -130,7 +130,7 @@ qpid_hostname = <em class="replaceable"><code>controller</code></em></pre>
 </li><li class="step"><p>Stop the services:</p><p>Stop services, upgrade the database, and start
             services:</p><pre class="screen"># service openstack-glance-api stop
 # service openstack-glance-registry stop</pre></li><li class="step"><p>Upgrade the database:</p><pre class="screen"># glance-manage db_sync</pre></li><li class="step"><p>Start the services:</p><pre class="screen"># service openstack-glance-api start
-# service openstack-glance-registry start</pre></li></ol></div><div class="procedure"><a id="d9e8392"> </a><p class="title"><strong>Upgrading OpenStack Compute:</strong></p><ol class="procedure" type="1"><li class="step"><p>Edit the <code class="filename">/etc/nova/nova.conf</code>
+# service openstack-glance-registry start</pre></li></ol></div><div class="procedure"><a id="d9e8401"> </a><p class="title"><strong>Upgrading OpenStack Compute:</strong></p><ol class="procedure" type="1"><li class="step"><p>Edit the <code class="filename">/etc/nova/nova.conf</code>
             file and change the <code class="option">rpc_backend</code> key from
               <code class="literal">nova.openstack.common.rpc.impl_qpid</code>
               to <code class="literal">qpid</code>.</p></li><li class="step"><p>Edit the <code class="filename">/etc/nova/api-paste.ini</code>
@@ -148,7 +148,7 @@ qpid_hostname = <em class="replaceable"><code>controller</code></em></pre>
 # service openstack-nova-conductor start
 # service openstack-nova-cert start
 # service openstack-nova-consoleauth start
-# service openstack-nova-novncproxy start</pre></li></ol></div><div class="procedure"><a id="d9e8414"> </a><p class="title"><strong>Upgrade OpenStack Networking</strong></p><p>Before upgrading the Networking database, you must
+# service openstack-nova-novncproxy start</pre></li></ol></div><div class="procedure"><a id="d9e8423"> </a><p class="title"><strong>Upgrade OpenStack Networking</strong></p><p>Before upgrading the Networking database, you must
             convert the character set for each table to UTF-8.</p><ol class="procedure" type="1"><li class="step"><p>Use the MySQL client to execute the following
             commands:</p><pre class="screen"># mysql -u root -p
 mysql&gt; USE neutron;
@@ -224,11 +224,11 @@ nova_admin_auth_url = http://<em class="replaceable"><code>controller</code></em
                 with the service tenant identifier (id) in the Identity
                 service and <em class="replaceable"><code>NOVA_PASS</code></em> with the
                 password you chose for the <code class="literal">nova</code> user in
-                the Identity service.</p></li><li class="step"><p>Start Networking services.</p><pre class="screen"># service neutron-server start</pre></li></ol></div><div class="procedure"><a id="d9e8474"> </a><p class="title"><strong>Upgrade OpenStack Block Storage</strong></p><ol class="procedure" type="1"><li class="step"><p>Stop services:</p><pre class="screen"># service openstack-cinder-api stop
+                the Identity service.</p></li><li class="step"><p>Start Networking services.</p><pre class="screen"># service neutron-server start</pre></li></ol></div><div class="procedure"><a id="d9e8483"> </a><p class="title"><strong>Upgrade OpenStack Block Storage</strong></p><ol class="procedure" type="1"><li class="step"><p>Stop services:</p><pre class="screen"># service openstack-cinder-api stop
 # service openstack-cinder-volume stop
 # service openstack-cinder-scheduler stop</pre></li><li class="step"><p>Upgrade the database:</p><pre class="screen"># cinder-manage db sync</pre></li><li class="step"><p>Start services:</p><pre class="screen"># service openstack-cinder-api start
 # service openstack-cinder-volume start
-# service openstack-cinder-scheduler start</pre></li></ol></div><div class="procedure"><a id="d9e8485"> </a><p class="title"><strong>Update Dashboard</strong></p><ol class="procedure" type="1"><li class="step"><p>Edit the <code class="filename">/etc/openstack-dashboard/local_settings</code>
+# service openstack-cinder-scheduler start</pre></li></ol></div><div class="procedure"><a id="d9e8494"> </a><p class="title"><strong>Update Dashboard</strong></p><ol class="procedure" type="1"><li class="step"><p>Edit the <code class="filename">/etc/openstack-dashboard/local_settings</code>
             file and change the <code class="option">OPENSTACK_KEYSTONE_DEFAULT_ROLE</code>
             key from <code class="literal">"Member"</code> to <code class="literal">"_member_"</code>
             .</p></li><li class="step"><p>Restart Dashboard services:</p><pre class="screen"># service httpd restart</pre></li></ol></div><p>The controller node update is complete. Now you can
@@ -268,7 +268,7 @@ service_plugins = router</pre>
 	  var lineFeed = "%0A";
 	  var docUrl = "URL: " + window.location;
 	  var bugTitle = "How to Perform an Upgrade from Havana to Icehouse—Red Hat Enterprise Linux and Derivatives in OpenStack Operations Guide";
-	  var buildTime = "Built: 2015-10-20T18:33:35+02:00";
+	  var buildTime = "Built: 2015-10-20T23:42:24+02:00";
 	  var gitSha = "git SHA: c736dbf695b9b6d705875e6f24f6f8ec044c4e31";
 	  var fieldComment = encodeURI(buildTime) +  lineFeed + encodeURI(gitSha) + lineFeed + encodeURI(docUrl) + lineFeed + encodeURI(sourceFile) + lineFeed + encodeURI(xmlId);
 	  logABug(bugTitle,fieldComment);

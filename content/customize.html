@@ -6,7 +6,7 @@
                SyntaxHighlighter.config.space = ' ';
                SyntaxHighlighter.all();
     </script>
-<title>Chapter 15. Customization - OpenStack Operations Guide</title><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><meta name="mavenGroupId" content="org.openstack.docs"/><meta name="mavenArtifactId" content="openstack-ops-manual"/><meta name="mavenVersionId" content="1.0.0"/><link rel="home" href="index.html" title="OpenStack Operations Guide"/><link rel="up" href="operations.html" title="Operations"/><link rel="prev" href="backup_and_recovery.html" title="Chapter 14. Backup and Recovery"/><link rel="next" href="upstream_openstack.html" title="Chapter 16. Upstream OpenStack"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="git-sha" content="c736dbf695b9b6d705875e6f24f6f8ec044c4e31"/><meta name="buildTime" content="2015-10-20T18:33:33+02:00"/><script type="text/javascript">
+<title>Chapter 15. Customization - OpenStack Operations Guide</title><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><meta name="mavenGroupId" content="org.openstack.docs"/><meta name="mavenArtifactId" content="openstack-ops-manual"/><meta name="mavenVersionId" content="1.0.0"/><link rel="home" href="index.html" title="OpenStack Operations Guide"/><link rel="up" href="operations.html" title="Operations"/><link rel="prev" href="backup_and_recovery.html" title="Chapter 14. Backup and Recovery"/><link rel="next" href="upstream_openstack.html" title="Chapter 16. Upstream OpenStack"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="git-sha" content="c736dbf695b9b6d705875e6f24f6f8ec044c4e31"/><meta name="buildTime" content="2015-10-20T23:42:22+02:00"/><script type="text/javascript">
             //The id for tree cookie
             var treeCookieId = "treeview-openstack-operations-guide";
             var language = "en";
@@ -44,7 +44,7 @@
 				  |
                                     <a accesskey="n" class="navLinkNext" onclick="_gaq.push(['_trackEvent', 'Header', 'nextLink', 'click', 1]);" tabindex="5" href="upstream_openstack.html">Next</a></td></tr></table></div></div><div id="toolbar" class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all"><div id="toolbar-left"><p class="breadcrumbs"><a href="http://docs.openstack.org/">OpenStack Manuals</a><a href="index.html">OpenStack Operations Guide</a></p><a onclick="_gaq.push(['_trackEvent', 'Header', 'pdfDownload', 'click', 1]);" alt="Download a pdf of this document" class="pdficon" href="../openstack-ops-manual.pdf"><img src="../common/images/pdf.png"/></a><div id="gplusone"><a id="AskOOLink1" href="http://ask.openstack.org" target="_blank" title="Questions? Discuss on ask.openstack.org"><i class="icon-question"><!----></i></a>  
         <a id="logABugLink1" href="" target="_blank" title="Found an error? Report a bug against this page"><i class="icon-bug"><!----></i></a></div></div></div><div id="content"><div class="chapter"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="customize"> </a>Chapter 15. Customization</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="customize.html#devstack">Create an OpenStack Development Environment</a></span></dt><dt><span class="section"><a href="customize.html#swift_middleware_example">Customizing Object Storage (Swift) Middleware</a></span></dt><dt><span class="section"><a href="customize.html#nova_scheduler_example">Customizing the OpenStack Compute (nova) Scheduler</a></span></dt><dt><span class="section"><a href="customize.html#ops_dashboard">Customizing the Dashboard (Horizon)</a></span></dt><dt><span class="section"><a href="customize.html#customize_conclusion">Conclusion</a></span></dt></dl></div><p>OpenStack might not do everything you need it to do out of the box. To
-  add a new feature, you can follow different paths.<a id="d9e6687" class="indexterm"/></p><p>To take the first path, you can modify the OpenStack code directly.
+  add a new feature, you can follow different paths.<a id="d9e6696" class="indexterm"/></p><p>To take the first path, you can modify the OpenStack code directly.
   Learn <a class="link" href="https://wiki.openstack.org/wiki/How_To_Contribute" target="_top">how to contribute</a>,
   follow the <a class="link" href="https://wiki.openstack.org/wiki/GerritWorkflow" target="_top">code review
   workflow</a>, make your changes, and contribute them back to the upstream
@@ -53,7 +53,7 @@
   contributions and welcomes new functionality that follows the
   feature-development guidelines. This path still requires you to use DevStack
   for testing your feature additions, so this chapter walks you through the
-  DevStack environment.<a id="d9e6693" class="indexterm"/></p><p>For the second path, you can write new features and plug them in using
+  DevStack environment.<a id="d9e6702" class="indexterm"/></p><p>For the second path, you can write new features and plug them in using
   changes to a configuration file. If the project where your feature would
   need to reside uses the Python Paste framework, you can create middleware
   for it and plug it in through configuration. There may also be specific ways
@@ -67,7 +67,7 @@
   within your cloud.</p><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="devstack"> </a>Create an OpenStack Development Environment</h2></div></div></div><p>To create a development environment, you can use DevStack. DevStack
     is essentially a collection of shell scripts and configuration files that
     builds an OpenStack development environment for you. You use it to create
-    such an environment for developing a new feature.<a id="d9e6701" class="indexterm"/><a id="d9e6704" class="indexterm"/><a id="d9e6706" class="indexterm"/></p><p>You can find all of the documentation at the <a class="link" href="http://docs.openstack.org/developer/devstack/" target="_top">DevStack</a> website.</p><div class="procedure"><a id="d9e6711"> </a><p class="title"><strong>To run DevStack for the stable Havana branch on an instance in
+    such an environment for developing a new feature.<a id="d9e6710" class="indexterm"/><a id="d9e6713" class="indexterm"/><a id="d9e6715" class="indexterm"/></p><p>You can find all of the documentation at the <a class="link" href="http://docs.openstack.org/developer/devstack/" target="_top">DevStack</a> website.</p><div class="procedure"><a id="d9e6720"> </a><p class="title"><strong>To run DevStack for the stable Havana branch on an instance in
       your OpenStack cloud:</strong></p><ol class="procedure" type="1"><li class="step"><p>Boot an instance from the dashboard or the nova command-line
         interface (CLI) with the following parameters:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>Name: devstack-havana</p></li><li class="listitem"><p>Image: Ubuntu 12.04 LTS</p></li><li class="listitem"><p>Memory Size: 4 GB RAM</p></li><li class="listitem"><p>Disk Size: minimum 5 GB</p></li></ul></div><p>If you are using the <code class="code">nova</code> client, specify
         <code class="code">--flavor 3</code> for the <code class="code">nova boot</code> command to get
@@ -151,7 +151,7 @@ SCREEN_LOGDIR=/opt/stack/logs</pre>
     introduction to its architecture is <a class="link" href="http://pythonpaste.org/do-it-yourself-framework.html" target="_top">A Do-It-Yourself Framework</a>.
     Because of the swift project's use of this framework, you are able to add
     features to a project by placing some custom code in a project's pipeline
-    without having to change any of the core code.<a id="d9e6805" class="indexterm"/><a id="d9e6807" class="indexterm"/><a id="d9e6809" class="indexterm"/><a id="d9e6812" class="indexterm"/><a id="d9e6815" class="indexterm"/><a id="d9e6818" class="indexterm"/></p><p>Imagine a scenario where you have public access to one of your
+    without having to change any of the core code.<a id="d9e6814" class="indexterm"/><a id="d9e6816" class="indexterm"/><a id="d9e6818" class="indexterm"/><a id="d9e6821" class="indexterm"/><a id="d9e6824" class="indexterm"/><a id="d9e6827" class="indexterm"/></p><p>Imagine a scenario where you have public access to one of your
     containers, but what you really want is to restrict access to that to a
     set of IPs based on a whitelist. In this example, we'll create a piece of
     middleware for swift that allows access to a container from only a set of
@@ -159,11 +159,11 @@ SCREEN_LOGDIR=/opt/stack/logs</pre>
     IP addresses that you explicitly whitelist using the container's metadata
     will be able to access the container.</p><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Warning"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Warning]" src="../common/images/admon/warning.png"/></td><th align="left">Warning</th></tr><tr><td align="left" valign="top"><p>This example is for illustrative purposes only. It should not be
       used as a container IP whitelist solution without further development
-      and extensive security testing.<a id="d9e6824" class="indexterm"/></p></td></tr></table></div><p>When you join the screen session that <code class="code">stack.sh</code> starts
+      and extensive security testing.<a id="d9e6833" class="indexterm"/></p></td></tr></table></div><p>When you join the screen session that <code class="code">stack.sh</code> starts
     with <code class="code">screen -r stack</code>, you see a screen for each service
     running, which can be a few or several, depending on how many services you
     configured DevStack to run.</p><p>The asterisk * indicates which screen window you are viewing. This
-    example shows we are viewing the key (for keystone) screen window:</p><pre class="screen">0$ shell  1$ key*  2$ horizon  3$ s-proxy  4$ s-object  5$ s-container  6$ s-account</pre><p>The purpose of the screen windows are as follows:</p><div class="variablelist"><dl><dt><span class="term"><code class="code">shell</code></span></dt><dd><p>A shell where you can get some work done</p></dd><dt><span class="term"><code class="code">key*</code></span></dt><dd><p>The keystone service</p></dd><dt><span class="term"><code class="code">horizon</code></span></dt><dd><p>The horizon dashboard web application</p></dd><dt><span class="term"><code class="code">s-{name}</code></span></dt><dd><p>The swift services</p></dd></dl></div><div class="procedure"><a id="d9e6854"> </a><p class="title"><strong>To create the middleware and plug it in through Paste
+    example shows we are viewing the key (for keystone) screen window:</p><pre class="screen">0$ shell  1$ key*  2$ horizon  3$ s-proxy  4$ s-object  5$ s-container  6$ s-account</pre><p>The purpose of the screen windows are as follows:</p><div class="variablelist"><dl><dt><span class="term"><code class="code">shell</code></span></dt><dd><p>A shell where you can get some work done</p></dd><dt><span class="term"><code class="code">key*</code></span></dt><dd><p>The keystone service</p></dd><dt><span class="term"><code class="code">horizon</code></span></dt><dd><p>The horizon dashboard web application</p></dd><dt><span class="term"><code class="code">s-{name}</code></span></dt><dd><p>The swift services</p></dd></dl></div><div class="procedure"><a id="d9e6863"> </a><p class="title"><strong>To create the middleware and plug it in through Paste
       configuration:</strong></p><p>All of the code for OpenStack lives in <code class="code">/opt/stack</code>. Go
       to the swift directory in the <code class="code">shell</code> screen and edit your
       middleware module.</p><ol class="procedure" type="1"><li class="step"><p>Change to the directory where Object Storage is
@@ -329,7 +329,7 @@ proxy-server IP my.local.ip.address denied access to Account=AUTH_... \
         machine:</p><ol type="a" class="substeps"><li class="step"><p>Press <span class="keycap"><strong>Ctrl</strong></span>+<span class="keycap"><strong>A</strong></span> followed by <span class="keycap"><strong>0</strong></span>.</p></li><li class="step"><p>Add metadata to the container to allow the IP:</p><pre class="screen">$ swift post --meta allow-dev:my.local.ip.address middleware-test</pre></li><li class="step"><p>Now try the command from Step 10 again and it succeeds.
             There are no objects in the container, so there is nothing to
             list; however, there is also no error to report.</p></li></ol></li></ol></div><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Warning"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Warning]" src="../common/images/admon/warning.png"/></td><th align="left">Warning</th></tr><tr><td align="left" valign="top"><p>Functional testing like this is not a replacement for proper unit
-      and integration testing, but it serves to get you started.<a id="d9e6983" class="indexterm"/><a id="d9e6986" class="indexterm"/></p></td></tr></table></div><p>You can follow a similar pattern in other projects that use the
+      and integration testing, but it serves to get you started.<a id="d9e6992" class="indexterm"/><a id="d9e6995" class="indexterm"/></p></td></tr></table></div><p>You can follow a similar pattern in other projects that use the
     Python Paste framework. Simply create a middleware module and plug it in
     through configuration. The middleware runs in sequence as part of that
     project's pipeline and can call out to other services as necessary. No
@@ -346,7 +346,7 @@ proxy-server IP my.local.ip.address denied access to Account=AUTH_... \
     you can easily plug in a new scheduler for Compute. The existing
     schedulers for Compute are feature full and well documented at <a class="link" href="http://docs.openstack.org/kilo/config-reference/content/section_compute-scheduler.html" target="_top">Scheduling</a>. However, depending
     on your user's use cases, the existing schedulers might not meet your
-    requirements. You might need to create a new scheduler.<a id="d9e6999" class="indexterm"/><a id="d9e7002" class="indexterm"/><a id="d9e7005" class="indexterm"/></p><p>To create a scheduler, you must inherit from the class
+    requirements. You might need to create a new scheduler.<a id="d9e7008" class="indexterm"/><a id="d9e7011" class="indexterm"/><a id="d9e7014" class="indexterm"/></p><p>To create a scheduler, you must inherit from the class
     <code class="code">nova.scheduler.driver.Scheduler</code>. Of the five methods that you
     can override, you <span class="emphasis"><em>must</em></span> override the two methods
     marked with an asterisk (*) below:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p><code class="code">update_service_capabilities</code></p></li><li class="listitem"><p><code class="code">hosts_up</code></p></li><li class="listitem"><p><code class="code">group_hosts</code></p></li><li class="listitem"><p>* <code class="code">schedule_run_instance</code></p></li><li class="listitem"><p>* <code class="code">select_destinations</code></p></li></ul></div><p>To demonstrate customizing OpenStack, we'll create an example of a
@@ -355,9 +355,9 @@ proxy-server IP my.local.ip.address denied access to Account=AUTH_... \
     the hostname. Such an example could be useful when you have a group of
     users on a subnet and you want all of their instances to start within some
     subset of your hosts.</p><div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;"><table border="0" summary="Warning"><tr><td rowspan="2" align="center" valign="top" width="25"><img alt="[Warning]" src="../common/images/admon/warning.png"/></td><th align="left">Warning</th></tr><tr><td align="left" valign="top"><p>This example is for illustrative purposes only. It should not be
-      used as a scheduler for Compute without further development and <span class="keep-together">testing</span>.<a id="d9e7031" class="indexterm"/></p></td></tr></table></div><p>When you join the screen session that <code class="code">stack.sh</code> starts
+      used as a scheduler for Compute without further development and <span class="keep-together">testing</span>.<a id="d9e7040" class="indexterm"/></p></td></tr></table></div><p>When you join the screen session that <code class="code">stack.sh</code> starts
     with <code class="code">screen -r stack</code>, you are greeted with many screen
-    windows:</p><pre class="screen">0$ shell*  1$ key  2$ horizon  ...  9$ n-api  ...  14$ n-sch ...</pre><div class="variablelist"><dl><dt><span class="term"><code class="code">shell</code></span></dt><dd><p>A shell where you can get some work done</p></dd><dt><span class="term"><code class="code">key</code></span></dt><dd><p>The keystone service</p></dd><dt><span class="term"><code class="code">horizon</code></span></dt><dd><p>The horizon dashboard web application</p></dd><dt><span class="term"><code class="code">n-{name}</code></span></dt><dd><p>The nova services</p></dd><dt><span class="term"><code class="code">n-sch</code></span></dt><dd><p>The nova scheduler service</p></dd></dl></div><div class="procedure"><a id="d9e7064"> </a><p class="title"><strong>To create the scheduler and plug it in through
+    windows:</p><pre class="screen">0$ shell*  1$ key  2$ horizon  ...  9$ n-api  ...  14$ n-sch ...</pre><div class="variablelist"><dl><dt><span class="term"><code class="code">shell</code></span></dt><dd><p>A shell where you can get some work done</p></dd><dt><span class="term"><code class="code">key</code></span></dt><dd><p>The keystone service</p></dd><dt><span class="term"><code class="code">horizon</code></span></dt><dd><p>The horizon dashboard web application</p></dd><dt><span class="term"><code class="code">n-{name}</code></span></dt><dd><p>The nova services</p></dd><dt><span class="term"><code class="code">n-sch</code></span></dt><dd><p>The nova scheduler service</p></dd></dl></div><div class="procedure"><a id="d9e7073"> </a><p class="title"><strong>To create the scheduler and plug it in through
       configuration:</strong></p><ol class="procedure" type="1"><li class="step"><p>The code for OpenStack lives in <code class="code">/opt/stack</code>, so go
         to the <code class="literal">nova</code> directory and edit your scheduler
         module. Change to the directory where <code class="literal">nova</code> is
@@ -530,7 +530,7 @@ _schedule /opt/stack/nova/nova/scheduler/ip_scheduler.py:76</pre></li></ol></div
     propose that it be added to the official Compute <a class="link" href="https://github.com/openstack/nova/tree/master/nova/scheduler" target="_top">schedulers</a>.</p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="ops_dashboard"> </a>Customizing the Dashboard (Horizon)</h2></div></div></div><p>The dashboard is based on the Python <a class="link" href="https://www.djangoproject.com/" target="_top">Django</a> web application
     framework. The best guide to customizing it has already been written and
     can be found at <a class="link" href="http://docs.openstack.org/developer/horizon/topics/tutorial.html" target="_top">Building on
-    Horizon</a>.<a id="d9e7164" class="indexterm"/><a id="d9e7166" class="indexterm"/><a id="d9e7168" class="indexterm"/><a id="d9e7170" class="indexterm"/><a id="d9e7173" class="indexterm"/></p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="customize_conclusion"> </a>Conclusion</h2></div></div></div><p>When operating an OpenStack cloud, you may discover that your users
+    Horizon</a>.<a id="d9e7173" class="indexterm"/><a id="d9e7175" class="indexterm"/><a id="d9e7177" class="indexterm"/><a id="d9e7179" class="indexterm"/><a id="d9e7182" class="indexterm"/></p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="customize_conclusion"> </a>Conclusion</h2></div></div></div><p>When operating an OpenStack cloud, you may discover that your users
     can be quite demanding. If OpenStack doesn't do what your users need, it
     may be up to you to fulfill those requirements. This chapter provided you
     with some options for customization and gave you the tools you need to get
@@ -540,7 +540,7 @@ _schedule /opt/stack/nova/nova/scheduler/ip_scheduler.py:76</pre></li></ol></div
 	  var lineFeed = "%0A";
 	  var docUrl = "URL: " + window.location;
 	  var bugTitle = "Chapter 15. Customization in OpenStack Operations Guide";
-	  var buildTime = "Built: 2015-10-20T18:33:33+02:00";
+	  var buildTime = "Built: 2015-10-20T23:42:22+02:00";
 	  var gitSha = "git SHA: c736dbf695b9b6d705875e6f24f6f8ec044c4e31";
 	  var fieldComment = encodeURI(buildTime) +  lineFeed + encodeURI(gitSha) + lineFeed + encodeURI(docUrl) + lineFeed + encodeURI(sourceFile) + lineFeed + encodeURI(xmlId);
 	  logABug(bugTitle,fieldComment);

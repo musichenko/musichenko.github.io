@@ -3,7 +3,7 @@
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:exsl="http://exslt.org/common" xmlns:ng="http://docbook.org/docbook-ng" xmlns:fb="http://ogp.me/ns/fb#"><head>
 <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"/>
-<title>Instances - OpenStack Operations Guide</title><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><meta name="mavenGroupId" content="org.openstack.docs"/><meta name="mavenArtifactId" content="openstack-ops-manual"/><meta name="mavenVersionId" content="1.0.0"/><link rel="home" href="index.html" title="OpenStack Operations Guide"/><link rel="up" href="user_facing_operations.html" title="Chapter 10. User-Facing Operations"/><link rel="prev" href="user_facing_shared_file_systems.html" title="Shared File System Storage"/><link rel="next" href="associate_security_groups.html" title="Associating Security Groups"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="git-sha" content="c736dbf695b9b6d705875e6f24f6f8ec044c4e31"/><meta name="buildTime" content="2015-10-20T18:33:30+02:00"/><script type="text/javascript">
+<title>Instances - OpenStack Operations Guide</title><meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1"/><meta name="mavenGroupId" content="org.openstack.docs"/><meta name="mavenArtifactId" content="openstack-ops-manual"/><meta name="mavenVersionId" content="1.0.0"/><link rel="home" href="index.html" title="OpenStack Operations Guide"/><link rel="up" href="user_facing_operations.html" title="Chapter 10. User-Facing Operations"/><link rel="prev" href="user_facing_shared_file_systems.html" title="Shared File System Storage"/><link rel="next" href="associate_security_groups.html" title="Associating Security Groups"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="git-sha" content="c736dbf695b9b6d705875e6f24f6f8ec044c4e31"/><meta name="buildTime" content="2015-10-20T23:42:19+02:00"/><script type="text/javascript">
             //The id for tree cookie
             var treeCookieId = "treeview-openstack-operations-guide";
             var language = "en";
@@ -43,14 +43,14 @@
         <a id="logABugLink1" href="" target="_blank" title="Found an error? Report a bug against this page"><i class="icon-bug"><!----></i></a></div></div></div><div id="content"><div class="section"><div xmlns="" class="titlepage"><div><div><h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="instances"> </a>Instances</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="instances.html#start_instances">Starting Instances</a></span></dt><dt><span class="section"><a href="instances.html#instance_boot_failures">Instance Boot Failures</a></span></dt><dt><span class="section"><a href="instances.html#instance_specific_data">Using Instance-Specific Data</a></span></dt></dl></div><p>Instances are the running virtual machines within an OpenStack
     cloud. This section deals with how to work with them and their underlying
     images, their network properties, and how they are represented in the
-    database.<a id="d9e4540" class="indexterm"/></p><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="start_instances"> </a>Starting Instances</h3></div></div></div><p>To launch an instance, you need to select an image, a flavor, and
+    database.<a id="d9e4549" class="indexterm"/></p><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="start_instances"> </a>Starting Instances</h3></div></div></div><p>To launch an instance, you need to select an image, a flavor, and
       a name. The name needn't be unique, but your life will be simpler if it
       is because many tools will use the name in place of the UUID so long as
       the name is unique. You can start an instance from the dashboard from
       the <span class="guibutton"><strong>Launch Instance</strong></span> button on the
       <span class="guilabel"><strong>Instances</strong></span> page or by selecting the
       <span class="guilabel"><strong>Launch</strong></span> action next to an image or snapshot on the
-      <span class="guilabel"><strong>Images &amp; Snapshots</strong></span> page.<a id="d9e4550" class="indexterm"/></p><p>On the command line, do this:</p><pre class="screen">$ nova boot --flavor &lt;flavor&gt; --image &lt;image&gt; &lt;name&gt;</pre><p>There are a number of optional items that can be specified. You
+      <span class="guilabel"><strong>Images &amp; Snapshots</strong></span> page.<a id="d9e4559" class="indexterm"/></p><p>On the command line, do this:</p><pre class="screen">$ nova boot --flavor &lt;flavor&gt; --image &lt;image&gt; &lt;name&gt;</pre><p>There are a number of optional items that can be specified. You
       should read the rest of this section before trying to start an instance,
       but this is the base command that later details are layered upon.</p><p>To delete instances from the dashboard, select the
       <span class="guilabel"><strong>Terminate instance</strong></span> action next to the instance on
@@ -59,10 +59,10 @@
       terminate it in the OpenStack sense.</p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="instance_boot_failures"> </a>Instance Boot Failures</h3></div></div></div><p>If an instance fails to start and immediately moves to an error
       state, there are a few different ways to track down what has gone wrong.
       Some of these can be done with normal user access, while others require
-      access to your log server or compute nodes.<a id="d9e4564" class="indexterm"/></p><p>The simplest reasons for nodes to fail to launch are quota
+      access to your log server or compute nodes.<a id="d9e4573" class="indexterm"/></p><p>The simplest reasons for nodes to fail to launch are quota
       violations or the scheduler being unable to find a suitable compute node
       on which to run the instance. In these cases, the error is apparent when
-      you run a <code class="code">nova show</code> on the faulted instance:<a id="d9e4569" class="indexterm"/></p><pre class="screen">$ nova show test-instance</pre><pre class="screen">
+      you run a <code class="code">nova show</code> on the faulted instance:<a id="d9e4578" class="indexterm"/></p><pre class="screen">$ nova show test-instance</pre><pre class="screen">
 +------------------------+-----------------------------------------------------\
 | Property               | Value                                               /
 +------------------------+-----------------------------------------------------\
@@ -97,7 +97,7 @@
       place to start looking for lower-level problems.</p><p>Using <code class="code">nova show</code> as an admin user will show the
       compute node the instance was scheduled on as <code class="code">hostId</code>. If
       the instance failed during scheduling, this field is blank.</p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="instance_specific_data"> </a>Using Instance-Specific Data</h3></div></div></div><div class="toc"><dl><dt><span class="section"><a href="instances.html#instance_metadata">Instance metadata</a></span></dt><dt><span class="section"><a href="instances.html#instance_user_data">Instance user data</a></span></dt><dt><span class="section"><a href="instances.html#file_injection">File injection</a></span></dt></dl></div><p>There are two main types of instance-specific data: metadata and
-      user data.<a id="d9e4586" class="indexterm"/><a id="d9e4589" class="indexterm"/></p><div class="section"><div xmlns="" class="titlepage"><div><div><h4 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="instance_metadata"> </a>Instance metadata</h4></div></div></div><p>For Compute, instance metadata is a collection of key-value
+      user data.<a id="d9e4595" class="indexterm"/><a id="d9e4598" class="indexterm"/></p><div class="section"><div xmlns="" class="titlepage"><div><div><h4 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="instance_metadata"> </a>Instance metadata</h4></div></div></div><p>For Compute, instance metadata is a collection of key-value
         pairs associated with an instance. Compute reads and writes to these
         key-value pairs any time during the instance lifetime, from inside and
         outside the instance, when the end user uses the Compute API to do so.
@@ -150,7 +150,7 @@
         guest instance can access. For example, <a class="link" href="https://help.ubuntu.com/community/CloudInit" title="OpenStack Image service" target="_top">cloudinit</a> is an open
         source package from Ubuntu, but available in most distributions, that
         handles early initialization of a cloud instance that makes use of
-        this user data.<a id="d9e4620" class="indexterm"/></p><p>This user data can be put in a file on your local system and
+        this user data.<a id="d9e4629" class="indexterm"/></p><p>This user data can be put in a file on your local system and
         then passed in at instance creation with the flag <code class="code">--user-data
         &lt;user-data-file&gt;</code>. For example:</p><pre class="screen">$ nova boot --image ubuntu-cloudimage --flavor 1 --user-data mydata.file mydatainstance</pre><p>To understand the difference between user data and metadata,
         realize that user data is created before an instance is started. User
@@ -159,7 +159,7 @@
         tenant wants.</p></div><div class="section"><div xmlns="" class="titlepage"><div><div><h4 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="file_injection"> </a>File injection</h4></div></div></div><p>Arbitrary local files can also be placed into the instance file
         system at creation time by using the <code class="code">--file
         &lt;dst-path=src-path&gt;</code> option. You may store up to five
-        files.<a id="d9e4630" class="indexterm"/></p><p>For example, let's say you have a special
+        files.<a id="d9e4639" class="indexterm"/></p><p>For example, let's say you have a special
         <code class="filename">authorized_keys</code> file named
         special_authorized_keysfile that for some reason you want to put on
         the instance instead of using the regular SSH key injection. In this
@@ -170,7 +170,7 @@
 	  var lineFeed = "%0A";
 	  var docUrl = "URL: " + window.location;
 	  var bugTitle = "Instances in OpenStack Operations Guide";
-	  var buildTime = "Built: 2015-10-20T18:33:30+02:00";
+	  var buildTime = "Built: 2015-10-20T23:42:19+02:00";
 	  var gitSha = "git SHA: c736dbf695b9b6d705875e6f24f6f8ec044c4e31";
 	  var fieldComment = encodeURI(buildTime) +  lineFeed + encodeURI(gitSha) + lineFeed + encodeURI(docUrl) + lineFeed + encodeURI(sourceFile) + lineFeed + encodeURI(xmlId);
 	  logABug(bugTitle,fieldComment);
